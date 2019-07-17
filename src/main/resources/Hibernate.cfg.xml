@@ -31,8 +31,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="shop.newshop.Entity.Department" />
 		<mapping class="shop.newshop.Entity.Employee" />
-		
-		
+
 	</session-factory>
 
 </hibernate-configuration>
