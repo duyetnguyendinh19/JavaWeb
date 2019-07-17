@@ -48,40 +48,13 @@ public class Employee {
 	@JoinColumn( name = "idDepartment")
 	private Department department;
 	
-	@NotNull
-	@OneToMany
-	@JoinColumn( name = "idEmployee")
-	private List<Contract> listcontract;
-	
-	@NotNull
-	@OneToMany
-	@JoinColumn( name = "idEmployee")
-	private List<Bonus> listbonus;
-	
-	@NotNull
-	@OneToMany
-	@JoinColumn( name = "idEmployee")
-	private List<Discipline> listdiscipline;
+
 	
 	public Employee() {
 		super();
 	}
 
-	public Employee(int id, String name, String phone, String address, Date birthday, String level,
-			Department department, List<Contract> listcontract, List<Bonus> listbonus,
-			List<Discipline> listdiscipline) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.address = address;
-		this.birthday = birthday;
-		this.level = level;
-		this.department = department;
-		this.listcontract = listcontract;
-		this.listbonus = listbonus;
-		this.listdiscipline = listdiscipline;
-	}
+	
 
 	public int getId() {
 		return id;
@@ -139,30 +112,23 @@ public class Employee {
 		this.department = department;
 	}
 
-	public List<Contract> getListcontract() {
-		return listcontract;
+
+
+	public Employee(int id, String name, String phone, String address, Date birthday, String level,
+			Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.birthday = birthday;
+		this.level = level;
+		this.department = department;
 	}
 
-	public void setListcontract(List<Contract> listcontract) {
-		this.listcontract = listcontract;
-	}
 
-	public List<Bonus> getListbonus() {
-		return listbonus;
-	}
 
-	public void setListbonus(List<Bonus> listbonus) {
-		this.listbonus = listbonus;
-	}
 
-	public List<Discipline> getListdiscipline() {
-		return listdiscipline;
-	}
-
-	public void setListdiscipline(List<Discipline> listdiscipline) {
-		this.listdiscipline = listdiscipline;
-	}
-	
 	
 	
 }

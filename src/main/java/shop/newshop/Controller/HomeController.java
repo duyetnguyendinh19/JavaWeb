@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-	@Autowired
-//	private
-	
+
 	@GetMapping(value="index")
 	public String HomeCustomer(ModelMap map) {
 		map.addAttribute("title", "Home");
