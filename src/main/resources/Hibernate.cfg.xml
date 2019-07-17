@@ -11,7 +11,7 @@
 		<property name="connection.url">jdbc:mysql://localhost:3306/qlnv</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">123456</property>
-		<property name="hibernate.connection.characterEncoding">utf8</property> 
+		<property name="hibernate.connection.characterEncoding">utf8</property>
 
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">1</property>
@@ -28,11 +28,14 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		<mapping class="shop.newshop.Entity.Department" />
 		<mapping class="shop.newshop.Entity.Employee" />
-		
-		
+		<mapping class="shop.newshop.Entity.Contract" />
+		<mapping class="shop.newshop.Entity.Bonus" />
+
+		<mapping class="shop.newshop.Entity.Discipline" />
+
 	</session-factory>
 
 </hibernate-configuration>
