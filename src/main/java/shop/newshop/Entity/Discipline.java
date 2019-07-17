@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table( name = "discipline")
@@ -22,15 +23,18 @@ public class Discipline {
 	private int id;
 	
 	@NotNull
-	@Column(name = "type" , length = 128)
+	@Column(name = "type")
 	private String type;
 	
-	@Column(name = "describe" , length = 256)
+	@Null
+	@Column(name = "describe" , length = 64)
 	private String describe;
 	
-	@Column(name = "reason" , length = 256)
+	@Null
+	@Column(name = "reason" , length = 64)
 	private String reason;
 	
+	@NotNull
 	@Column(name = "date")
 	private Date date;
 
