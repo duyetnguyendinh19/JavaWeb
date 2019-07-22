@@ -19,4 +19,9 @@ public class BonusController {
 		return "";
 	}
 	
+	@GetMapping(value = "index")
+	public String get(ModelMap map) {
+		return "admin/index";
+	}
+	
 }
