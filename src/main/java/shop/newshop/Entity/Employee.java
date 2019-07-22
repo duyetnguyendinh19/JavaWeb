@@ -48,13 +48,11 @@ public class Employee {
 	@JoinColumn( name = "idDepartment")
 	private Department department;
 	
+	@Column(name = "avatar", length = 1000)
+	private String avatar;
 
-	
-	public Employee() {
-		super();
-	}
-
-	
+	@Column(name = "identitycard", length= 15)
+	private String identitycard;
 
 	public int getId() {
 		return id;
@@ -112,23 +110,35 @@ public class Employee {
 		this.department = department;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
 
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
-	public Employee(int id, String name, String phone, String address, Date birthday, String level,
-			Department department) {
+	public String getIdentitycard() {
+		return identitycard;
+	}
+
+	public void setIdentitycard(String identitycard) {
+		this.identitycard = identitycard;
+	}
+
+	public Employee() {
 		super();
-		this.id = id;
+	}
+
+	public Employee(@NotNull String name, @NotNull String phone, @NotNull String address, @NotNull Date birthday, @NotNull String level, @NotNull Department department, String avatar, String identitycard) {
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
 		this.birthday = birthday;
 		this.level = level;
 		this.department = department;
+		this.avatar = avatar;
+		this.identitycard = identitycard;
 	}
 
-
-
-
-	
-	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import shop.newshop.Entity.Contract;
 
-public interface ContractService {
+public interface  ContractService {
 
 	public List<Contract> getAlls();
 
