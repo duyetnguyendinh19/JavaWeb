@@ -42,8 +42,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return false;
 	}
@@ -59,8 +57,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			System.out.println(e);
-		} finally {
-			session.close();
 		}
 		return false;
 	}
@@ -78,8 +74,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return false;
 	}
