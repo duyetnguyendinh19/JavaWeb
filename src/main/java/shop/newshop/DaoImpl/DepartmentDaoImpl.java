@@ -19,7 +19,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		List<Department> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
 			String sql = "FROM Department";
 			Query query = session.createQuery(sql);
 			list = query.list();
