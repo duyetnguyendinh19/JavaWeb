@@ -27,7 +27,7 @@
                             <div class="panel-heading">
                                 <h2 class="panel-title">Quản lý hợp đồng</h2>
                             </div>
-                            <a href="${pageContext.request.contextPath}/admin/add">
+                            <a href="${pageContext.request.contextPath}/admin/addContract">
                                 <button class="btn btn-success"
                                         style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin: 10px 15px; ">
                                     Thêm hợp đồng
@@ -57,16 +57,18 @@
                                             <td><fmt:formatNumber type="number" maxIntegerDigits="10"
                                                                   value="${contract.salary}"/></td>
                                             <td>
-                                                <a href="${pageContext.request.contextPath}/admin/update/${contract.id}">
+                                                <a href="${pageContext.request.contextPath}/admin/updateContract/${contract.id}">
                                                     <button class="btn btn-warning" data-toggle="tooltip"
                                                             title="Sửa hợp đồng">
                                                         <i class="fas fa-user-edit" aria-hidden="true"></i>
                                                     </button>
                                                 </a>
-                                                <button class="btn btn-danger" data-toggle="tooltip"
-                                                        title="Xóa hợp đồng" onclick="deleteConfirm(${contract.id})">
+<%--                                                onclick="deleteConfirm(${contract.id})"--%>
+                                                <a href="${pageContext.request.contextPath}/admin/deleteContract/${contract.id}"><button class="btn btn-danger" data-toggle="tooltip"
+                                                        title="Xóa hợp đồng" >
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -80,6 +82,11 @@
         </div>
     </div>
 </div>
+<script>
+    /*<![CDATA[*/
+    var currUrl = /*[[@{/}]]*/ "";
+    /*]]>*/
+</script>
 <script type="text/javascript">
     function deleteConfirm(id) {
         BootstrapDialog.show({
@@ -94,7 +101,7 @@
                 label: 'Delete',
                 cssClass: 'btn-primary',
                 action: function (dialogItself) {
-                    var reqUrl = currUrl + "manage/delete/" + id;
+                    var reqUrl = currUrl + "admin/deleteContract/" + id;
                     $.ajax({
                         url: reqUrl,
                         method: 'GET',

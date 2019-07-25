@@ -67,7 +67,4 @@ public class DepartmentController {
  		departService.delete(id);
  		return "redirect:/listDepartment"; 
  	}
-	
-
-	
 }

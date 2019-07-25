@@ -67,8 +67,7 @@ public class ContractDaoImpl implements ContractDao {
 
     @Override
     public boolean delete(int idContract) {
-        ContractServiceImpl contractService = new ContractServiceImpl();
-        Contract contract = contractService.getContractById(idContract);
+        Contract contract = getContractById(idContract);
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();

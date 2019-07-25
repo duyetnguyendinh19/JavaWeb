@@ -20,6 +20,7 @@ public class DisciplineDaoImpl implements DisciplineDao {
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
             String sql = "FROM Discipline";
+            session.beginTransaction();
             Query query = session.createQuery(sql);
             list = query.list();
         } catch (Exception e) {

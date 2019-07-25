@@ -31,45 +31,49 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">Sửa hợp đồng</h2>
                 </div>
-                <form action="${pageContext.request.contextPath}/admin/update" method="POST" enctype="application/x-www-form-urlencoded;charset=utf-8">
+                <form action="${pageContext.request.contextPath}/admin/updateContract" method="POST"
+                      enctype="application/x-www-form-urlencoded;charset=utf-8">
                     <input type="text" class="form-control" name="id" placeholder="Tên nhân viên" value="${contract.id}"
                            hidden="hidden">
                     <input type="text" class="form-control" name="employee" placeholder="Tên nhân viên"
                            value="${contract.employee.id}" hidden="hidden">
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
                         <label>Tên nhân viên</label>
-                        <input type="text" class="form-control" placeholder="Tên nhân viên"
+                        <input type="text" class="form-control" name="nameEmployee" placeholder="Tên nhân viên"
                                value="${contract.employee.name}" readonly>
                     </div>
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
                         <label>Lương</label>
                         <input type="text" class="form-control" id="salary" name="salary" placeholder="Lương" value="<fmt:formatNumber  type="number" maxIntegerDigits="10"
                                                                       value="${contract.salary}"/>">
-<%--                        <c:if test="${errorSalary}">--%>
-                            <label style="color: red;margin-top: 5px;">${errorSalary}</label>
-<%--                        </c:if>--%>
+                        <%--                        <c:if test="${errorSalary}">--%>
+                        <label style="color: red;margin-top: 5px;">${errorSalary}</label>
+                        <%--                        </c:if>--%>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Ngày bắt đầu</label>
                         <div class="ui calendar" id="rangestart">
                             <input type="text" class="form-control datepicker" id="startDate" name="startday"
                                    placeholder="Ngày bắt đầu" value="${contract.startday}">
+                            <label style="color: red;margin-top: 5px;">${errorstartDay}</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Ngày kết thúc</label>
                         <div class="ui calendar" id="rangeend">
                             <input type="text" class="form-control datepicker" id="endDate" name="expirationday"
-                                   placeholder="Ngày kết thúc" value="${contract.expirationday}" required>
+                                   placeholder="Ngày kết thúc" value="${contract.expirationday}" >
+                            <label style="color: red;margin-top: 5px;">${errorexpirationday}</label>
                         </div>
                     </div>
                     <br/>
-                    <br>
-                    <button type="submit" class="btn btn-success" style="float: left;margin-left: 41%;">Lưu</button>
+                    <div style="width: 100%;text-align: center;margin-top: 16%;">
+                        <br>
+                        <button type="submit" class="btn btn-success" style="float:left;margin-left: 41%;">Lưu</button>
+                    </div>
                 </form>
                 <a href="${pageContext.request.contextPath}/admin/listContract">
-                    <button class="btn btn-warning" style="background: #aaa;border: #aaa;margin-left: 20px;">Hủy bỏ
-                    </button>
+                    <button class="btn btn-warning" style="background: #aaa;border: #aaa;margin-left: 20px;">Hủy bỏ</button>
                 </a>
             </div>
         </div>

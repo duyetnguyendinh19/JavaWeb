@@ -12,11 +12,16 @@
             color: red;
             font-style: italic;
         }
-        .btn.btn-success,.btn.btn-warning{
+
+        .btn.btn-success, .btn.btn-warning {
             width: 8%;
             height: 40px;
             font-weight: bold;
             margin: 15px 0px;
+        }
+
+        .form-control {
+            height: 38px;
         }
     </style>
 </head>
@@ -29,40 +34,61 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">Thêm hợp đồng</h2>
                 </div>
-                <form action="${pageContext.request.contextPath}/admin/saveproduct" method="POST">
+                <form action="${pageContext.request.contextPath}/admin/addContract" method="POST">
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
-                        <label>Tên nhân viên</label>
-                        <input type="text" class="form-control" placeholder="Tên nhân viên">
+                        <label>Nhân viên</label>
+                        <select class="ui dropdown form-control" name="employee">
+                            <%--                            <option>Chọn nhân viên</option>--%>
+                            <c:forEach items="${employee}" var="employee">
+                                <option value="${employee.id}">${employee.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
+                    <%--                    <input type="text" name="employee" value="" hidden="hidden"/>--%>
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
                         <label>Lương</label>
-                        <input type="text" class="form-control" id="salary" placeholder="Lương" required>
+                        <input type="text" class="form-control" name="salary" id="salary" value="${salary}"
+                               placeholder="Lương">
+                        <label style="color: red;margin-top: 5px;">${errorSalary}</label>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Ngày bắt đầu</label>
                         <div class="ui calendar" id="rangestart">
-                            <input type="text" class="form-control datepicker" id="startDate" name="startDate"
-                                   placeholder="Ngày bắt đầu" required>
+                            <input type="text" class="form-control datepicker" id="startDate" value="${startday}"
+                                   name="startday"
+                                   placeholder="Ngày bắt đầu">
+                            <label style="color: red;margin-top: 5px;">${errorstartday}</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Ngày kết thúc</label>
                         <div class="ui calendar" id="rangeend">
-                            <input type="text" class="form-control datepicker" id="endDate" name="endDate"
-                                   placeholder="Ngày kết thúc" required>
+                            <input type="text" class="form-control datepicker" id="endDate" value="${expirationday}"
+                                   name="expirationday"
+                                   placeholder="Ngày kết thúc">
+                            <label style="color: red;margin-top: 5px;">${errorexpirationday}</label>
                         </div>
                     </div>
                     <br/>
-                    <br>
-                    <button type="submit" class="btn btn-success" style="float: left;margin-left: 41%;">Lưu</button>
+                    <div style="width: 100%;text-align: center;margin-top: 16%;"><br>
+                        <button type="submit" class="btn btn-success" style="float:left;margin-left: 41%;">Lưu</button>
+                    </div>
                 </form>
-                    <a href="${pageContext.request.contextPath}/admin/listContract">
-                        <button class="btn btn-warning" style="background: #aaa;border: #aaa;margin-left: 20px;">Hủy bỏ</button>
-                    </a>
+                <button class="btn btn-warning" id="close"
+                        style="background: #aaa;border: #aaa;margin-left: 20px;">Hủy bỏ
+                </button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $('#close').on('click', function(){
+        window.location.assign('/Manager/admin/listContract');
+    })
+</script>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
 <script>
     var toDate = new Date();
     var date = toDate.getDate();
@@ -117,7 +143,7 @@
 </script>
 <script>
     function formatNumberString(numberStr) {
-        if(typeof numberStr === 'number') {
+        if (typeof numberStr === 'number') {
             numberStr = numberStr.toString();
         }
         return numberStr.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');

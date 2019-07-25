@@ -84,7 +84,7 @@
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">Xóa
+																<h5 class="modal-title" title="Xóa phòng ban" id="exampleModalLabel">Xóa
 																	phòng ban</h5>
 															</div>
 															<div class="modal-body">Mã phòng ban: ${depart.id}
@@ -92,9 +92,8 @@
 																Tên phòng ban: ${depart.name}
 															</div>
 															<div class="modal-footer">
-																<a
-																	href="${pageContext.request.contextPath}/deleteDepart?id=${depart.id}"
-																	title="Delete"><button type="button"
+																<a href="${pageContext.request.contextPath}/deleteDepart?id=${depart.id}"
+																	title="Xóa phòng ban"><button type="button"
 																		class="btn btn-danger">Đồng ý</button> </a>
 																<button type="button" class="btn btn-secondary"
 																	data-dismiss="modal">Hủy bỏ</button>
