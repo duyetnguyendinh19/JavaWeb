@@ -15,7 +15,7 @@ public class DepartmentController {
 	
 	@GetMapping(value = "listDepartment")
 	public String listDepartment(ModelMap model) {
-		return  "admin/listDepartment";
+		return  "admin/Department";
 	}
 	
 }
