@@ -94,6 +94,21 @@ AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `qlnv`.`attendance` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `starttime` DATETIME NOT NULL,
+  `endtime` DATETIME NOT NULL,
+  `status` TINYINT NOT NULL,
+  `employee_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_attendance_employee_idx` (`employee_id` ASC) ,
+  CONSTRAINT `fk_attendance_employee`
+    FOREIGN KEY (`employee_id`)
+    REFERENCES `qlnv`.`employee` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
 
 
 
