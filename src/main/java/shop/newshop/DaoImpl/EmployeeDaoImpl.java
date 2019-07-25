@@ -20,7 +20,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		List<Employee> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
 			String sql = "FROM Employee";
 			Query query = session.createQuery(sql);
 			list = query.list();
