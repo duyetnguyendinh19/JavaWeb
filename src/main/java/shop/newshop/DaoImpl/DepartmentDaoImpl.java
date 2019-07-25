@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.DepartmentDao;
@@ -19,11 +20,14 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		List<Department> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
+			session.beginTransaction();
 			String sql = "FROM Department";
 			Query query = session.createQuery(sql);
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 		return list;
 	}
@@ -60,8 +64,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
 	@Override
 	public boolean delete(int idDepart) {
-		DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-		Department department = departmentService.getDepartById(idDepart);
+		Department department = getDepartById(idDepart);
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
