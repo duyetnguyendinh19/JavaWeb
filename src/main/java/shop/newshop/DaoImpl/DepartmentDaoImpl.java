@@ -19,11 +19,14 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		List<Department> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
+			session.beginTransaction();
 			String sql = "FROM Department";
 			Query query = session.createQuery(sql);
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 		return list;
 	}
@@ -60,8 +63,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
 	@Override
 	public boolean delete(int idDepart) {
-		DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-		Department department = departmentService.getDepartById(idDepart);
+		Department department = getDepartById(idDepart);
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
