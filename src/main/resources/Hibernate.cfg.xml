@@ -29,12 +29,13 @@
 		<property name="show_sql">true</property>
 
 		<property name="hibernate.hbm2ddl.auto">create</property>
-		<mapping class="shop.newshop.Entity.Department" />
-		<mapping class="shop.newshop.Entity.Employee" />
+		
 		<mapping class="shop.newshop.Entity.Contract" />
 		<mapping class="shop.newshop.Entity.Bonus" />
-
 		<mapping class="shop.newshop.Entity.Discipline" />
+		<mapping class="shop.newshop.Entity.Department" />
+		<mapping class="shop.newshop.Entity.Employee" />
+		
 
 	</session-factory>
 
