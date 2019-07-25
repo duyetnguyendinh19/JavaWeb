@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="templates/css/semantic.min.css"/>
     <link rel="stylesheet" href="templates/css/calendar.min.css"/>
 
+    <script src="templates/js/bootstrap.min.js"></script>
     <script src="templates/js/ace-extra.min.js"></script>
     <script src="templates/js/all.min.js"></script>
     <script src="templates/js/jquery.min.js"></script>

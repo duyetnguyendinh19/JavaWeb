@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page language="java" contentType="text/html; charset= UTF8"
-	pageEncoding="UTF8"%>
+<%@ page language="java" contentType="text/html; charset= UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,10 +30,10 @@
 			<div class="col-xs-14 col-sm-12 col-md-11">
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2 class="panel-title">Sua Ki Luat</h2>
+						<h2 class="panel-title">Sửa Kỷ Luật</h2>
 					</div>
 					<form:form modelAttribute="product"
-						action="${pageContext.request.contextPath}/admin/saveproduct"
+						action="#"
 						method="POST">
 
 								<div class="col-md-4 mb-3">
@@ -74,11 +74,11 @@
 						</div>
 
 						<br>
-						<form:button type="name" class="btn btn-success">Save</form:button>
+						<form:button type="name" class="btn btn-success">Lưu</form:button>
 					</form:form>
 					<br> <a
-						href="${pageContext.request.contextPath}/admin/listProduct"><button
-							class="btn btn-warning">Back</button></a>
+						href="#"><button
+							class="btn btn-warning">Quay Lại</button></a>
 				</div>
 
 			</div>

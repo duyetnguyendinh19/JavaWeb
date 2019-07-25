@@ -30,7 +30,7 @@
 					</div>
 	
 		<form:form modelAttribute="user"
-			action="${pageContext.request.contextPath}/admin/saveUser"
+			action="#"
 			method="POST">
 
 							<div class="col-md-6 mb-3">
@@ -57,11 +57,11 @@
 						</div>
 
 			<br>
-			<form:button type="name" class="btn btn-success"   >Save</form:button>
+			<form:button type="name" class="btn btn-success"   >Lưu</form:button>
 		</form:form>
 		<br>
-		<a href="${pageContext.request.contextPath}/admin/listUser"><button
-				class="btn btn-warning">Back</button></a>
+		<a href="#"><button
+				class="btn btn-warning">Quay Lại</button></a>
 	</div>
 	</div>
 	</div>

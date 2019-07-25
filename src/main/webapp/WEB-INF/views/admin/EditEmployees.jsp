@@ -1,7 +1,8 @@
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page language="java" contentType="text/html; charset= UTF8"
-	pageEncoding="UTF8"%>
+<%@ page language="java" contentType="text/html; charset= UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,16 +31,12 @@
 			<div class="col-xs-14 col-sm-12 col-md-11">
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2 class="panel-title">Them Ki Luat</h2>
+						<h2 class="panel-title">Sửa Lý Lịch</h2>
 					</div>
 					<form:form modelAttribute="product"
-						action="${pageContext.request.contextPath}/admin/saveproduct"
+						action="#"
 						method="POST">
-						<div class="col-md-4 mb-3">
-							<label for="validationDefault01">Mã Kỉ luật</label> <input
-								type="text" class="form-control" id="validationDefault01"
-								placeholder="Mã nhân viên" value="Mã nhân viên" required>
-						</div>
+
 						<div class="col-md-4 mb-3">
 							<label for="validationDefault01">Mã nhân viên</label> <input
 								type="text" class="form-control" id="validationDefault01"
@@ -48,37 +45,50 @@
 						<%-- Mã NV<form:input class="form-control" style="" type="number"
 							name="id_dm" path="id_dm" placeholder="Mã Nhân Viên"
 							minlength="0" /> --%>
-						<div class="col-md-4 mb-3">
+						<div class="col-md-5 mb-3">
 							<label for="validationDefault02">Tên nhân viên</label> <input
 								type="text" class="form-control" id="validationDefault02"
 								placeholder="Tên nhân viên" value="Tên nhân viên" required>
 						</div>
-						<div class="col-md-4 mb-3">
-							<label for="validationDefault3">Lý Do Kỉ Luật</label> <input
+						<div class="col-md-3 mb-3">
+							<label for="validationDefault3">Ngày sinh</label> <input
 								type="text" class="form-control" id="validationDefault03"
-								placeholder="Lý Do Kỉ Luật" value="Lý Do Kỉ Luật" required>
+								placeholder="Ngày sinh" value="Ngày sinh" required>
+						</div>
+						
+						
+						<div class="col-md-8 mb-3">
+							<label for="validationDefault3">Địa chỉ</label> <input
+								type="text" class="form-control" id="validationDefault03"
+								placeholder="Địa chỉ" value="Địa chỉ" required>
+						</div>
+						
+
+						<div class="col-md-1 mb-1">
+							<label for="validationDefault3">Chức Vụ</label> <input
+								type="checkbox" class="form-control" id="validationDefault03"
+								 required>
+						</div>
+					
+					 <div class="col-md-3 mb-3">
+							<label for="validationDefault3">SĐT</label> <input
+								type="text" class="form-control" id="validationDefault03"
+								placeholder="Số điện thoại" value="Số điện thoại" required>
 						</div>
 
 
-						<div class="col-md-4 mb-3">
-							<label for="validationDefault3">Loại kỉ luật</label> <input
+
+						<div class="col-md-3 mb-3">
+							<label for="validationDefault3">Bộ phận</label> <input
 								type="text" class="form-control" id="validationDefault03"
-								placeholder="Loại kỉ luật" value="Loại kỉ luật" required>
+								placeholder="Bộ phận" value="Bộ phận" required>
 						</div>
-
-						<div class="col-md-4 mb-3">
-							<label for="validationDefault3">Ngày kỉ Luật</label> <input
-								type="text" class="form-control" id="validationDefault03"
-								placeholder="Ngày kỉ Luật" value="Ngày kỉ Luật" required>
-						</div>
-
-
-						<br>
-						<form:button type="name" class="btn btn-success">Save</form:button>
+						
+						<form:button type="name" class="btn btn-success">Lưu</form:button>
 					</form:form>
-					<br> <a
-						href="${pageContext.request.contextPath}/admin/listProduct"><button
-							class="btn btn-warning">Back</button></a>
+					 <a
+						href="#"><button
+							class="btn btn-warning">Quay Lại</button></a>
 				</div>
 
 			</div>

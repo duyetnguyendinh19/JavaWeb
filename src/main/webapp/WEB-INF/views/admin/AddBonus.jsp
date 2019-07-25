@@ -30,7 +30,7 @@
 			<div class="col-xs-14 col-sm-12 col-md-11">
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2 class="panel-title">Them Khen Thuong</h2>
+						<h2 class="panel-title">Thêm Khen Thưởng</h2>
 					</div>
 					<form:form modelAttribute="product"
 						action="${pageContext.request.contextPath}/admin/saveproduct"
@@ -71,7 +71,7 @@
 						<br />
 
 						<br>
-						<form:button type="name" class="btn btn-success">Save</form:button>
+						<form:button type="name" class="btn btn-success">Lưu</form:button>
 					</form:form>
 					<br> <a
 						href="${pageContext.request.contextPath}/admin/listProduct"><button

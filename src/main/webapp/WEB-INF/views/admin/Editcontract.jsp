@@ -44,13 +44,16 @@
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
                         <label>Lương</label>
                         <input type="text" class="form-control" id="salary" name="salary" placeholder="Lương" value="<fmt:formatNumber  type="number" maxIntegerDigits="10"
-                                                                      value="${contract.salary}"/>" required>
+                                                                      value="${contract.salary}"/>">
+<%--                        <c:if test="${errorSalary}">--%>
+                            <label style="color: red;margin-top: 5px;">${errorSalary}</label>
+<%--                        </c:if>--%>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Ngày bắt đầu</label>
                         <div class="ui calendar" id="rangestart">
                             <input type="text" class="form-control datepicker" id="startDate" name="startday"
-                                   placeholder="Ngày bắt đầu" value="${contract.startday}" required>
+                                   placeholder="Ngày bắt đầu" value="${contract.startday}">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
@@ -120,7 +123,7 @@
 </script>
 <script>
     function formatNumberString(numberStr) {
-        if(typeof numberStr === 'number') {
+        if (typeof numberStr === 'number') {
             numberStr = numberStr.toString();
         }
         return numberStr.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');

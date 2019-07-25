@@ -1,5 +1,6 @@
-<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>
-<%@page import="shop.newshop.Service.CategoryService"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="java.util.Date"%>
@@ -12,7 +13,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function deleteDialog() {
-		var result = confirm("Do you want to delete this product?");
+		var result = confirm("Do you want to delete this category?");
 		if (result) {
 			alert("Delete success");
 		} else {
@@ -22,32 +23,8 @@
 </script>
 <link href="templates/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      xfbml            : true,
-      version          : 'v3.3'
-    });
-  };
-
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <body>
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
 
-
-<!-- Your customer chat code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="753600888389568"
-  theme_color="#ff7e29">
-</div>
 	<div class="container">
 		<div class="row">
 
@@ -75,78 +52,77 @@
 								class="sr-only">Next</span>
 							</a>
 						</div>
-
 						<div class="row">
-							<div class="col-xs-14 col-sm-12 col-md-11">
+							<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
 								<div class="panel panel-danger">
 									<div class="panel-heading">
-										<h2 class="panel-title">Product Management</h2>
+										<h2 class="panel-title">Khen Thưởng</h2>
 									</div>
-
 									<a
-										href="${pageContext.request.contextPath}/admin/addproduct/${item.id_pr}">
-										<button class="btn btn-primary">Add Product</button>
+										href="${pageContext.request.contextPath}/admin/themkhenthuong">
+										<button class="btn btn-primary">Thêm Khen Thưởng</button>
 									</a>
-									<li class="nav-item" style="list-style: none;"><app-addproduct
-											[dataProduct]="products"></app-addproduct></li>
+									
 									<div class="panel-body">
-										
+
 										<table class="table table-bordered table-hover">
 											<thead>
 												<tr>
-													<th>Mã NV</th>
-													<th>Tên NV</th>
-													<th>Ngày Sinh</th>
-													<th>Địa chỉ</th>
-													<th>Chức vụ</th>
-													<th>Số Điện Thoại</th>
-													<th>Bộ phận</th>
-													<th>Action</th>
+												<tr>
+													<!-- <th>Ma PB</th> -->
+													<th>Mã Khen Thưởng</th>
+													<th>Mã Nhân viên</th>
+													<th>Mô Tả</th>
+													<th>Lý Do Khen Thưởng</th>
+													<!-- <th>Loai Kt</th> -->
+													<th>Hình Thức Khen Thưởng</th>
+													<th>Ngày Khen Thưởng</th>
+
+													<th></th>
+												</tr>
+
+
+											</thead>
+
+											<tbody>
+
+												<tr>
+
+													<td></td>
+													<th></th>
+													<td></td>
+													<td></td>
+													<th></th>
+													<th></th>
+													<td><a
+														href="#"><button
+																class="btn btn-warning">
+																<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+															</button></a> <a
+														href="#">
+															<button class="btn btn-danger" onclick="deleteDialog()">
+																<i class="fa fa-trash" aria-hidden="true"></i>
+															</button>
+													</a></td>
+
 
 												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="item" items="${listProduct}">
-													<tr>
 
-														<th></th>
-														<th></th>
-														<th></th>
-														<th></th>
-														<th></th>
-														<th></th>
-														<th></th>
-
-														<td><a
-															href="${pageContext.request.contextPath}/admin/editpro"><button
-																	class="btn btn-warning">
-																	<i class="fa fa-pencil-square-o" aria-hidden="true" title="Sửa" data-toggle="tooltip"></i>
-																</button></a> <a
-															href="${pageContext.request.contextPath}/admin/removepro/${item.id_pr}">
-																<button class="btn btn-danger" onclick="deleteDialog()">
-																	<i class="fa fa-trash" aria-hidden="true" title="Xóa" data-toggle="tooltip"
-																		path="successMessage" name="successMessage"></i>
-																</button>
-															
-																</td>
-													</tr>
-												</c:forEach>
 
 											</tbody>
 										</table>
-										<nav aria-label="Page navigation example">
+									</div>
+									<nav aria-label="Page navigation example">
 									<ul class="pagination justify-content-center">
 										<li class="page-item disabled"><a class="page-link"
 											href="#" tabindex="-1">Previous</a></li>
-										<li class="page-item"><a class="page-link" href="#"  >1</a></li>
+										<li class="page-item"><a class="page-link" href="#">1</a></li>
 										<li class="page-item"><a class="page-link" href="#">2</a></li>
 										<li class="page-item"><a class="page-link" href="#">3</a></li>
 										<li class="page-item"><a class="page-link" href="#">Next</a>
 										</li>
 									</ul>
 									</nav>
-									</div>
-									
 								</div>
 							</div>
 						</div>
@@ -162,7 +138,6 @@
 
 
 	</div>
-
 	<script src="templates/jquery/jquery.min.js"></script>
 	<script src="templates/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

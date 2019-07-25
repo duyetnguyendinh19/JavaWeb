@@ -1,6 +1,6 @@
-<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page import="shop.newshop.Service.CategoryService"%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="java.util.Date"%>
@@ -56,28 +56,27 @@
 							<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
 								<div class="panel panel-danger">
 									<div class="panel-heading">
-										<h2 class="panel-title">Ki Luat</h2>
+										<h2 class="panel-title">Kỉ Luật</h2>
 									</div>
-									<a href="${pageContext.request.contextPath}/admin/themkiluat">
-										<button class="btn btn-primary">Them Ki Luat</button>
+									<a href="#">
+										<button class="btn btn-primary">Thêm Kỉ Luật</button>
 									</a>
-									<li class="nav-item" style="list-style: none;"><app-addproduct
-											[dataProduct]="products"></app-addproduct></li>
+								
 									<div class="panel-body">
 
 										<table class="table table-bordered table-hover">
 											<thead>
 
 												<tr>
-													<th>Mã KL</th>
-													<th>Mã NV</th>
-													<th>Tên NV</th>
-													<th>Mô tả
-													<th>Lý do KL</th>
+													<th>Mã Kỷ Luật</th>
+													<th>Mã Nhân Viên</th>
+													<th>Tên Nhân Viên</th>
+													<th>Mô tả</th>
+													<th>Lý Do Kỷ Luật</th>
 
-													<th>Loai KL</th>
-													<th>Ngay KL</th>
-													<th>Action</th>
+													<th>Loại Kỷ Luật</th>
+													<th>Ngày Kỷ Luật</th>
+													<th></th>
 
 												</tr>
 
@@ -87,7 +86,7 @@
 
 												<tr>
 													<th></th>
-													<td>${item.ten_dm}</td>
+													<td></td>
 													<td></td>
 													<th></th>
 													<td></td>

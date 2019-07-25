@@ -1,15 +1,15 @@
-<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page import="shop.newshop.Service.CategoryService"%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function deleteDialog() {
@@ -56,38 +56,37 @@
 							<div class="col-xs-14 col-sm-12 col-md-14 col-lg-0">
 								<div class="panel panel-danger">
 									<div class="panel-heading">
-										<h2 class="panel-title">Category Management</h2>
+										<h2 class="panel-title">Phòng Ban</h2>
 									</div>
 									<a
-										href="${pageContext.request.contextPath}/admin/addCate/${item.id_pr}">
-										<button class="btn btn-primary">Add Category</button>
+										href="#">
+										<button class="btn btn-primary">Thêm Phòng Ban</button>
 									</a>
-									<li class="nav-item" style="list-style: none;"><app-addproduct
-											[dataProduct]="products"></app-addproduct></li>
+								
 									<div class="panel-body">
 
 										<table class="table table-bordered table-hover">
 											<thead>
 												<tr>
-													<th>Ma PB</th>
-													<th>Ten PB</th>
-													<th>Chuc nang</th>
+													<th>Mã Phòng Ban</th>
+													<th>Tên Phòng Ban</th>
+													<th></th>
 
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="item" items="${listCategory}">
+												<c:forEach var="#" items="#">
 													<tr>
 
-														<th>${item.id_dm}</th>
-														<td>${item.ten_dm}</td>
+														<th></th>
+														<td></td>
 
 														<td><a
-															href="${pageContext.request.contextPath}/admin/editCate/${item.id_dm}"><button
+															href="#"><button
 																	class="btn btn-warning">
 																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</button></a> <a
-															href="${pageContext.request.contextPath}/admin/remove/${item.id_dm}">
+															href="#">
 																<button class="btn btn-danger" onclick="deleteDialog()">
 																	<i class="fa fa-trash" aria-hidden="true"></i>
 																</button>

@@ -19,8 +19,8 @@ public class ContractDaoImpl implements ContractDao {
         List<Contract> list = null;
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
-            session.beginTransaction();
             String sql = "FROM Contract";
+            session.beginTransaction();
             Query query = session.createQuery(sql);
             list = query.list();
         } catch (Exception e) {

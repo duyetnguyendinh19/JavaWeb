@@ -1,14 +1,13 @@
-<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>
-<%@page import="shop.newshop.Service.CategoryService"%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function deleteDialog() {
@@ -54,28 +53,25 @@
 							<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
 								<div class="panel panel-danger">
 									<div class="panel-heading">
-										<h2 class="panel-title">User Management</h2>
+										<h2 class="panel-title">Tài Khoản</h2>
 									</div>
 									<a
-										href="${pageContext.request.contextPath}/admin/addUser/${item.id_pr}">
-										<button class="btn btn-primary">Add User</button>
+										href="#">
+										<button class="btn btn-primary">Thêm Tài Khoản</button>
 									</a>
-									<li class="nav-item" style="list-style: none;"><app-addproduct
-											[dataProduct]="products"></app-addproduct></li>
+									
 									<div class="panel-body">
 										<c:forEach var="i" begin="0" end="${totalUser}">
-											<a class="btn btn-primary"
-												href="${pageContext.request.contextPath}/admin/listUser/${i+1}"><c:out
-													value="${i+1}" /></a>
+											
 										</c:forEach>
 										<table class="table table-bordered table-hover">
 											<thead>
 												<tr>
-													<th>Id</th>
-													<th>Username</th>
-													<th>FullName</th>
-													<th>Status</th>
-													<th>Action</th>
+													<th>Mã Tài Khoản</th>
+													<th>Tên Tài Khoản</th>
+													<th>Họ Tên</th>
+													<th>Chức Vụ</th>
+													<th></th>
 
 												</tr>
 											</thead>
@@ -89,11 +85,11 @@
 														<td>${item.status? 'Admin':'Member'}</td>
 
 														<td><a
-															href="${pageContext.request.contextPath}/admin/editUser/${item.id_user}"><button
+															href="#"><button
 																	class="btn btn-warning">
 																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</button></a> <a
-															href="${pageContext.request.contextPath}/admin/removeuser/${item.id_user}">
+															href="#">
 																<button class="btn btn-danger" onclick="deleteDialog()">
 																	<i class="fa fa-trash" aria-hidden="true"></i>
 																</button>
