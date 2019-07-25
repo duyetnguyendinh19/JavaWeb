@@ -2,69 +2,44 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset= UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<style>
-.error {
-	color: red;
-}
-</style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-<script
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
-	type="text/javascript"></script>
-<script src="demoValidation.js" type="text/javascript"></script>
-<link href="template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-*[id$=errors] {
-	color: red;
-	font-style: italic;
-}
-</style>
 
-</head>
 
-<body>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
+			<div class="panel">
+				<div class="panel-heading">
+					<br>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
-				<div class="panel panel-danger">
-					<div class="panel-heading">
-						<br>
-						<center>
-							<h3>Thêm Phòng Ban</h3>
-						
-						<form:form modelAttribute="category"
-							action="${pageContext.request.contextPath}/admin/saveCate"
-							method="POST">
+					<form:form modelAttribute="department"
+						action="${pageContext.request.contextPath}/saveDepartment"
+						method="POST">
 
-							
-							Tên Phòng Ban<br />
-							<form:input class="text-left" type="text" name="ten_dm"
-								path="ten_dm" placeholder=" Prodcut Name" minlength="3"
-								maxlength="24" />
-							<form:errors path="ten_dm" />
+						<form:input class="text-left" type="hidden" path="id"
+							placeholder=" Prodcut Name" minlength="3" maxlength="64" />
 
-							<br>
-							<form:button type="name" class="btn btn-success">Lưu</form:button>
-						</form:form>
-					 <a
-							href="#">
-							<button class="btn btn-warning">Quay Lại</button>
-						</a>
-						</center>
-					</div>
+						<h4>
+							Tên Phòng Ban <font color="red">*</font>
+						</h4>
+						<br />
+						<form:input class="text-left" type="text" path="name"
+							placeholder="Tên phòng ban" minlength="3" maxlength="64" />
+						<br />
+						<br />
+						<span style="color: red">${error}</span>
+
+						<br />
+						<br />
+
+						<form:button type="submit" class="btn btn-primary">Lưu</form:button>
+
+					</form:form>
+					<br /> <a href="${pageContext.request.contextPath}/listDepartment">
+						<button class="btn">Quay Lại</button>
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="templates/jquery/jquery.min.js"></script>
-	<script src="templates/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
