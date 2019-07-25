@@ -19,7 +19,6 @@ public class ContractDaoImpl implements ContractDao {
         List<Contract> list = null;
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
-            session.beginTransaction();
             String sql = "FROM Contract";
             Query query = session.createQuery(sql);
             list = query.list();
@@ -42,9 +41,7 @@ public class ContractDaoImpl implements ContractDao {
         } catch (Exception e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        } 
         return false;
     }
 
@@ -58,10 +55,7 @@ public class ContractDaoImpl implements ContractDao {
             return true;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            System.out.println(e);
-        } finally {
-            session.close();
-        }
+        } 
         return false;
     }
 
@@ -78,9 +72,7 @@ public class ContractDaoImpl implements ContractDao {
         } catch (Exception e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        } 
         return false;
     }
 
