@@ -1,9 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: newshop Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: HeHe
-Implementation-Vendor-Id: shop
-Build-Jdk: 1.8.0_181
-Implementation-URL: http://maven.apache.org
+Build-Jdk-Spec: 1.8
 Created-By: Maven Integration for Eclipse
 
