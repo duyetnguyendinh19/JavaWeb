@@ -43,7 +43,7 @@ public class ContractDaoImpl implements ContractDao {
             session.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }
@@ -60,7 +60,7 @@ public class ContractDaoImpl implements ContractDao {
             session.getTransaction().rollback();
             System.out.println(e);
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }
@@ -79,7 +79,7 @@ public class ContractDaoImpl implements ContractDao {
             session.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }

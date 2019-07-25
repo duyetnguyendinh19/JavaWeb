@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DAO\BonusDao.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Entity\Department.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Application.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Service\ContractService.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Entity\Employee.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\ServiceImpl\BonusServiceImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DaoImpl\DisciplineDaoImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DAO\DisciplineDao.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\ServiceImpl\EmployeeServiceImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\ServiceImpl\DisciplineServiceImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DAO\DepartmentDao.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\ServiceImpl\DepartmentServiceImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Entity\Discipline.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\ServiceImpl\ContractServiceImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Entity\Contract.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DaoImpl\BonusDaoImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Service\BonusService.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Service\DepartmentService.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\util\HibernateUtils.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Controller\HomeController.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DaoImpl\DepartmentDaoImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DAO\ContractDao.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Entity\Bonus.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DAO\EmployeeDao.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DaoImpl\EmployeeDaoImpl.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Controller\BonusController.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Service\DisciplineService.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\Service\EmployeeService.java
-C:\Users\PC\eclipse-workspace1\JavaWeb\src\main\java\shop\newshop\DaoImpl\ContractDaoImpl.java
-=======
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\Application.java
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\DAO\BonusDao.java
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\DAO\DisciplineDao.java
@@ -58,4 +27,3 @@ C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\util\HibernateUt
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\Service\EmployeeService.java
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\DAO\EmployeeDao.java
 C:\Users\Bui Van Tan\Desktop\JavaWeb\src\main\java\shop\newshop\Service\ContractService.java
->>>>>>> 12831ad8240330fef6acf773131a0fa409242b02

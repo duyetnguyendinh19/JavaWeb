@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bonus`
 --
 
@@ -143,6 +168,8 @@ CREATE TABLE `employee` (
   `name` varchar(128) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `idDepartment` int(11) NOT NULL,
+  `avatar` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `identitycard` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_o58xv1eg6nwb5du5xua34c1sr` (`idDepartment`),
   CONSTRAINT `FK_o58xv1eg6nwb5du5xua34c1sr` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`id`)
@@ -155,7 +182,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Cầu Giấy','1999-02-15 00:00:00','Cao đẳng','Nguyễn Văn A','0391823121',1),(2,'Nam Định','2001-05-15 00:00:00','Đại học','Nguyễn Văn B','0312356711',2),(3,'Hà Nam','1994-10-20 00:00:00','Trung cấp','Nguyễn Văn C','0512148152',3),(4,'Ninh Bình','1993-12-25 00:00:00','Cao học','Nguyễn Văn D','0312581232',4);
+INSERT INTO `employee` VALUES (1,'Cầu Giấy','1999-02-15 00:00:00','Cao đẳng','Nguyễn Văn A','0391823121',1,NULL,NULL),(2,'Nam Định','2001-05-15 00:00:00','Đại học','Nguyễn Văn B','0312356711',2,NULL,NULL),(3,'Hà Nam','1994-10-20 00:00:00','Trung cấp','Nguyễn Văn C','0512148152',3,NULL,NULL),(4,'Ninh Bình','1993-12-25 00:00:00','Cao học','Nguyễn Văn D','0312581232',4,NULL,NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-17 18:43:54
+-- Dump completed on 2019-07-24 20:30:53
