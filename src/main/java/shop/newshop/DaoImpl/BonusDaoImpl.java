@@ -19,7 +19,6 @@ public class BonusDaoImpl implements BonusDao{
 		List<Bonus> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
 			String sql = "FROM Bonus";
 			Query query = session.createQuery(sql);
 			list = query.list();
