@@ -19,7 +19,7 @@
 		if (view.startsWith("admin/")) {
 			pageContext.forward("adminlayout.jsp");
 		} else {
-			pageContext.forward("customerlayout.jsp");
+			pageContext.forward("employeelayout.jsp");
 		}
 	%>
 
