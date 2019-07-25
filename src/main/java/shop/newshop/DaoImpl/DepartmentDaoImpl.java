@@ -24,8 +24,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return list;
 	}
@@ -41,8 +39,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return false;
 	}
@@ -58,8 +54,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			System.out.println(e);
-		} finally {
-			session.close();
 		}
 		return false;
 	}
@@ -77,8 +71,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return false;
 	}
