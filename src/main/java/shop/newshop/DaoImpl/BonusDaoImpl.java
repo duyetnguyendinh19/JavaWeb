@@ -41,8 +41,6 @@ public class BonusDaoImpl implements BonusDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
 		}
 		return false;
 	}
@@ -57,10 +55,7 @@ public class BonusDaoImpl implements BonusDao{
 			return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
-			System.out.println(e);
-		} finally {
-			session.close();
-		}
+		} 
 		return false;
 	}
 
@@ -77,9 +72,7 @@ public class BonusDaoImpl implements BonusDao{
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
-		} finally {
-			session.close();
-		}
+		} 
 		return false;
 	}
 
