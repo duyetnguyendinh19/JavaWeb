@@ -7,18 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/JavaWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaWeb.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DepartmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/BonusDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/BonusDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/ContractDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/ContractDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DepartmentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DepartmentDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DisciplineDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DisciplineDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/EmployeeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/EmployeeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Department.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Department.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Editcontract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Editcontract.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +133,7 @@
       <workItem from="1563968592548" duration="12831000" />
       <workItem from="1564018718554" duration="673000" />
       <workItem from="1564027914227" duration="21846000" />
+      <workItem from="1564105245584" duration="394000" />
     </task>
     <servers />
   </component>
@@ -154,7 +145,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
