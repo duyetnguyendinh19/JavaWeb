@@ -5,7 +5,7 @@ import java.util.List;
 import shop.newshop.Entity.Department;
 
 public interface DepartmentService {
-	public List<Department> getAlls();
+	public List<Department> getAlls(int startnum, int rownum);
 
 	public boolean insert(Department de);
 
@@ -14,4 +14,6 @@ public interface DepartmentService {
 	public boolean delete(int idDepart);
 
 	public Department getDepartById(int idDepart);
+	
+	public long countAll();
 }
