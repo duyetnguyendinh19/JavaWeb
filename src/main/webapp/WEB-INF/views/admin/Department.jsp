@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@page import="java.util.Date"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -44,7 +44,7 @@
 
 								<a
 									style="float: right; margin-right: 15px; margin-top: 10px; margin-bottom: 10px"
-									href="${pageContext.request.contextPath}/addDepartment">
+									href="${pageContext.request.contextPath}/admin/addDepartment">
 									<button class="btn btn-primary">Thêm Phòng Ban</button>
 								</a>
 
@@ -67,7 +67,7 @@
 													<td>${depart.name}</td>
 
 													<td width="120px"><a
-														href="${pageContext.request.contextPath}/editDepartment/${depart.id}"><button
+														href="${pageContext.request.contextPath}/admin/editDepartment/${depart.id}"><button
 																class="btn btn-warning">
 																<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 															</button></a>
@@ -92,7 +92,7 @@
 																Tên phòng ban: ${depart.name}
 															</div>
 															<div class="modal-footer">
-																<a href="${pageContext.request.contextPath}/deleteDepart?id=${depart.id}"
+																<a href="${pageContext.request.contextPath}/admin/deleteDepart?id=${depart.id}"
 																	title="Xóa phòng ban"><button type="button"
 																		class="btn btn-danger">Đồng ý</button> </a>
 																<button type="button" class="btn btn-secondary"
@@ -106,7 +106,7 @@
 										</tbody>
 									</table>
 								</div>
-								<center>
+								<%-- <center>
 									<nav aria-label="Page navigation example">
 										<ul class="pagination justify-content-center">
 											<li class="page-item disabled"><a class="page-link"
@@ -118,7 +118,7 @@
 											</li>
 										</ul>
 									</nav>
-								</center>
+								</center> --%>
 							</div>
 						</div>
 					</div>
