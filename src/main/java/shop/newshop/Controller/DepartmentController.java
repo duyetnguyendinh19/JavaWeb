@@ -21,25 +21,25 @@ public class DepartmentController {
 	@Autowired
 	DepartmentService departService;
 	
-	@GetMapping(value = "listDepartment")
+	@GetMapping(value = "admin/listDepartment")
 	public String listDepartment(ModelMap model) {
 		model.put("listDepart", departService.getAlls());
 		return  "admin/Department";
 	}
 	
-	@GetMapping(value = "addDepartment")
+	@GetMapping(value = "admin/addDepartment")
 	public String addDepartment(ModelMap model) {
 		model.put("department", new Department());
 		return "admin/AddDepartment";
 	}
 	
-	@GetMapping(value = "editDepartment/{id}")
+	@GetMapping(value = "admin/editDepartment/{id}")
 	public String editDepartment(ModelMap model, @PathVariable("id") int idDepart) {
 		model.put("department", departService.getDepartById(idDepart));
 		return "admin/AddDepartment";
 	}
 	
-	@PostMapping(value = "saveDepartment")
+	@PostMapping(value = "admin/saveDepartment")
 	public String saveDepartment(ModelMap model, @ModelAttribute("department") Department depart) {
 		try {
 			if(!depart.getName().isEmpty()) {
@@ -48,7 +48,7 @@ public class DepartmentController {
 				}else {
 					departService.insert(depart);
 				}
-				return "redirect:/listDepartment";
+				return "redirect:/admin/listDepartment";
 			}else {
 				model.put("error", "Không được để trống tên phòng ban");
 				return "admin/AddDepartment";
@@ -61,7 +61,7 @@ public class DepartmentController {
 	}
 	
 	int idDepart;	
- 	@GetMapping(value = "deleteDepart")
+ 	@GetMapping(value = "admin/deleteDepart")
 	public String deleteDepart(ModelMap map,HttpServletRequest request) {
  		int id = Integer.parseInt(request.getParameter("id"));
  		departService.delete(id);
