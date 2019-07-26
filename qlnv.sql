@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `qlnv`.`employee` (
   `phone` VARCHAR(10) NOT NULL,
   `idDepartment` INT(11) NOT NULL,
   `email` VARCHAR(64) NOT NULL,
+  `avatar` VARCHAR(1000) NULL DEFAULT NULL,
+  `identitycard` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `FK_o58xv1eg6nwb5du5xua34c1sr` (`idDepartment` ASC) ,
   CONSTRAINT `FK_o58xv1eg6nwb5du5xua34c1sr`
