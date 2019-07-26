@@ -3,14 +3,13 @@ package shop.newshop.Controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import shop.newshop.Entity.Department;
 import shop.newshop.Service.DepartmentService;
@@ -20,25 +19,53 @@ public class DepartmentController {
 
 	@Autowired
 	DepartmentService departService;
-	
+
 	@GetMapping(value = "admin/listDepartment")
 	public String listDepartment(ModelMap model) {
-		model.put("listDepart", departService.getAlls());
+		model.put("listDepart", departService.getAlls(0,5));
+
+		long countAll = departService.countAll();
+		long totalPage = 0;
+
+		if(countAll%5==0) {
+			totalPage = countAll/5;
+		}else {
+			totalPage = countAll/5 + 1;
+		}
+
+		model.put("totalPage", totalPage);
 		return  "admin/Department";
 	}
-	
+
+	@GetMapping(value = "admin/listDepartment/{page}")
+	public String listDepartmentPage(ModelMap model, @PathVariable("page") int page) {
+		model.put("listDepart", departService.getAlls((page-1)*5,5));
+
+		long countAll = departService.countAll();
+		long totalPage = 0;
+
+		if(countAll%5==0) {
+			totalPage = countAll/5;
+		}else {
+			totalPage = countAll/5 + 1;
+		}
+
+		model.put("totalPage", totalPage);
+		return  "admin/Department";
+	}
+
 	@GetMapping(value = "admin/addDepartment")
 	public String addDepartment(ModelMap model) {
 		model.put("department", new Department());
 		return "admin/AddDepartment";
 	}
-	
+
 	@GetMapping(value = "admin/editDepartment/{id}")
 	public String editDepartment(ModelMap model, @PathVariable("id") int idDepart) {
 		model.put("department", departService.getDepartById(idDepart));
 		return "admin/AddDepartment";
 	}
-	
+
 	@PostMapping(value = "admin/saveDepartment")
 	public String saveDepartment(ModelMap model, @ModelAttribute("department") Department depart) {
 		try {
@@ -57,14 +84,14 @@ public class DepartmentController {
 			model.put("error", "Lỗi không xác định");
 			return "admin/AddDepartment";
 		}
-		
+
 	}
-	
+
 	int idDepart;	
- 	@GetMapping(value = "admin/deleteDepart")
+	@GetMapping(value = "admin/deleteDepart")
 	public String deleteDepart(ModelMap map,HttpServletRequest request) {
- 		int id = Integer.parseInt(request.getParameter("id"));
- 		departService.delete(id);
- 		return "redirect:/listDepartment"; 
- 	}
+		int id = Integer.parseInt(request.getParameter("id"));
+		departService.delete(id);
+		return "redirect:/listDepartment"; 
+	}
 }
