@@ -12,7 +12,7 @@
 					<br>
 
 					<form:form modelAttribute="department"
-						action="${pageContext.request.contextPath}/saveDepartment"
+						action="${pageContext.request.contextPath}/admin/saveDepartment"
 						method="POST">
 
 						<form:input class="text-left" type="hidden" path="id"
@@ -34,7 +34,7 @@
 						<form:button type="submit" class="btn btn-primary">Lưu</form:button>
 
 					</form:form>
-					<br /> <a href="${pageContext.request.contextPath}/listDepartment">
+					<br /> <a href="${pageContext.request.contextPath}/admin/listDepartment">
 						<button class="btn">Quay Lại</button>
 					</a>
 				</div>
