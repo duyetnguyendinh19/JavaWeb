@@ -40,7 +40,10 @@
 
 
 <style type="text/css">
-
+*[id$=errors] {
+	color: red;
+	font-style: italic;
+}
 
 
 </style>
