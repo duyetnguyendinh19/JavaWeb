@@ -22,7 +22,6 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		try {
 			session.beginTransaction();
 			String sql = "FROM Department";
-			session.beginTransaction();
 			Query query = session.createQuery(sql);
 			list = query.list();
 		} catch (Exception e) {
