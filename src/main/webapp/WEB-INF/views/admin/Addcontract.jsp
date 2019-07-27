@@ -21,7 +21,10 @@
         }
 
         .form-control {
-            height: 38px;
+            height: 38px!important;
+        }
+        input[type=email], input[type=password], input[type=search], input[type=text]{
+            border-radius: 5px!important;
         }
     </style>
 </head>
@@ -37,12 +40,12 @@
                 <form action="${pageContext.request.contextPath}/admin/addContract" method="POST">
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
                         <label>Nhân viên</label>
-                        <select class="ui dropdown form-control" name="employee">
-                            <%--                            <option>Chọn nhân viên</option>--%>
+                        <select class="ui dropdown form-control" id="SelectEmployee" name="employee">
                             <c:forEach items="${employee}" var="employee">
-                                <option value="${employee.id}">${employee.name}</option>
+                                <option value="${employee.id}">${employee.id} - ${employee.name}</option>
                             </c:forEach>
                         </select>
+                        <label>${errorEmployee}</label>
                     </div>
                     <%--                    <input type="text" name="employee" value="" hidden="hidden"/>--%>
                     <div class="col-md-6 mb-6" style="margin-top: 15px;">
@@ -82,7 +85,12 @@
     </div>
 </div>
 <script>
-    $('#close').on('click', function(){
+    if (${idEmployee}) {
+        $('#SelectEmployee').val('${idEmployee}').trigger('change');
+    }
+</script>
+<script>
+    $('#close').on('click', function () {
         window.location.assign('/Manager/admin/listContract');
     })
 </script>
@@ -106,12 +114,12 @@
             months: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
         },
         formatter: {
-            date: function (date, settings) {
+            date: function (date, setting) {
                 if (!date) return '';
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
                 var year = date.getFullYear();
-                return day + '/' + month + '/' + year;
+                return (day < 10 ? '0' + day : day) + '/' + (month < 10 ? '0' + month : month) + '/' + year;
             }
         },
         today: true,
@@ -124,12 +132,12 @@
             months: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
         },
         formatter: {
-            date: function (date, settings) {
+            date: function (date, setting) {
                 if (!date) return '';
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
                 var year = date.getFullYear();
-                return day + '/' + month + '/' + year;
+                return (day < 10 ? '0' + day : day) + '/' + (month < 10 ? '0' + month : month) + '/' + year;
             }
         },
         today: true,

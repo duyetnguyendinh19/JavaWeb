@@ -16,7 +16,15 @@
     tr th {
         text-align: center;
     }
+    .ui.modal{
+        margin-top: 50px;
+        width: 28%;
+        height: 30%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
+<%--<script src="templates/js/jquery.min.js"></script>--%>
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
@@ -63,17 +71,34 @@
                                                         <i class="fas fa-user-edit" aria-hidden="true"></i>
                                                     </button>
                                                 </a>
-<%--                                                onclick="deleteConfirm(${contract.id})"--%>
-                                                <a href="${pageContext.request.contextPath}/admin/deleteContract/${contract.id}"><button class="btn btn-danger" data-toggle="tooltip"
-                                                        title="Xóa hợp đồng" >
+                                                <button class="btn btn-danger" id="delete" onclick="loadModal('${contract.employee.name}', '${contract.id}')" data-toggle="tooltip"
+                                                        title="Xóa hợp đồng">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
-                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                <div class="ui modal">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        Xóa hợp đồng
+                                    </div>
+                                    <div class="content">
+                                        <h4>Bạn có muốn xóa hợp đồng <span id="name"></span> không?</h4>
+                                    </div>
+                                    <div class="actions">
+                                        <a id="deleteComfirm" data-hrefbefore="${pageContext.request.contextPath}/admin/deleteContract/">
+                                            <button class="ui black deny button" style="background: green;">
+                                                Ok
+                                            </button>
+                                        </a>
+                                        <button class="ui black deny button" onclick="deleteTooltip()">
+                                            Hủy bỏ
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,44 +108,18 @@
     </div>
 </div>
 <script>
-    /*<![CDATA[*/
-    var currUrl = /*[[@{/}]]*/ "";
-    /*]]>*/
-</script>
-<script type="text/javascript">
-    function deleteConfirm(id) {
-        BootstrapDialog.show({
-            title: 'Xác nhận xóa bỏ',
-            message: 'Bạn có chắc chắn muốn xóa không ? Bấm Delete để xách nhận.',
-            buttons: [{
-                label: 'Bỏ qua',
-                action: function (dialogItself) {
-                    dialogItself.close();
-                }
-            }, {
-                label: 'Delete',
-                cssClass: 'btn-primary',
-                action: function (dialogItself) {
-                    var reqUrl = currUrl + "admin/deleteContract/" + id;
-                    $.ajax({
-                        url: reqUrl,
-                        method: 'GET',
-                        data: {
-                            'id': id
-                        },
-                        success: function (response) {
-
-                        }
-                    }).always(function (ketqua) {
-                        window.location.reload();
-//                                $('#noidung').html(ketqua);
-                    });
-                }
-            }]
-        });
+    function loadModal(name, id){
+        $('.ui.modal').modal('show');
+        $('#name').text(name);
+        var $deleteConfirm =  $('#deleteComfirm');
+        document.getElementById('deleteComfirm').href=$deleteConfirm.attr('data-hrefbefore') + id;
     }
 </script>
-
+<script>
+    function deleteTooltip(){
+        $('.ui-tooltip.ui-widget.ui-corner-all.ui-widget-content').remove();
+    }
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();

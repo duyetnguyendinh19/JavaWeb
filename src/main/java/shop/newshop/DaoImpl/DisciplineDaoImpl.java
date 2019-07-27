@@ -63,8 +63,7 @@ public class DisciplineDaoImpl implements DisciplineDao {
 
     @Override
     public boolean delete(int idDiscipline) {
-        DisciplineServiceImpl diserviceImple = new DisciplineServiceImpl();
-        Discipline discipline = diserviceImple.getDisciplineById(idDiscipline);
+        Discipline discipline = getDisciplineById(idDiscipline);
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();

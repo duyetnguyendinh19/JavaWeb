@@ -1,41 +1,22 @@
 package shop.newshop.Controller;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.newshop.Entity.*;
 import shop.newshop.Service.*;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import sun.java2d.pipe.SpanShapeRenderer;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
+@RequestMapping(value = "admin")
 public class BonusController {
 
     @Autowired
@@ -53,41 +34,121 @@ public class BonusController {
     @Autowired
     private EmployeeService employeeService;
 
-    private static String UPLOAD_FOLDER = "C:/Users/Bui Van Tan/Desktop/JavaWeb/src/main/resources/static/img/";
-
     @RequestMapping(value = "listBonus", method = RequestMethod.GET)
     public String getBonus(ModelMap map) {
-//		List<Employee> listContract = new ArrayList<>();
-//		listContract =  employeeService.getAlls();
-//		for(Employee x : listContract){
-//			System.out.println("Contract: " + x.getPhone());
-//		}
-//		map.put("lstBonus", bonusService.getAlls());
-        return "admin/index";
+        List<Bonus> bonusList = bonusService.getAlls();
+        map.put("bonusList", bonusList);
+        return "admin/Bonus";
     }
 
-    @RequestMapping(value = "upload", method = RequestMethod.POST)
-    public String multiPartFile(RedirectAttributes map, @RequestParam("startDate") String startDate) {
+    @GetMapping(value = "addBonus")
+    public String addContract(ModelMap model) {
+        List<Employee> employees = employeeService.getAlls();
+        model.addAttribute("employee", employees);
+        return "admin/AddBonus";
+    }
+
+    @PostMapping(value = "addBonus")
+    public String insertContract(RedirectAttributes redirectAttributes, ModelMap model, @RequestParam("typeBonus") String typeBonus,
+                                 @RequestParam("date") String date, @RequestParam("descent") String descent,@RequestParam("reason") String reason,
+                                 @RequestParam("employeeId") int idEmployee) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Calendar c = Calendar.getInstance();
-            Date date = sdf.parse(startDate);
-            c.setTime(date);
-//          Calendar.DAY_OF_WEEK = 7 => Thứ 7
-//	        Calendar.DAY_OF_WEEK = 1 => Chủ nhật
-            System.out.println("Get Sunday: " + c.get(Calendar.DAY_OF_WEEK));
-//          Lấy time hiện tại
-            LocalTime time = LocalTime.now();
-            System.out.println("Time: " + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond());
+            Employee employee = new Employee();
+            Bonus bonus = new Bonus();
+            if(Strings.isEmpty(typeBonus)){
+                List<Employee> employees = employeeService.getAlls();
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("employee", employees);
+                model.addAttribute("errorType", "Vui lòng chọn kiểu khen thưởng");
+                return "admin/AddBonus";
+            }
+            if(Strings.isEmpty(date)){
+                List<Employee> employees = employeeService.getAlls();
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("typeBonus", typeBonus);
+                model.addAttribute("employee", employees);
+                model.addAttribute("errorDate", "Ngày khen thưởng không được để trống");
+                return "admin/AddBonus";
+            }
+            if(Strings.isEmpty(reason)){
+                List<Employee> employees = employeeService.getAlls();
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("typeBonus", typeBonus);
+                model.addAttribute("employee", employees);
+                model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
+                return "admin/AddBonus";
+            }
+            bonus.setDate(sdf.parse(date));
+            bonus.setDescent(descent);
+            bonus.setReason(reason);
+            employee.setId(idEmployee);
+            bonus.setEmployee(employee);
+            bonus.setType(typeBonus);
+            bonusService.insert(bonus);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "redirect:/uploadStatus";
+        return "redirect:/admin/listBonus";
     }
 
-    @GetMapping(value = "uploadStatus")
-    public String updateStatus() {
-        return "admin/testResultUpload";
+    @GetMapping(value = "updateBonus/{id}")
+    public String updateBonus(ModelMap model, @PathVariable("id") int id) {
+        Bonus bonus = bonusService.getBonusById(id);
+        model.addAttribute("bonus", bonus);
+        return "admin/EditBonus";
     }
 
+    @PostMapping(value = "updateBonus")
+    public String postUpdateContract(RedirectAttributes redirectAttributes, ModelMap model, @RequestParam("typeBonus") String typeBonus,
+                                     @RequestParam("date") String date, @RequestParam("descent") String descent,@RequestParam("reason") String reason,
+                                     @RequestParam("employee") int idEmployee, @RequestParam("id") int id) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Employee employee = new Employee();
+            Bonus bonus = new Bonus();
+            if(Strings.isEmpty(typeBonus)){
+                bonus = bonusService.getBonusById(id);
+                model.addAttribute("bonus", bonus);
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("errorType", "Vui lòng chọn kiểu khen thưởng");
+                return "admin/EditBonus";
+            }
+            if(Strings.isEmpty(date)){
+                bonus = bonusService.getBonusById(id);
+                bonus.setDate(null);
+                model.addAttribute("bonus", bonus);
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("typeBonus", typeBonus);
+                model.addAttribute("errorDate", "Ngày khen thưởng không được để trống");
+                return "admin/EditBonus";
+            }
+            if(Strings.isEmpty(reason)){
+                bonus = bonusService.getBonusById(id);
+                bonus.setReason(null);
+                model.addAttribute("bonus", bonus);
+                model.addAttribute("idEmployee", idEmployee);
+                model.addAttribute("typeBonus", typeBonus);
+                model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
+                return "admin/EditBonus";
+            }
+            bonus.setId(id);
+            bonus.setDate(sdf.parse(date));
+            bonus.setDescent(descent);
+            bonus.setReason(reason);
+            employee.setId(idEmployee);
+            bonus.setEmployee(employee);
+            bonus.setType(typeBonus);
+            bonusService.update(bonus);
+        }catch (ParseException pe){
+            pe.printStackTrace();
+        }
+        return "redirect:/admin/listBonus";
+    }
+
+    @GetMapping(value = "deleteBonus/{id}")
+    public String deleteDiscipline(ModelMap model, @PathVariable("id") int id) {
+        bonusService.delete(id);
+        return "redirect:/admin/listBonus";
+    }
 }

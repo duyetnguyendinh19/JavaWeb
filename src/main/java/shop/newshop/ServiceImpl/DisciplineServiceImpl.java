@@ -23,7 +23,6 @@ public class DisciplineServiceImpl implements DisciplineService{
 
 	@Override
 	public boolean insert(Discipline di) {
-		
 		return disDao.insert(di);
 	}
 

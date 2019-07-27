@@ -26,11 +26,9 @@ public class Bonus {
 	@Column(name = "type" , length = 128)
 	private String type;
 	
-	@Null
-	@Column(name = "describe" , length = 256)
-	private String describe;
+	@Column(name = "descent" , length = 256)
+	private String descent;
 	
-	@Null
 	@Column(name = "reason" , length = 256)
 	private String reason;
 	
@@ -48,11 +46,11 @@ public class Bonus {
 		super();
 	}
 
-	public Bonus(int id, String type, String describe, String reason, Date date, Employee employee) {
+	public Bonus(int id, String type, String descent, String reason, Date date, Employee employee) {
 		super();
 		this.id = id;
 		this.type = type;
-		this.describe = describe;
+		this.descent = descent;
 		this.reason = reason;
 		this.date = date;
 		this.employee = employee;
@@ -74,12 +72,12 @@ public class Bonus {
 		this.type = type;
 	}
 
-	public String getDescribe() {
-		return describe;
+	public String getDescent() {
+		return descent;
 	}
 
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setDescent(String descent) {
+		this.descent = descent;
 	}
 
 	public String getReason() {

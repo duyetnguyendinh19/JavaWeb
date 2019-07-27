@@ -20,6 +20,9 @@
             font-weight: bold;
             margin: 15px 0px;
         }
+        input[type=email], input[type=password], input[type=search], input[type=text]{
+            border-radius: 5px!important;
+        }
     </style>
 </head>
 <body>

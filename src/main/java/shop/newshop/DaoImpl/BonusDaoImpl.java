@@ -62,8 +62,7 @@ public class BonusDaoImpl implements BonusDao{
 
 	@Override
 	public boolean delete(int idBonus) {
-		BonusServiceImpl bonusService = new BonusServiceImpl();
-		Bonus bonus = bonusService.getBonusById(idBonus);
+		Bonus bonus = getBonusById(idBonus);
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();

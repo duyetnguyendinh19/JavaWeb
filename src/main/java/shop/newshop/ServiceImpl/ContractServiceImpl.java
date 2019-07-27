@@ -19,7 +19,6 @@ public class ContractServiceImpl implements ContractService{
 	public List<Contract> getAlls() {
 		return contractDao.getAlls();
 	}
-
 	@Override
 	public boolean insert(Contract ct) {		
 		return contractDao.insert(ct);
@@ -40,6 +39,10 @@ public class ContractServiceImpl implements ContractService{
 		return contractDao.getContractById(idContract);
 	}
 
+	@Override
+	public Contract getContractByEmployeeId(int id) {
+		return contractDao.getContractByEmployeeId(id);
+	}
 
 
 }

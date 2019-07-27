@@ -5,6 +5,7 @@ import java.util.List;
 import shop.newshop.Entity.Discipline;
 
 public interface DisciplineService {
+
 	public List<Discipline> getAlls();
 
 	public boolean insert(Discipline di);

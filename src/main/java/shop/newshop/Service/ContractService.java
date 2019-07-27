@@ -16,4 +16,6 @@ public interface  ContractService {
 
 	public Contract getContractById(int idContract);
 
+	public Contract getContractByEmployeeId(int id);
+
 }
