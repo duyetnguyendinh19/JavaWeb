@@ -84,15 +84,16 @@
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
-																<h5 class="modal-title" title="Xóa phòng ban" id="exampleModalLabel">Xóa
-																	phòng ban</h5>
+																<h5 class="modal-title" title="Xóa phòng ban"
+																	id="exampleModalLabel">Xóa phòng ban</h5>
 															</div>
-															<div class="modal-body">Mã phòng ban: ${depart.id}
-																<br/>
-																Tên phòng ban: ${depart.name}
+															<div class="modal-body">
+																Mã phòng ban: ${depart.id} <br /> Tên phòng ban:
+																${depart.name}
 															</div>
 															<div class="modal-footer">
-																<a href="${pageContext.request.contextPath}/admin/deleteDepart?id=${depart.id}"
+																<a
+																	href="${pageContext.request.contextPath}/admin/deleteDepart?id=${depart.id}"
 																	title="Xóa phòng ban"><button type="button"
 																		class="btn btn-danger">Đồng ý</button> </a>
 																<button type="button" class="btn btn-secondary"
@@ -106,19 +107,20 @@
 										</tbody>
 									</table>
 								</div>
-								<%-- <center>
-									<nav aria-label="Page navigation example">
-										<ul class="pagination justify-content-center">
-											<li class="page-item disabled"><a class="page-link"
-												href="#" tabindex="-1">Previous</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">Next</a>
-											</li>
-										</ul>
-									</nav>
-								</center> --%>
+
+								<nav id="client-paginator" aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<li class="page-item disabled"><a class="page-link"
+											href="#" tabindex="-1">Previous</a></li>
+										<c:forEach var="page" begin="1" end="${totalPage}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/admin/listDepartment/${page}">${page}</a></li>
+										</c:forEach>
+										<li class="page-item"><a class="page-link" href="#">Next</a>
+										</li>
+									</ul>
+								</nav>
+
 							</div>
 						</div>
 					</div>

@@ -16,9 +16,9 @@ public class DepartmentServiceImpl implements DepartmentService{
 	private DepartmentDao departDao;
 	
 	@Override
-	public List<Department> getAlls() {
+	public List<Department> getAlls(int startnum, int rownum) {
 		
-		return departDao.getAlls();
+		return departDao.getAlls( startnum,  rownum);
 	}
 
 	@Override
@@ -43,6 +43,11 @@ public class DepartmentServiceImpl implements DepartmentService{
 	public Department getDepartById(int idDepart) {
 		
 		return departDao.getDepartById(idDepart);
+	}
+
+	@Override
+	public long countAll() {
+		return departDao.countAll();
 	}
 
 }

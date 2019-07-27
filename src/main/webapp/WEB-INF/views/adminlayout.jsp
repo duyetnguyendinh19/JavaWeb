@@ -326,7 +326,9 @@
                     class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
 							Dashboard </span>
             </a> <b class="arrow"></b></li>
-            <li class=""><a href="${pageContext.request.contextPath}/admin/listDepartment"> <i
+
+
+            <li class=""><a href="${pageContext.request.contextPath}admin/listcategory"> <i
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý phòng ban </span>
             </a> <b class="arrow"></b></li>
@@ -344,11 +346,11 @@
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý hợp đồng </span>
             </a> <b class="arrow"></b></li>
-            <li class=""><a href="${pageContext.request.contextPath}/admin/listBonus"> <i
+            <li class=""><a href="${pageContext.request.contextPath}/admin/list"> <i
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý khen thưởng</span>
             </a> <b class="arrow"></b></li>
-            <li class=""><a href="${pageContext.request.contextPath}/admin/listDiscipline"> <i
+            <li class=""><a href="${pageContext.request.contextPath}/admin/listContract"> <i
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý kỷ luật </span>
             </a> <b class="arrow"></b></li>

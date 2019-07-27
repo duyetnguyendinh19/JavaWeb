@@ -16,13 +16,15 @@ import shop.newshop.util.HibernateUtils;
 public class DepartmentDaoImpl implements DepartmentDao{
 
 	@Override
-	public List<Department> getAlls() {
+	public List<Department> getAlls(int startnum, int rownum) {
 		List<Department> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			String sql = "FROM Department";
 			Query query = session.createQuery(sql);
+			query.setFirstResult(startnum);
+			query.setMaxResults(rownum);
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,6 +87,23 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		Department department = (Department) session.get(Department.class, idDepart);
 		session.close();
 		return department;
+	}
+
+	@Override
+	public long countAll() {
+		long result = 0;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String hql = "SELECT COUNT(*) FROM Department";
+			Query query = session.createQuery(hql);
+			result = (long) query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return result;
 	}
 
 }
