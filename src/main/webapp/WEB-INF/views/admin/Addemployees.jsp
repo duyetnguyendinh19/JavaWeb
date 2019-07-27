@@ -4,7 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link href="template/css/bootstrap.min.css" rel="stylesheet">
 <div class="container">
 	<br>
 	<div class="row">
@@ -32,20 +32,24 @@
 							placeholder="Ngày sinh" value="Ngày sinh" required>
 					</div>
 
-
-					<div class="col-md-8 mb-3">
-						<label for="validationDefault3">Địa chỉ</label> <input type="text"
-							class="form-control" id="validationDefault03"
-							placeholder="Địa chỉ" value="Địa chỉ" required>
+					<div class="col-md-4 mb-3">
+						<label for="validationDefault3">Chức vụ</label> <br /> <select
+							class="custom-select custom-select-sm">
+							<option selected>Chức vụ</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+						</select>
 					</div>
-
-
-					<div class="col-md-1 mb-1">
-						<label for="validationDefault3">Chức Vụ</label> <input
-							type="checkbox" class="form-control" id="validationDefault03"
-							required>
+					<div class="col-md-5 mb-3">
+						<label for="validationDefault3">Bộ phận</label> <br /> <select
+							class="custom-select custom-select-sm">
+							<option selected>bộ phận</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+						</select>
 					</div>
-
 					<div class="col-md-3 mb-3">
 						<label for="validationDefault3">SĐT</label> <input type="text"
 							class="form-control" id="validationDefault03"
@@ -53,19 +57,37 @@
 					</div>
 
 
-
-					<div class="col-md-3 mb-3">
-						<label for="validationDefault3">Bộ phận</label> <input type="text"
+					<div class="col-md-9 mb-3">
+						<label for="validationDefault3">Địa chỉ</label> <input type="text"
 							class="form-control" id="validationDefault03"
-							placeholder="Bộ phận" value="Bộ phận" required>
+							placeholder="Địa chỉ" value="Địa chỉ" required>
 					</div>
+
+					<form>
+						<div class="col-md-3 mb-3">
+							<label for="exampleFormControlFile1">Chọn ảnh</label> <input
+								type="file" class="form-control-file"
+								id="exampleFormControlFile1">
+						</div>
+					</form>
+					<div style="margin-left: 830px;">
+						<img class="card-img-top"
+							style="width: 150px; height: 150px; margin-top: 15px;"
+							src="https://pbs.twimg.com/profile_images/3572978953/8c522d3ea384cd42e46a4a2498300c35_200x200.jpeg"
+							alt="Card image cap">
+
+					</div>
+
+
 
 					<form:button type="name" class="btn btn-success">Lưu</form:button>
 				</form:form>
 				<a href="#"><button class="btn btn-warning">Quay Lại</button></a>
 			</div>
 
+
 		</div>
 
 	</div>
+
 </div>
