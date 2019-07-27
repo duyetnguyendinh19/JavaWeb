@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xs-14 col-sm-12 col-md-11">
+						<div class="col-xs-11 col-sm-11 col-md-11">
 							<div class="panel panel-danger">
 								<div class="panel-heading">
 									<h2 class="panel-title">Nhân Viên</h2>
@@ -52,23 +52,16 @@
 										<thead>
 											<tr>
 												<th>Mã Nhân Viên</th>
-												<th>Tên Nhân Viên</th>
-												<th>Ngày Sinh</th>
-												<th>Địa Chỉ</th>
+												<th>Tên Nhân Viên</th>	
 												<th>Chức Vụ</th>
-												<th>Số Điện Thoại</th>
 												<th>Bộ Phận</th>
-												<th></th>
+												<th>Chức năng</th>
 
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="item" items="#">
 												<tr>
-
-													<th></th>
-													<th></th>
-													<th></th>
 													<th></th>
 													<th></th>
 													<th></th>
