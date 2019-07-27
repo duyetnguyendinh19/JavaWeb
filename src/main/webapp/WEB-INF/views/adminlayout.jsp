@@ -346,11 +346,11 @@
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý hợp đồng </span>
             </a> <b class="arrow"></b></li>
-            <li class=""><a href="${pageContext.request.contextPath}/admin/list"> <i
+            <li class=""><a href="${pageContext.request.contextPath}/admin/listBonus"> <i
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý khen thưởng</span>
             </a> <b class="arrow"></b></li>
-            <li class=""><a href="${pageContext.request.contextPath}/admin/listContract"> <i
+            <li class=""><a href="${pageContext.request.contextPath}/admin/listDiscipline"> <i
                     class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý kỷ luật </span>
             </a> <b class="arrow"></b></li>
