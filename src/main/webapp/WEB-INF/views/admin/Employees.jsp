@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xs-14 col-sm-12 col-md-11">
+						<div class="col-xs-11 col-sm-11 col-md-11">
 							<div class="panel panel-danger">
 								<div class="panel-heading">
 									<h2 class="panel-title">Nhân Viên</h2>
@@ -52,23 +52,16 @@
 										<thead>
 											<tr>
 												<th>Mã Nhân Viên</th>
-												<th>Tên Nhân Viên</th>
-												<th>Ngày Sinh</th>
-												<th>Địa Chỉ</th>
+												<th>Tên Nhân Viên</th>	
 												<th>Chức Vụ</th>
-												<th>Số Điện Thoại</th>
 												<th>Bộ Phận</th>
-												<th></th>
+												<th>Chức năng</th>
 
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="item" items="#">
 												<tr>
-
-													<th></th>
-													<th></th>
-													<th></th>
 													<th></th>
 													<th></th>
 													<th></th>
@@ -87,7 +80,25 @@
 
 										</tbody>
 									</table>
-									<nav aria-label="Page navigation example">
+									<div style="margin-left: 400px;">
+										<a>
+											<button><<</button>
+											<button><</button> <input type="text" style="width: 30px">
+											of <input type="text" style="width: 30px" readonly="true">
+											<button>></button>
+											<button>>></button>
+										</a> <a style="margin-left: 300px"> <label>View</label> <label>1</label>
+											<label>-</label>
+											<label>5</label>
+											<label>of</label>
+											<label>12</label>
+
+										</a>
+									</div>
+									<!--  -->
+
+								</div>
+									<!-- <nav aria-label="Page navigation example">
 										<ul class="pagination justify-content-center">
 											<li class="page-item disabled"><a class="page-link"
 												href="#" tabindex="-1">Previous</a></li>
@@ -97,7 +108,7 @@
 											<li class="page-item"><a class="page-link" href="#">Next</a>
 											</li>
 										</ul>
-									</nav>
+									</nav> -->
 								</div>
 
 							</div>

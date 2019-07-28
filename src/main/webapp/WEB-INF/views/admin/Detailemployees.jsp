@@ -11,64 +11,53 @@
 		<div class="col-xs-14 col-sm-12 col-md-11">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h2 class="panel-title">Thêm Nhân Viên</h2>
+					<h2 class="panel-title">Chi tiết nhân viên</h2>
 				</div>
 				<form:form modelAttribute="employee" action="#" method="POST">
 
 					<div class="col-md-4 mb-3">
 						<label for="validationDefault01">Mã nhân viên</label> <input
 							type="text" class="form-control" id="validationDefault01"
-							placeholder="Mã nhân viên" value="Mã nhân viên" required>
+							placeholder="Mã nhân viên" value="Mã nhân viên" required
+							readonly="true">
 					</div>
 
 					<div class="col-md-5 mb-3">
 						<label for="validationDefault02">Tên nhân viên</label> <input
 							type="text" class="form-control" id="validationDefault02"
-							placeholder="Tên nhân viên" value="Tên nhân viên" required>
+							placeholder="Tên nhân viên" value="Tên nhân viên" required
+							readonly="true">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="validationDefault3">Ngày sinh</label> <input
 							type="text" class="form-control" id="validationDefault03"
-							placeholder="Ngày sinh" value="Ngày sinh" required>
+							placeholder="Ngày sinh" value="Ngày sinh" required
+							readonly="true">
 					</div>
 
 					<div class="col-md-4 mb-3">
-						<label for="validationDefault3">Chức vụ</label> <br /> <select
-							class="custom-select custom-select-sm">
-							<option selected>Chức vụ</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
+						<label for="validationDefault3">Chức vụ</label> <input type="text"
+							class="form-control" id="validationDefault03" required readonly="true">
 					</div>
-					<div class="col-md-5 mb-3">
-						<label for="validationDefault3">Bộ phận</label> <br /> <select
-							class="custom-select custom-select-sm">
-							<option selected>bộ phận</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
+					<div class="col-md-4 mb-3">
+						<label for="validationDefault3">Bộ phận</label> <input type="text"
+							class="form-control" id="validationDefault03" required readonly="true">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="validationDefault3">SĐT</label> <input type="text"
 							class="form-control" id="validationDefault03"
-							placeholder="Số điện thoại" value="Số điện thoại" required>
+							placeholder="Số điện thoại" value="Số điện thoại" required
+							readonly="true">
 					</div>
 
 
 					<div class="col-md-9 mb-3">
 						<label for="validationDefault3">Địa chỉ</label> <input type="text"
 							class="form-control" id="validationDefault03"
-							placeholder="Địa chỉ" value="Địa chỉ" required>
+							placeholder="Địa chỉ" value="Địa chỉ" required readonly="true">
 					</div>
 
-					<form>
-						<div class="col-md-3 mb-3">
-							<label for="exampleFormControlFile1">Chọn ảnh</label> <input
-								type="file" class="form-control-file"
-								id="exampleFormControlFile1">
-						</div>
+
 					</form>
 					<div style="margin-left: 830px;">
 						<img class="card-img-top"

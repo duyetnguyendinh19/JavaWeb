@@ -109,6 +109,21 @@
 									</c:if>
 									</tbody>
 								</table>
+								<div style="margin-left: 400px;">
+										<a>
+											<button><<</button>
+											<button><</button> <input type="text" style="width: 30px">
+											of <input type="text" style="width: 30px" readonly="true">
+											<button>></button>
+											<button>>></button>
+										</a> <a style="margin-left: 300px"> <label>View</label> <label>1</label>
+											<label>-</label>
+											<label>5</label>
+											<label>of</label>
+											<label>12</label>
+
+										</a>
+									</div>
 								<div class="ui modal">
 									<i class="close icon"></i>
 									<div class="header">
