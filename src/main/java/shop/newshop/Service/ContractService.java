@@ -18,4 +18,6 @@ public interface  ContractService {
 
 	public Contract getContractByEmployeeId(int id);
 
+	public List<Contract> searchNameEmployee(String nameEmployee);
+
 }

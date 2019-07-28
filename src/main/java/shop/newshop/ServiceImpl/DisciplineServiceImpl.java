@@ -21,6 +21,7 @@ public class DisciplineServiceImpl implements DisciplineService{
 		return disDao.getAlls();
 	}
 
+
 	@Override
 	public boolean insert(Discipline di) {
 		return disDao.insert(di);
@@ -43,5 +44,11 @@ public class DisciplineServiceImpl implements DisciplineService{
 		
 		return disDao.getDisciplineById(idDiscipline);
 	}
+
+	@Override
+	public List<Discipline> searchNameEmployee(String nameEmployee) {
+		return disDao.searchNameEmployee(nameEmployee);
+	}
+
 
 }

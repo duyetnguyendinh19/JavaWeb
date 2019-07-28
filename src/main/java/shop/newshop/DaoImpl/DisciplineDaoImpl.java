@@ -47,6 +47,23 @@ public class DisciplineDaoImpl implements DisciplineDao {
     }
 
     @Override
+    public List<Discipline> searchNameEmployee(String nameEmployee) {
+        List<Discipline> list = null;
+        Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+        try {
+            String sql = "FROM Discipline c WHERE c.employee.name LIKE '%" + nameEmployee + "%'";
+            session.beginTransaction();
+            Query query = session.createQuery(sql);
+            list = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
+    @Override
     public boolean update(Discipline di) {
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {

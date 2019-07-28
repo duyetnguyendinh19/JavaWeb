@@ -42,6 +42,18 @@ public class DisciplineController {
         return "admin/Discipline";
     }
 
+    @RequestMapping(value = "listDiscipline", method = RequestMethod.POST)
+    public String getBonusPost(ModelMap map , @RequestParam("tennv") String nameEmployee) {
+        List<Discipline> disciplineList = new ArrayList<>();
+        disciplineList = disciplineService.searchNameEmployee(nameEmployee);
+        if(disciplineList.size() == 0){
+            map.addAttribute("searchFail", "Không tìm thấy nhân viên là: " + nameEmployee);
+        }
+        map.addAttribute("nameSearch" ,nameEmployee);
+        map.put("disciplineList", disciplineList);
+        return "admin/Discipline";
+    }
+
     @GetMapping(value = "addDiscipline")
     public String addContract(ModelMap model) {
         List<Employee> employees = employeeService.getAlls();

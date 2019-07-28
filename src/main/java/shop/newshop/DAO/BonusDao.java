@@ -14,4 +14,6 @@ public interface BonusDao {
 	public boolean delete(int idBonus);
 
 	public Bonus getBonusById(int idBonus);
+
+	public List<Bonus> searchNameEmployee(String nameEmployee);
 }

@@ -6,8 +6,26 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" afterDir="false" />
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="update admin layout">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/BonusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/BonusController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DisciplineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/BonusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/BonusDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/ContractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/ContractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/DisciplineDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/DisciplineDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/BonusDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/BonusDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/ContractDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/ContractDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DisciplineDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/DisciplineDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/BonusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/BonusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/ContractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/DisciplineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/DisciplineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/BonusServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/BonusServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/ContractServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/ContractServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/DisciplineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/DisciplineServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Discipline.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Discipline.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +90,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="shop.newshop.Controller.test" />
+      <module name="JavaWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shop.newshop.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="JavaWeb" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="shop.newshop.Application" />
@@ -120,9 +151,11 @@
     <list>
       <item itemvalue="Spring Boot.Application" />
       <item itemvalue="Tomcat Server.Addcontract.jsp" />
+      <item itemvalue="Application.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test" />
         <item itemvalue="Tomcat Server.Addcontract.jsp" />
       </list>
     </recent_temporary>
@@ -142,7 +175,8 @@
       <workItem from="1564027914227" duration="21846000" />
       <workItem from="1564105245584" duration="24834000" />
       <workItem from="1564143120355" duration="4688000" />
-      <workItem from="1564186976558" duration="14086000" />
+      <workItem from="1564186976558" duration="15349000" />
+      <workItem from="1564312898742" duration="12083000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -165,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564203304553</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update admin layout">
+      <created>1564203589295</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564203589295</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,7 +227,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update discipline bonus" />
-    <option name="LAST_COMMIT_MESSAGE" value="update discipline bonus" />
+    <MESSAGE value="update admin layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="update admin layout" />
   </component>
   <component name="masterDetails">
     <states>

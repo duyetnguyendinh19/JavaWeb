@@ -41,6 +41,18 @@ public class BonusController {
         return "admin/Bonus";
     }
 
+    @RequestMapping(value = "listBonus", method = RequestMethod.POST)
+    public String getBonusPost(ModelMap map , @RequestParam("tennv") String nameEmployee) {
+        List<Bonus> bonusList = new ArrayList<>();
+        bonusList = bonusService.searchNameEmployee(nameEmployee);
+        if(bonusList.size() == 0){
+            map.addAttribute("searchFail", "Không tìm thấy nhân viên là: " + nameEmployee);
+        }
+        map.addAttribute("nameSearch" ,nameEmployee);
+        map.put("bonusList", bonusList);
+        return "admin/Bonus";
+    }
+
     @GetMapping(value = "addBonus")
     public String addContract(ModelMap model) {
         List<Employee> employees = employeeService.getAlls();

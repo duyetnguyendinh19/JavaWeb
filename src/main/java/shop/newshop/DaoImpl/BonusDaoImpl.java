@@ -61,6 +61,23 @@ public class BonusDaoImpl implements BonusDao{
 	}
 
 	@Override
+	public List<Bonus> searchNameEmployee(String nameEmployee) {
+		List<Bonus> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Bonus c WHERE c.employee.name LIKE '%" + nameEmployee + "%'";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
 	public boolean delete(int idBonus) {
 		Bonus bonus = getBonusById(idBonus);
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();

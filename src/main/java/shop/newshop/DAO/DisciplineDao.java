@@ -14,4 +14,6 @@ public interface DisciplineDao {
 	public boolean delete(int idDiscipline);
 
 	public Discipline getDisciplineById(int idDiscipline);
+
+	public List<Discipline> searchNameEmployee(String nameEmployee);
 }

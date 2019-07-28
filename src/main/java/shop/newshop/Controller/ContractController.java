@@ -48,17 +48,7 @@ public class ContractController {
     @Autowired
     private EmployeeService employeeService;
 
-    private static String UPLOAD_FOLDER = "C:/Users/Bui Van Tan/Desktop/JavaWeb/src/main/resources/static/img/";
-
-    @RequestMapping(value = "listContract", method = RequestMethod.GET)
-    public String getBonus(ModelMap map) {
-        List<Contract> listContract = new ArrayList<>();
-        listContract = contractService.getAlls();
-        map.put("listContract", listContract);
-        return "admin/Contract";
-    }
-
-//    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    //    @RequestMapping(value = "upload", method = RequestMethod.POST)
 //    public String multiPartFile(RedirectAttributes map, @RequestParam("startDate") String startDate) {
 //        try {
 //            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -76,6 +66,33 @@ public class ContractController {
 //        }
 //        return "redirect:/uploadStatus";
 //    }
+
+    @GetMapping(value = "test")
+    public String test(){
+        return "admin/testImage";
+    }
+
+    @RequestMapping(value = "listContract", method = RequestMethod.GET)
+    public String getBonus(ModelMap map) {
+        List<Contract> listContract = new ArrayList<>();
+        listContract = contractService.getAlls();
+        List<Employee> listEmployee = new ArrayList<>();
+        listContract = contractService.getAlls();
+        map.put("listContract", listContract);
+        return "admin/Contract";
+    }
+
+    @RequestMapping(value = "listContract", method = RequestMethod.POST)
+    public String getBonusPost(ModelMap map , @RequestParam("tennv") String nameEmployee) {
+        List<Contract> listContract = new ArrayList<>();
+        listContract = contractService.searchNameEmployee(nameEmployee);
+        if(listContract.size() == 0){
+            map.addAttribute("searchFail", "Không tìm thấy nhân viên là: " + nameEmployee);
+        }
+        map.put("listContract", listContract);
+        map.addAttribute("nameSearch" ,nameEmployee);
+        return "admin/Contract";
+    }
 
     @GetMapping(value = "addContract")
     public String addContract(ModelMap model) {

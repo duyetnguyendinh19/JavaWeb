@@ -16,4 +16,6 @@ public interface BonusService {
 
 	public Bonus getBonusById(int idBonus);
 
+	public List<Bonus> searchNameEmployee(String nameEmployee);
+
 }

@@ -18,4 +18,6 @@ public interface ContractDao {
 	public Contract getContractById(int idContract);
 
 	public Contract getContractByEmployeeId(int id);
+
+	public List<Contract> searchNameEmployee(String nameEmployee);
 }

@@ -53,6 +53,23 @@ public class ContractDaoImpl implements ContractDao {
     }
 
     @Override
+    public List<Contract> searchNameEmployee(String nameEmployee) {
+        List<Contract> list = null;
+        Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+        try {
+            String sql = "FROM Contract c WHERE c.employee.name LIKE '%" + nameEmployee + "%'";
+            session.beginTransaction();
+            Query query = session.createQuery(sql);
+            list = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
+    @Override
     public boolean insert(Contract ct) {
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {

@@ -40,4 +40,9 @@ public class BonusServiceImpl implements BonusService{
 		return bonusDao.getBonusById(idBonus);
 	}
 
+	@Override
+	public List<Bonus> searchNameEmployee(String nameEmployee) {
+		return bonusDao.searchNameEmployee(nameEmployee);
+	}
+
 }

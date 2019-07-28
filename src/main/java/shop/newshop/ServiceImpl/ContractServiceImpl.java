@@ -44,5 +44,10 @@ public class ContractServiceImpl implements ContractService{
 		return contractDao.getContractByEmployeeId(id);
 	}
 
+	@Override
+	public List<Contract> searchNameEmployee(String nameEmployee) {
+		return contractDao.searchNameEmployee(nameEmployee);
+	}
+
 
 }

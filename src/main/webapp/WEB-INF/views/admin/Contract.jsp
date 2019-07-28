@@ -23,8 +23,28 @@
         margin-left: auto;
         margin-right: auto;
     }
+    form button{
+        margin-left: 5px;
+        height: 35px;
+        color: white;
+        background: #0ea432;
+        border: none;
+        border-radius: 4px;
+        width: 90px;
+    }
+    form button:hover{
+        background: #68a458;
+    }
+    .tennv{
+        width: 50%;
+        height: 35px;
+        margin-left: 10px;
+    }
 </style>
 <%--<script src="templates/js/jquery.min.js"></script>--%>
+<c:if test="${not empty searchFail}">
+    <label class="alert alert-danger" id="name_errors" style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
+</c:if>
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
@@ -35,6 +55,12 @@
                             <div class="panel-heading">
                                 <h2 class="panel-title">Quản lý hợp đồng</h2>
                             </div>
+                            <form action="${pageContext.request.contextPath}/admin/listContract" method="POST" style="float: left;padding: 16px;width: 50%;">
+                                <label>Tên nhân viên:</label>
+                                <input type="text" name="tennv" class="tennv" placeholder="Tên nhân viên..." style="border-radius: 5px!important;
+" value="${nameSearch}"/>
+                                <button type="submit" style="font-family: Tahoma">Tìm kiếm</button>
+                            </form>
                             <a href="${pageContext.request.contextPath}/admin/addContract">
                                 <button class="btn btn-success"
                                         style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin: 10px 15px; ">
@@ -78,6 +104,11 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
+                                    <c:if test="${not empty searchFail}">
+                                        <tr>
+                                            <td colspan="7">Danh sách rỗng</td>
+                                        </tr>
+                                    </c:if>
                                     </tbody>
                                 </table>
                                 <div class="ui modal">
@@ -107,6 +138,9 @@
         </div>
     </div>
 </div>
+<script>
+    $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);
+</script>
 <script>
     function loadModal(name, id){
         $('.ui.modal').modal('show');
