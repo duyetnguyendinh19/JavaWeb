@@ -106,4 +106,21 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		return result;
 	}
 
+	@Override
+	public List<Department> getAlls() {
+		List<Department> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String sql = "FROM Department";
+			Query query = session.createQuery(sql);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
 }
