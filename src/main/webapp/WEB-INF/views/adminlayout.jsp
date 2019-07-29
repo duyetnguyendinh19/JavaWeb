@@ -483,10 +483,10 @@
 
 				<div class="page-content">
 					<div class="ace-settings-container" id="ace-settings-container">
-						<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
-							id="ace-settings-btn">
-							<i class="ace-icon fa fa-cog bigger-130"></i>
-						</div>
+<%--						<div class="btn btn-app btn-xs btn-warning ace-settings-btn"--%>
+<%--							id="ace-settings-btn">--%>
+<%--							<i class="ace-icon fa fa-cog bigger-130"></i>--%>
+<%--						</div>--%>
 
 						<div class="ace-settings-box clearfix" id="ace-settings-box">
 							<div class="pull-left width-50">

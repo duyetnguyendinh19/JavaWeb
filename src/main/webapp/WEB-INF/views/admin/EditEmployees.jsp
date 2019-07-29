@@ -29,7 +29,7 @@
 		<br>
 		<div class="row">
 			<div class="col-xs-14 col-sm-12 col-md-11">
-				<div class="panel panel-danger">
+				<div class="panel panel-warning">
 					<div class="panel-heading">
 						<h2 class="panel-title">Sửa Lý Lịch</h2>
 					</div>

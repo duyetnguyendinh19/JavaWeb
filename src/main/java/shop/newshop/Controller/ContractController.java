@@ -72,7 +72,7 @@ public class ContractController {
 
     @GetMapping(value = "test")
     public String test(){
-        return "admin/testImage";
+        return "employee/index";
     }
 
     @PostMapping(value = "upload")

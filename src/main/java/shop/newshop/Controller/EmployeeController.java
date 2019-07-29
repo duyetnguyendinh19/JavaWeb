@@ -33,8 +33,6 @@ public class EmployeeController {
 	public String listEmployee(ModelMap model) {
 		model.put("error", "");
 		model.put("listEmployee", empService.getAlls());
-		
-
 		return "admin/Employees";
 	}
 
