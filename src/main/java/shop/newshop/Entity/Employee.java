@@ -1,7 +1,6 @@
 package shop.newshop.Entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,49 +9,51 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
-	
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	@Column( name = "id" )
 	private int id;
-	
+
 	@NotNull
 	@Column( name = "name" , length = 128)
 	private String name;
-	
+
 	@NotNull
 	@Column( name = "phone" , length = 10)
 	private String phone;
-	
+
 	@NotNull
 	@Column( name = "address" , length = 256)
 	private String address;
-	
+
 	@NotNull
 	@Column( name = "birthday")
 	private Date birthday;
-	
+
 	@NotNull
 	@Column( name = "level" , length = 64)
 	private String level;
-	
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn( name = "idDepartment")
 	private Department department;
-	
+
 	@Column(name = "avatar", length = 1000)
 	private String avatar;
 
 	@Column(name = "identitycard", length= 15)
 	private String identitycard;
+
+	@Column(name = "email", length = 64)
+	private String email;
 
 	public int getId() {
 		return id;
@@ -126,11 +127,23 @@ public class Employee {
 		this.identitycard = identitycard;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Employee() {
 		super();
 	}
 
-	public Employee(@NotNull String name, @NotNull String phone, @NotNull String address, @NotNull Date birthday, @NotNull String level, @NotNull Department department, String avatar, String identitycard) {
+	public Employee(int id, @NotNull String name, @NotNull String phone, @NotNull String address,
+			@NotNull Date birthday, @NotNull String level, @NotNull Department department, String avatar,
+			String identitycard, String email) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
@@ -139,6 +152,9 @@ public class Employee {
 		this.department = department;
 		this.avatar = avatar;
 		this.identitycard = identitycard;
+		this.email = email;
 	}
+
+
 
 }

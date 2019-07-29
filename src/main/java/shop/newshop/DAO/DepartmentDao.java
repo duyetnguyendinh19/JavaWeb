@@ -17,5 +17,7 @@ public interface DepartmentDao {
 	public Department getDepartById(int idDepart);
 	
 	public long countAll();
+
+	public List<Department> getAlls();
 	
 }

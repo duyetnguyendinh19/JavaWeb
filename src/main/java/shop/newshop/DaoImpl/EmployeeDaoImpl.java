@@ -64,8 +64,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public boolean delete(int idEmployee) {
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-        Employee employee = employeeService.getEmployeeById(idEmployee);
+        Employee employee = getEmployeeById(idEmployee);
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();

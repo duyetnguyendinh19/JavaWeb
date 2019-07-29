@@ -50,4 +50,9 @@ public class DepartmentServiceImpl implements DepartmentService{
 		return departDao.countAll();
 	}
 
+	@Override
+	public List<Department> getAlls() {
+		return departDao.getAlls();
+	}
+
 }
