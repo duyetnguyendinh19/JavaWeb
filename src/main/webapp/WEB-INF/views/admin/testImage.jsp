@@ -94,55 +94,88 @@
     /*kết thúc CSS ảnh*/
 </style>
 <body>
-<form action="upload" method="post" enctype="multipart/form-data">
-    <div class="wrap-custom-file">
-        <input type="file" name="avatar" class="imgUpload" id="avatar" accept=".gif,.jpg,.png,.jpeg"/>
-        <label for="avatar" style="display:flex;justify-content:center;align-items:center;" class="imageFile">
-        <span id="loading-add-image-span" class="fa fa-spinner fa-spin"
-              style="display:none;margin-top:0!important"></span>
-            <span id="chooseImage" style="margin: 0px;">Chọn ảnh</span>
-            <span class="nameFile"
-                  style="position:absolute;bottom:0;left:0;width:100%;height:26px;padding:0.3rem;font-size:1.1rem;color:#6a0700;background-color: rgba(255, 255, 255, 0.7);height:28px;"></span>
+<form action="${pageContext.request.contextPath}/admin/upload" method="post" enctype="multipart/form-data">
+<%--    <div class="wrap-custom-file">--%>
+<%--        <input type="file" name="avatar" class="imgUpload" id="avatar" accept=".gif,.jpg,.png,.jpeg"/>--%>
+<%--        <label for="avatar" style="display:flex;justify-content:center;align-items:center;" class="imageFile">--%>
+<%--        <span id="loading-add-image-span" class="fa fa-spinner fa-spin"--%>
+<%--              style="display:none;margin-top:0!important"></span>--%>
+<%--            <span id="chooseImage" style="margin: 0px;">Chọn ảnh</span>--%>
+<%--            <span class="nameFile"--%>
+<%--                  style="position:absolute;bottom:0;left:0;width:100%;height:26px;padding:0.3rem;font-size:1.1rem;color:#6a0700;background-color: rgba(255, 255, 255, 0.7);height:28px;"></span>--%>
+<%--        </label>--%>
+<%--    </div>--%>
+    <div class="wrap-custom-file" style="margin-top: 15px;margin-left: 50px;">
+        <input type="file" name="avatar" class="imgUpload" id="avatar" accept=".gif,.jpg,.png,.jpeg" />
+        <label for="avatar" id="avatar-background"
+               style="width: 190px;height: 160px;"
+               :style="{'background-image' : 'url(' + dataValue.avatar +')'}">
+            <span id="chooseImage">Chọn ảnh</span>
         </label>
     </div>
-    <div class="inline-block">
-        <div class="ui calendar" id="rangestart">
-            <input type="text" class="datepicker" id="startDate" name="startDate"/>
-        </div>
-    </div>
-    <div class="inline-block">
-        <div class="ui calendar" id="rangeend">
-            <input type="text" class="datepicker" id="endDate" name="rangeend"/>
-        </div>
-    </div>
+<%--    <div class="inline-block">--%>
+<%--        <div class="ui calendar" id="rangestart">--%>
+<%--            <input type="text" class="datepicker" id="startDate" name="startDate"/>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="inline-block">--%>
+<%--        <div class="ui calendar" id="rangeend">--%>
+<%--            <input type="text" class="datepicker" id="endDate" name="rangeend"/>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+    <br><br>
     <button>submit</button>
 </form>
 </body>
-<script type="text/javascript">
-    $('#avatar').on('change', function (event) {
-        var that = this;
-        $('#chooseImage').css('display', "none");
-        var reader = new FileReader();
-        var objectResult = {};
-        var dataFile = this.files[0];
-        reader.readAsDataURL(dataFile);
-        reader.onload = function () {
-            setTimeout(function () {
-                objectResult.fileName = dataFile.name;
-                var readerResult = reader.result;
-                objectResult.content = readerResult.split(',')[1];
-                var tmppath = URL.createObjectURL(dataFile);
-                $('#loading-add-image-span').remove();
-                $('#chooseImage').remove();
-                $('.imageFile').css('background-image', 'url("' + readerResult + '")');
-                $('.nameFile').text(dataFile.name);
-            }, 200);
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    })
+<script>
+        let that = this;
+        $('input[type="file"].imgUpload').each(function(){
+            let $file = $(this),
+                $label = $file.next('label'),
+                $labelText = $label.find('span'),
+                labelDefault = $labelText.text();
+            $file.on('change', function(event){
+                let fileName = $file.val().split( '\\' ).pop(),
+                    tmppath = URL.createObjectURL(event.target.files[0]);
+                if( fileName ){
+                    $label
+                        .addClass('file-ok')
+                        .css('background-image', 'url(' + tmppath + ')');
+                    $labelText.removeClass('red');
+                    $labelText.text(fileName);
+                    that.dataValueClone.avatar = fileName;
+                }else{
+                    $label.removeClass('file-ok');
+                    $labelText.text(labelDefault);
+                }
+            });
+        });
 </script>
+<%--<script type="text/javascript">--%>
+<%--    $('#avatar').on('change', function (event) {--%>
+<%--        var that = this;--%>
+<%--        $('#chooseImage').css('display', "none");--%>
+<%--        var reader = new FileReader();--%>
+<%--        var objectResult = {};--%>
+<%--        var dataFile = this.files[0];--%>
+<%--        reader.readAsDataURL(dataFile);--%>
+<%--        reader.onload = function () {--%>
+<%--            setTimeout(function () {--%>
+<%--                objectResult.fileName = dataFile.name;--%>
+<%--                var readerResult = reader.result;--%>
+<%--                objectResult.content = readerResult.split(',')[1];--%>
+<%--                var tmppath = URL.createObjectURL(dataFile);--%>
+<%--                $('#loading-add-image-span').remove();--%>
+<%--                $('#chooseImage').remove();--%>
+<%--                $('.imageFile').css('background-image', 'url("' + readerResult + '")');--%>
+<%--                $('.nameFile').text(dataFile.name);--%>
+<%--            }, 200);--%>
+<%--        };--%>
+<%--        reader.onerror = function (error) {--%>
+<%--            console.log('Error: ', error);--%>
+<%--        };--%>
+<%--    })--%>
+<%--</script>--%>
 <script>
     var toDate = new Date();
     var date = toDate.getDate();

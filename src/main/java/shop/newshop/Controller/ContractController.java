@@ -48,6 +48,9 @@ public class ContractController {
     @Autowired
     private EmployeeService employeeService;
 
+    private static final String URL_IMG_PATH = "D:/image_qlnv";
+    private static final String PATH = "/avatar/";
+
     //    @RequestMapping(value = "upload", method = RequestMethod.POST)
 //    public String multiPartFile(RedirectAttributes map, @RequestParam("startDate") String startDate) {
 //        try {
@@ -69,6 +72,21 @@ public class ContractController {
 
     @GetMapping(value = "test")
     public String test(){
+        return "admin/testImage";
+    }
+
+    @PostMapping(value = "upload")
+    public String PostUpLoad(@RequestParam("avatar") MultipartFile avatar){
+        System.out.println(avatar);
+        Employee employee = new Employee();
+        String filePath = URL_IMG_PATH + PATH;
+        String host = "localhost:9999";
+        String sourcePath = host + "/image_qlnv/avatar/";
+        FileManagerService.Result result = FileManagerService.StorageFile(filePath, avatar, false, false,null);
+        if(result.isSuccess()){
+            System.out.println(result.getResult());
+            System.out.println(FileManagerService.encodeImgFileToBase64BinarySrc(result.getResult()));
+        }
         return "admin/testImage";
     }
 

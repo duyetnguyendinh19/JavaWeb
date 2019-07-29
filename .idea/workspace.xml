@@ -6,15 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="update Bonus">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Detailemployees.jsp" afterDir="false" />
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/FileManagerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addemployees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addemployees.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Contract.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Department.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Department.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Discipline.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Discipline.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Employees.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/testImage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/testImage.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +162,8 @@
       <workItem from="1564143120355" duration="4688000" />
       <workItem from="1564186976558" duration="15349000" />
       <workItem from="1564312898742" duration="12540000" />
-      <workItem from="1564327000364" duration="207000" />
+      <workItem from="1564327000364" duration="1285000" />
+      <workItem from="1564364130863" duration="10473000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -203,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564326620257</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update Bonus">
+      <created>1564327393946</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1564327393947</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
