@@ -5,38 +5,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
+<style>
+	.page button{
+		height: 30px;
+		color: white;
+		background: #4e4ee6;
+		border: none;
+		font-size: 11px;
+		border-radius: 3px;
+		width: 30px;
+	}
+	.page button:hover{
+		background: #a7a7ef;
+	}
+</style>
 <div class="container">
 	<div class="row">
 
 		<div class="col-lg-9">
 
-			<div id="carouselExampleIndicators" class="carousel slide my-4"
-				data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0"
-						class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
 				<div class="container">
-					<div id="carouselExampleControls" class="carousel slide"
-						data-ride="carousel">
-
-						<a class="carousel-control-prev" href="#carouselExampleControls"
-							role="button" data-slide="prev"> <span
-							class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next" href="#carouselExampleControls"
-							role="button" data-slide="next"> <span
-							class="carousel-control-next-icon" aria-hidden="true"></span> <span
-							class="sr-only">Next</span>
-						</a>
-					</div>
 
 					<div class="row">
 						<div class="col-xs-11 col-sm-11 col-md-11">
-							<div class="panel panel-primary">
+							<div class="panel panel-warning">
 								<div class="panel-heading">
 									<h2 class="panel-title">Nhân Viên</h2>
 								</div>
@@ -45,7 +37,7 @@
 
 								<a href="${pageContext.request.contextPath}/admin/addEmployee"
 									style="float: right; margin-top: 10px; margin-right: 15px; margin-bottom: 10px">
-									<button class="btn btn-primary">Thêm Nhân Viên</button>
+									<button class="btn btn-success">Thêm Nhân Viên</button>
 								</a>
 
 								<div class="panel-body">
@@ -108,18 +100,22 @@
 												onclick="deleteTooltip()">Hủy bỏ</button>
 										</div>
 									</div>
-
-									<div style="margin-left: 400px;">
+									<div style="margin-left: 400px;" class="page">
 										<a>
 											<button><<</button>
-											<button><</button> <input type="text" style="width: 30px">
-											of <input type="text" style="width: 30px" readonly="readonly">
+											<button><</button>
+											<input type="text" style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
+											of <input type="text" style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;" readonly="true">
 											<button>></button>
 											<button>>></button>
-										</a> <a style="margin-left: 300px"> <label>View</label> <label>1</label>
-											<label>-</label> <label>5</label> <label>of</label> <label>12</label>
-
-										</a>
+										</a> <a style=float:right;">
+										<label>View</label>
+										<label>1</label>
+										<label>-</label>
+										<label>5</label>
+										<label>of</label>
+										<label>12</label>
+									</a>
 									</div>
 									<!--  -->
 

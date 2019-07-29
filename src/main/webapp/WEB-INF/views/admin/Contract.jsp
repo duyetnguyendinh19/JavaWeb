@@ -16,14 +16,16 @@
     tr th {
         text-align: center;
     }
-    .ui.modal{
+
+    .ui.modal {
         margin-top: 50px;
         width: 28%;
         height: 30%;
         margin-left: auto;
         margin-right: auto;
     }
-    form button{
+
+    form button {
         margin-left: 5px;
         height: 35px;
         color: white;
@@ -32,18 +34,33 @@
         border-radius: 4px;
         width: 90px;
     }
-    form button:hover{
+
+    form button:hover {
         background: #68a458;
     }
-    .tennv{
+
+    .tennv {
         width: 50%;
         height: 35px;
         margin-left: 10px;
     }
+    .page button{
+        height: 30px;
+        color: white;
+        background: #4e4ee6;
+        border: none;
+        font-size: 11px;
+        border-radius: 3px;
+        width: 30px;
+    }
+    .page button:hover{
+        background: #a7a7ef;
+    }
 </style>
 <%--<script src="templates/js/jquery.min.js"></script>--%>
 <c:if test="${not empty searchFail}">
-    <label class="alert alert-danger" id="name_errors" style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
+    <label class="alert alert-danger" id="name_errors"
+           style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
 </c:if>
 <div class="container">
     <div class="row">
@@ -55,7 +72,8 @@
                             <div class="panel-heading">
                                 <h2 class="panel-title">Quản lý hợp đồng</h2>
                             </div>
-                            <form action="${pageContext.request.contextPath}/admin/listContract" method="POST" style="float: left;padding: 16px;width: 50%;">
+                            <form action="${pageContext.request.contextPath}/admin/listContract" method="POST"
+                                  style="float: left;padding: 16px;width: 50%;">
                                 <label>Tên nhân viên:</label>
                                 <input type="text" name="tennv" class="tennv" placeholder="Tên nhân viên..." style="border-radius: 5px!important;
 " value="${nameSearch}"/>
@@ -97,7 +115,9 @@
                                                         <i class="fas fa-user-edit" aria-hidden="true"></i>
                                                     </button>
                                                 </a>
-                                                <button class="btn btn-danger" id="delete" onclick="loadModal('${contract.employee.name}', '${contract.id}')" data-toggle="tooltip"
+                                                <button class="btn btn-danger" id="delete"
+                                                        onclick="loadModal('${contract.employee.name}', '${contract.id}')"
+                                                        data-toggle="tooltip"
                                                         title="Xóa hợp đồng">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
@@ -111,22 +131,25 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                
-                                <div style="margin-left: 400px;">
-										<a>
-											<button><<</button>
-											<button><</button> <input type="text" style="width: 30px">
-											of <input type="text" style="width: 30px" readonly="true">
-											<button>></button>
-											<button>>></button>
-										</a> <a style="margin-left: 300px"> <label>View</label> <label>1</label>
-											<label>-</label>
-											<label>5</label>
-											<label>of</label>
-											<label>12</label>
 
-										</a>
-									</div>
+                                <div style="margin-left: 400px;" class="page">
+                                    <a>
+                                        <button><<</button>
+                                        <button><</button>
+                                        <input type="text" style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
+                                        of <input type="text" style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;" readonly="true">
+                                        <button>></button>
+                                        <button>>></button>
+                                    </a> <a style=float:right;">
+                                    <label>View</label>
+                                    <label>1</label>
+                                    <label>-</label>
+                                    <label>5</label>
+                                    <label>of</label>
+                                    <label>12</label>
+                                </a>
+                                </div>
+
                                 <div class="ui modal">
                                     <i class="close icon"></i>
                                     <div class="header">
@@ -136,7 +159,8 @@
                                         <h4>Bạn có muốn xóa hợp đồng <span id="name"></span> không?</h4>
                                     </div>
                                     <div class="actions">
-                                        <a id="deleteComfirm" data-hrefbefore="${pageContext.request.contextPath}/admin/deleteContract/">
+                                        <a id="deleteComfirm"
+                                           data-hrefbefore="${pageContext.request.contextPath}/admin/deleteContract/">
                                             <button class="ui black deny button" style="background: green;">
                                                 Ok
                                             </button>
@@ -158,15 +182,15 @@
     $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);
 </script>
 <script>
-    function loadModal(name, id){
+    function loadModal(name, id) {
         $('.ui.modal').modal('show');
         $('#name').text(name);
-        var $deleteConfirm =  $('#deleteComfirm');
-        document.getElementById('deleteComfirm').href=$deleteConfirm.attr('data-hrefbefore') + id;
+        var $deleteConfirm = $('#deleteComfirm');
+        document.getElementById('deleteComfirm').href = $deleteConfirm.attr('data-hrefbefore') + id;
     }
 </script>
 <script>
-    function deleteTooltip(){
+    function deleteTooltip() {
         $('.ui-tooltip.ui-widget.ui-corner-all.ui-widget-content').remove();
     }
 </script>

@@ -40,6 +40,18 @@
 		height: 35px;
 		margin-left: 10px;
 	}
+	.page button{
+		height: 30px;
+		color: white;
+		background: #4e4ee6;
+		border: none;
+		font-size: 11px;
+		border-radius: 3px;
+		width: 30px;
+	}
+	.page button:hover{
+		background: #a7a7ef;
+	}
 </style>
 <c:if test="${not empty searchFail}">
 	<label class="alert alert-danger" id="name_errors" style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
@@ -109,21 +121,23 @@
 									</c:if>
 									</tbody>
 								</table>
-								<div style="margin-left: 400px;">
-										<a>
-											<button><<</button>
-											<button><</button> <input type="text" style="width: 30px">
-											of <input type="text" style="width: 30px" readonly="true">
-											<button>></button>
-											<button>>></button>
-										</a> <a style="margin-left: 300px"> <label>View</label> <label>1</label>
-											<label>-</label>
-											<label>5</label>
-											<label>of</label>
-											<label>12</label>
-
-										</a>
-									</div>
+								<div style="margin-left: 400px;" class="page">
+									<a>
+										<button><<</button>
+										<button><</button>
+										<input type="text" style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
+										of <input type="text" style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;" readonly="true">
+										<button>></button>
+										<button>>></button>
+									</a> <a style=float:right;">
+									<label>View</label>
+									<label>1</label>
+									<label>-</label>
+									<label>5</label>
+									<label>of</label>
+									<label>12</label>
+								</a>
+								</div>
 								<div class="ui modal">
 									<i class="close icon"></i>
 									<div class="header">
