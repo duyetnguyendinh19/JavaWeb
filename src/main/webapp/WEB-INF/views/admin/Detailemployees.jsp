@@ -41,8 +41,8 @@ input[type=text] {
 							<div class="wrap-custom-file"
 								style="margin-top: 15px; margin-left: 20px; margin-bottom: 20px">
 								<label for="avatar1" id="avatar1-background"
-									style="width: 190px; height: 160px;"
-									:style="{'background-image' : 'url(' + ${urlimage} +')'}">
+									style="width: 190px; height: 160px;background-image: url(' ${urlimage}')"
+									>
 
 								</label>
 							</div>
