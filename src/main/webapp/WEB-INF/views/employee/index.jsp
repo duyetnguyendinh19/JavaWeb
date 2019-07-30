@@ -89,11 +89,7 @@
 													<div class="space"></div>
 
 													<div class="clearfix">
-														<label class="inline">
-															<input type="checkbox" class="ace" />
-															<span class="lbl"> Remember Me</span>
-														</label>
-
+														
 														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Login</span>
@@ -161,7 +157,7 @@
 								
 							</div><!-- /.position-relative -->
 
-							<div class="navbar-fixed-top align-right">
+						<!-- 	<div class="navbar-fixed-top align-right">
 								<br />
 								&nbsp;
 								<a id="btn-login-dark" href="#">Dark</a>
@@ -174,7 +170,7 @@
 								&nbsp;
 								<a id="btn-login-light" href="#">Light</a>
 								&nbsp; &nbsp; &nbsp;
-							</div>
+							</div> -->
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
