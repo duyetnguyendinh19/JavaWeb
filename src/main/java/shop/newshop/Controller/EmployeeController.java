@@ -1,5 +1,12 @@
 package shop.newshop.Controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +35,9 @@ public class EmployeeController {
 	private String regexphone = "^0[0-9]+$";
 	private String regexname="^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
 	private String regexemail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-	
+	private static final String PATH = "D:\\Git\\JavaWeb\\src\\main\\resources\\static\\images\\";
+
+
 	@GetMapping(value = "admin/listEmployee")
 	public String listEmployee(ModelMap model) {
 		model.put("error", "");
@@ -43,7 +52,7 @@ public class EmployeeController {
 		model.put("deparment", departService.getAlls());
 		return "admin/Addemployees";
 	}
-	
+
 	@GetMapping(value = "admin/editEmployee/{id}")
 	public String editEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
 		model.put("employee", empService.getEmployeeById(idEmployee));
@@ -52,8 +61,20 @@ public class EmployeeController {
 		return "admin/Addemployees";
 	}
 
+	@GetMapping(value = "admin/inforEmployee/{id}")
+	public String inforEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
+		Employee employee = empService.getEmployeeById(idEmployee);
+		if(employee.getAvatar()!=null) {
+			File file = new File(PATH + employee.getAvatar());
+			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)) );	
+		}	
+		model.put("employee", employee);
+		
+		return "admin/Detailemployees";
+	}
+
 	@PostMapping(value = "admin/saveEmployee")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model, @RequestParam("image") String file ,
+	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model, @RequestParam("avatar1") MultipartFile file ,
 			@RequestParam("idDepartment") String idDepartment) {
 		try {
 			int idDepart = Integer.parseInt(idDepartment);
@@ -87,8 +108,13 @@ public class EmployeeController {
 				else {
 					employee.setDepartment(departService.getDepartById(idDepart));
 					if(employee.getId() == 0) {	
-						file.length();
-						employee.setAvatar(file);
+						if(file!=null) {
+							byte[] bytes = file.getBytes();
+							String filename = ( randomAlphaNumeric(10) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),file.getOriginalFilename().length())).toLowerCase();
+							employee.setAvatar(filename);
+							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(PATH+filename));
+							stream.write(bytes);
+						}
 						empService.insert(employee);
 					}else {
 
@@ -114,6 +140,35 @@ public class EmployeeController {
 			return "admin/Employees";
 		}
 		return "redirect:/admin/listEmployee";
+	}
+
+	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	public static String randomAlphaNumeric(int count) {
+		StringBuilder builder = new StringBuilder();
+		while (count-- != 0) {
+			int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+		}
+		return builder.toString();
+	}
+
+	//ConvertToBase64
+	private static String encodeFileToBase64Binary(File file){
+		String encodedfile = null;
+		try {
+			FileInputStream fileInputStreamReader = new FileInputStream(file);
+			byte[] bytes = new byte[(int)file.length()];
+			fileInputStreamReader.read(bytes);
+			encodedfile = Base64.getEncoder().encodeToString(bytes);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return encodedfile;
 	}
 
 }
