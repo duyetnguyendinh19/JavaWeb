@@ -18,17 +18,6 @@
 	.page button:hover{
 		background: #a7a7ef;
 	}
-	.ui.modal{
-		margin-top: 50px;
-		width: 28%;
-		height: 30%;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.ui.black.deny.button{
-		width: 25%;
-		height: 40px;
-	}
 </style>
 <div class="container">
 	<div class="row">

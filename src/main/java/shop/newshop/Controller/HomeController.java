@@ -19,7 +19,7 @@ public class HomeController {
 	@RequestMapping(value= {"/","trang-chu"})
 	public String HomeChomer() {
 	System.out.println("HomeChomer.index()");
-		return "customer/index";
+		return "employee/index";
 	}
 	
 
@@ -28,7 +28,7 @@ public class HomeController {
 	@GetMapping(value="index")
 	public String HomeCustomer(ModelMap map) {
 		map.addAttribute("title", "Home");
-		return "customer/index";
+		return "employee/index";
 	}
 
 }
