@@ -24,7 +24,6 @@
         margin-left: auto;
         margin-right: auto;
     }
-
     form button {
         margin-left: 5px;
         height: 35px;
@@ -34,11 +33,9 @@
         border-radius: 4px;
         width: 90px;
     }
-
     form button:hover {
         background: #68a458;
     }
-
     .tennv {
         width: 50%;
         height: 35px;
@@ -55,6 +52,10 @@
     }
     .page button:hover{
         background: #a7a7ef;
+    }
+    .ui.black.deny.button{
+        width: 25%;
+        height: 40px;
     }
 </style>
 <%--<script src="templates/js/jquery.min.js"></script>--%>
@@ -156,7 +157,7 @@
                                         Xóa hợp đồng
                                     </div>
                                     <div class="content">
-                                        <h4>Bạn có muốn xóa hợp đồng <span id="name"></span> không?</h4>
+                                        <h4>Bạn có muốn xóa <span id="name"></span> không?</h4>
                                     </div>
                                     <div class="actions">
                                         <a id="deleteComfirm"

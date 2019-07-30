@@ -414,6 +414,11 @@
 							Dashboard </span>
 				</a> <b class="arrow"></b></li>
 
+				<li class=""><a
+						href="${pageContext.request.contextPath}/admin/listAccount">
+					<i class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
+							Quản lý tài khoản </span>
+				</a> <b class="arrow"></b></li>
 
 				<li class=""><a
 					href="${pageContext.request.contextPath}/admin/listDepartment">

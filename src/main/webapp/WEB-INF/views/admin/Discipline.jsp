@@ -52,6 +52,10 @@
 	.page button:hover{
 		background: #a7a7ef;
 	}
+	.ui.black.deny.button{
+		width: 25%;
+		height: 40px;
+	}
 </style>
 <c:if test="${not empty searchFail}">
 	<label class="alert alert-danger" id="name_errors" style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
@@ -144,7 +148,7 @@
 										Xóa kỷ luật
 									</div>
 									<div class="content">
-										<h4>Bạn có muốn xóa kỷ luật <span id="name"></span> không?</h4>
+										<h4>Bạn có muốn xóa <span id="name"></span> không?</h4>
 									</div>
 									<div class="actions">
 										<a id="deleteComfirm" data-hrefbefore="${pageContext.request.contextPath}/admin/deleteDiscipline/">

@@ -72,6 +72,10 @@ public class ContractController {
 
     @GetMapping(value = "test")
     public String test(){
+        return "admin/testImage";
+    }
+    @GetMapping(value = {"/", "index"})
+    public String index(){
         return "employee/index";
     }
 

@@ -2,14 +2,7 @@ package shop.newshop.Entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -22,10 +15,12 @@ public class Contract {
 	private int id;
 	
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	@Column(name = "startday")
 	private Date startday;
 	
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	@Column(name = "expirationday")
 	private Date expirationday;
 	

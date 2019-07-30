@@ -87,11 +87,9 @@ public class DepartmentController {
 
 	}
 
-	int idDepart;	
-	@GetMapping(value = "admin/deleteDepart")
-	public String deleteDepart(ModelMap map,HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("id"));
+	@GetMapping(value = "admin/deleteDepart/{id}")
+	public String deleteDepart(ModelMap map, @PathVariable("id") int id) {
 		departService.delete(id);
-		return "redirect:/listDepartment"; 
+		return "redirect:/admin/listDepartment";
 	}
 }

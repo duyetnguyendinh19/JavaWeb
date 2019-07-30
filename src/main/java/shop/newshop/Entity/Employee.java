@@ -2,14 +2,7 @@ package shop.newshop.Entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -34,6 +27,7 @@ public class Employee {
 	private String address;
 
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	@Column( name = "birthday")
 	private Date birthday;
 
@@ -54,6 +48,18 @@ public class Employee {
 
 	@Column(name = "email", length = 64)
 	private String email;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "account_id")
+	private Account account;
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public int getId() {
 		return id;
@@ -139,11 +145,7 @@ public class Employee {
 		super();
 	}
 
-	public Employee(int id, @NotNull String name, @NotNull String phone, @NotNull String address,
-			@NotNull Date birthday, @NotNull String level, @NotNull Department department, String avatar,
-			String identitycard, String email) {
-		super();
-		this.id = id;
+	public Employee(@NotNull String name, @NotNull String phone, @NotNull String address, @NotNull Date birthday, @NotNull String level, @NotNull Department department, String avatar, String identitycard, String email, Account account) {
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
@@ -153,8 +155,6 @@ public class Employee {
 		this.avatar = avatar;
 		this.identitycard = identitycard;
 		this.email = email;
+		this.account = account;
 	}
-
-
-
 }
