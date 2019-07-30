@@ -28,7 +28,7 @@ public class HomeController {
 	@GetMapping(value="index")
 	public String HomeCustomer(ModelMap map) {
 		map.addAttribute("title", "Home");
-		return "customer/index";
+		return "employee/index";
 	}
 
 }
