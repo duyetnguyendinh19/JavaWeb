@@ -227,6 +227,7 @@ form button:hover {
 	});
 </script>
 <script type="text/javascript">
+	
 	$("#page").keypress(function(event) {
 		var number = $('#page').val();
 		if (event.keyCode === 13) {
@@ -234,8 +235,16 @@ form button:hover {
 		}
 	});
 	
-	console.log(window.location.search);
-	$('#page').val(urlParam.get('number'));
+	var url = window.location.href.split('/')[6];
+	setTimeout(function(){
+		if(url = 'undefined'){
+			$('#page').val(1);
+		}else{
+			$('#page').val(url);
+			
+		}
+	},1500)
+	
 </script>
 
 </body>
