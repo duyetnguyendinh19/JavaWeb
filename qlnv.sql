@@ -21,14 +21,14 @@
 
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `role` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `attendance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `attendance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `attendance` (
   PRIMARY KEY (`id`),
   KEY `fk_attendance_employee_idx` (`employee_id`),
   CONSTRAINT `fk_attendance_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bonus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `bonus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE `bonus` (
   PRIMARY KEY (`id`),
   KEY `fk_bonus_employee_idx` (`idEmployee`),
   CONSTRAINT `fk_bonus_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contract`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `contract` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `expirationday` datetime NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE `contract` (
   PRIMARY KEY (`id`),
   KEY `FK_41uo76i8br4y4d3q8sr2ejrao` (`idEmployee`),
   CONSTRAINT `FK_41uo76i8br4y4d3q8sr2ejrao` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,12 +134,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +158,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `discipline`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `discipline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -188,7 +188,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -197,7 +197,7 @@ CREATE TABLE `employee` (
   `name` varchar(128) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `idDepartment` int(11) NOT NULL,
-  `avatar` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `avatar` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `identitycard` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `account_id` int(11) NOT NULL,
@@ -206,7 +206,7 @@ CREATE TABLE `employee` (
   KEY `fk_employee_account_idx` (`account_id`),
   CONSTRAINT `fk_employee_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   CONSTRAINT `fk_employee_department` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `salary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `salary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `month` varchar(45) DEFAULT NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `salary` (
   `total` double DEFAULT NULL,
   `day_off` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
