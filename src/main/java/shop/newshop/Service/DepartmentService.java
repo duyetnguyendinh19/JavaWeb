@@ -18,5 +18,7 @@ public interface DepartmentService {
 
 	public Department getDepartById(int idDepart);
 	
+	public long checkName(String nameDepart,int idDepart);
+	
 	public long countAll();
 }
