@@ -49,7 +49,7 @@ public class Employee {
 	@Column(name = "email", length = 64)
 	private String email;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
 
