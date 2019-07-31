@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.EmployeeDao;
+import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Contract;
 import shop.newshop.Entity.Employee;
 import shop.newshop.ServiceImpl.EmployeeServiceImpl;
@@ -33,10 +34,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public boolean insert(Employee emp) {
+    public boolean insert(Employee emp,Account account) {
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
+            session.save(account);
+            session.flush();
+            emp.setAccount(account);;
             session.save(emp);
             session.getTransaction().commit();
             return true;
