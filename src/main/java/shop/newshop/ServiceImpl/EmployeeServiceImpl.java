@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.newshop.DAO.EmployeeDao;
+import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Employee;
 import shop.newshop.Service.EmployeeService;
 
@@ -22,9 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public boolean insert(Employee emp) {
+	public boolean insert(Employee emp,Account account) {
 		
-		return empDao.insert(emp);
+		return empDao.insert(emp, account);
 	}
 
 	@Override
