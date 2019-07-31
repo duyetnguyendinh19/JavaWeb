@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Employee;
 import shop.newshop.Service.DepartmentService;
 import shop.newshop.Service.EmployeeService;
@@ -55,10 +56,12 @@ public class EmployeeController {
 
 	@GetMapping(value = "admin/editEmployee/{id}")
 	public String editEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
-		model.put("employee", empService.getEmployeeById(idEmployee));
+		Employee employee =  empService.getEmployeeById(idEmployee);
+		model.put("employee",employee);
+		model.put("username", employee.getAccount().getUsername());
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
-		return "admin/Addemployees";
+		return "admin/EditEmployees";
 	}
 
 	@GetMapping(value = "admin/inforEmployee/{id}")
@@ -75,7 +78,7 @@ public class EmployeeController {
 
 	@PostMapping(value = "admin/saveEmployee")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model, @RequestParam("avatar1") MultipartFile file ,
-			@RequestParam("idDepartment") String idDepartment) {
+			@RequestParam("idDepartment") String idDepartment, @RequestParam("username") String username) {
 		try {
 			int idDepart = Integer.parseInt(idDepartment);
 			if(employee.getName().isEmpty()) {
@@ -91,7 +94,9 @@ public class EmployeeController {
 			}
 			else if(employee.getAddress().isEmpty()) {	
 				model.put("error", "Không được để trống Địa chỉ");
-			}			
+			}else if(username.isEmpty()) {
+				model.put("error", "Không được để trống tài khoản");
+			}
 			else {
 				if(!employee.getName().matches(regexname)) {
 					model.put("error", "Tên nhân viên không được chứa ký tự đặc biệt");
@@ -104,6 +109,11 @@ public class EmployeeController {
 					model.put("error", "Sai định dạng Số điện thoại");
 				}else if(!employee.getEmail().matches(regexemail)) {
 					model.put("error", "Sai định dạng Email");
+				}else if(!(employee.getIdentitycard().length() == 10 || employee.getIdentitycard().length() == 12)) {
+					model.put("error", "Chứng minh nhân dân phải có 10 số hoặc 12 số");
+				}
+				else if(username.length() < 6 || username.length()>24) {
+					model.put("error", "Tài khoản từ 6 đến 24 ký tự");
 				}
 				else {
 					employee.setDepartment(departService.getDepartById(idDepart));
@@ -115,7 +125,10 @@ public class EmployeeController {
 							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(PATH+filename));
 							stream.write(bytes);
 						}
-						empService.insert(employee);
+						Account account = new Account();
+						account.setUsername(username);
+						account.setPassword("1");
+						empService.insert(employee,account);
 					}else {
 
 						empService.update(employee);
