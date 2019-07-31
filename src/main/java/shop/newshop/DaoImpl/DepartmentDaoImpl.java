@@ -123,4 +123,29 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		return list;
 	}
 
+	@Override
+	public long checkName(String nameDepart, int idDepart) {
+		long result = 0 ;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String hql = "Select Count(*) From Department Where name = '" + nameDepart + "' ";
+			String hqlWhere = " ";
+			
+			if(idDepart!=0) {
+				hqlWhere += " AND id != " + idDepart;
+			}
+			
+			Query query = session.createQuery(hql+hqlWhere);
+			
+			result = (long) query.uniqueResult();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return result;
+	}
+
 }
