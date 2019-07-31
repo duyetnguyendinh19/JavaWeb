@@ -1,5 +1,3 @@
-<%--<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>--%>
-<%--<%@page import="shop.newshop.Service.CategoryService"%>--%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -10,7 +8,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Quản lý hợp đồng</title>
+    <title>Thống kê lương</title>
 </head>
 <style>
     tr th {
@@ -24,21 +22,25 @@
         margin-left: auto;
         margin-right: auto;
     }
+
     form button {
-        height: 35px;
+        height: 36px;
         color: white;
         background: #0ea432;
         border: none;
         border-radius: 4px;
         width: 90px;
     }
+
     form button:hover {
         background: #68a458;
     }
+
     .tennv {
-        height: 35px;
+        height: 36px;
     }
-    .page button{
+
+    .page button {
         height: 30px;
         color: white;
         background: #4e4ee6;
@@ -47,35 +49,41 @@
         border-radius: 3px;
         width: 30px;
     }
-    .page button:hover{
+
+    .page button:hover {
         background: #a7a7ef;
     }
-    .ui.black.deny.button{
+
+    .ui.dropdown {
+        margin-right: 15px;
+    }
+
+    .ui.black.deny.button {
         width: 25%;
         height: 40px;
     }
+
     @media (min-width: 1200px) {
-        .col-lg-2 {
+        .col-lg-3 {
             margin-left: 5px;
         }
     }
+
     @media (max-width: 500px) {
-        .col-xs-4,.col-xs-6{
-            margin-top: 8px!important;
+        .col-xs-4, .col-xs-6 {
+            margin-top: 8px !important;
         }
+
         form{
             width: 100%!important;
         }
-        .btn.btn-success{
+
+        .btn.btn-success {
             margin-bottom: 15px;
-            width: 92%!important;
-        }
-        .table.table-bordered.table-hover{
-            width: 80%;
+            width: 92% !important;
         }
     }
 </style>
-<%--<script src="templates/js/jquery.min.js"></script>--%>
 <c:if test="${not empty searchFail}">
     <label class="alert alert-danger" id="name_errors"
            style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
@@ -88,74 +96,78 @@
                     <div class="col-xs-14 col-sm-12 col-md-11">
                         <div class="panel panel-warning">
                             <div class="panel-heading">
-                                <h2 class="panel-title">Quản lý hợp đồng</h2>
+                                <h2 class="panel-title">Thống kê lương</h2>
                             </div>
-                            <form action="${pageContext.request.contextPath}/admin/listContract" method="POST"
-                                  style="float: left;padding: 16px;width: 82.8%;">
+                            <form action="${pageContext.request.contextPath}/admin/listSalary" method="POST"
+                                  style="float: left;padding: 16px;width: 82%;">
                                 <div class="row">
-                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-10">
-                                        <label class="col-12 col-sm-3 col-xs-12  col-md-4 col-lg-2" style="margin-top: 8px;padding-left: 0px;">Tên nhân viên:</label>
-                                        <input type="text" name="tennv" class="col-12 col-sm-9 col-xs-12  col-md-7 col-lg-5 tennv" placeholder="Tên nhân viên..." style="border-radius: 5px!important;
-		" value="${nameSearch}"/>
-                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-2" type="submit" style="font-family: Tahoma">Tìm kiếm</button>
+                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-5">
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-4"
+                                               style="margin-top: 8px;padding-left: 0px!important">Tên nhân
+                                            viên:</label>
+                                        <input type="text" name="tennv"
+                                               class="col-12 col-sm-10 col-xs-12  col-md-7 col-lg-8 tennv"
+                                               placeholder="Tên nhân viên..."
+                                               style="border-radius: 5px!important;" value="${nameSearch}"/>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-7">
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2"
+                                               style="margin-top: 8px;float:left;padding-left: 0px">Ngày:</label>
+                                        <select class="ui dropdown col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
+                                                name="month" style="height: 35px;border-radius: 5px!important;">
+                                            <option>Tháng 1</option>
+                                            <option>Tháng 2</option>
+                                            <option>Tháng 3</option>
+                                            <option>Tháng 4</option>
+                                            <option>Tháng 5</option>
+                                            <option>Tháng 6</option>
+                                            <option>Tháng 7</option>
+                                            <option>Tháng 8</option>
+                                            <option>Tháng 9</option>
+                                            <option>Tháng 10</option>
+                                            <option>Tháng 11</option>
+                                            <option>Tháng 12</option>
+                                        </select>
+                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3" type="submit"
+                                                style="font-family: Tahoma;float:left;">
+                                            Tìm kiếm
+                                        </button>
                                     </div>
                                 </div>
                             </form>
-                            <a href="${pageContext.request.contextPath}/admin/addContract">
-                                <button class="btn btn-success"
-                                        style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin: 10px 15px; ">
-                                    Thêm hợp đồng
-                                </button>
-                            </a>
                             <div class="panel-body">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr style="text-align: center;border-bottom: 2px solid #dddddd;">
                                         <th>STT</th>
-                                        <th>Tên NV</th>
-                                        <th>Ngày bắt đầu</th>
-                                        <th>Ngày hết hạn</th>
-                                        <th>Lương</th>
-                                        <th class="fas fa-cogs" style="margin-top: 12px;"></th>
+                                        <th>Tên nhân viên</th>
+                                        <th>Tháng</th>
+                                        <th>Số công</th>
+                                        <th>Ngày nghỉ</th>
+                                        <th>Tổng lương</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${listContract}" var="contract" varStatus="loop">
+                                    <c:forEach items="${listSalary}" var="listSalary" varStatus="loop">
                                         <tr style="text-align: center;">
                                             <td>${loop.count}</td>
-                                            <td>${contract.employee.name}</td>
-                                            <td><fmt:formatDate pattern="dd-MM-yyyy"
-                                                                value="${contract.startday}"/></td>
-                                            <td><fmt:formatDate pattern="dd-MM-yyyy"
-                                                                value="${contract.expirationday}"/></td>
+                                            <td>${listSalary.nameEmployee}</td>
+                                            <td>Tháng ${listSalary.month}</td>
+                                            <td>${listSalary.count}</td>
+                                            <td>${listSalary.dayoff}</td>
                                             <td><fmt:formatNumber type="number" maxIntegerDigits="10"
-                                                                  value="${contract.salary}"/></td>
-                                            <td>
-                                                <a href="${pageContext.request.contextPath}/admin/updateContract/${contract.id}">
-                                                    <button class="btn btn-warning" data-toggle="tooltip"
-                                                            title="Sửa hợp đồng">
-                                                        <i class="fas fa-user-edit" aria-hidden="true"></i>
-                                                    </button>
-                                                </a>
-                                                <button class="btn btn-danger" id="delete"
-                                                        onclick="loadModal('${contract.employee.name}', '${contract.id}')"
-                                                        data-toggle="tooltip"
-                                                        title="Xóa hợp đồng">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
+                                                                  value="${listSalary.total}"/></td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${not empty searchFail}">
                                         <tr>
-                                            <td colspan="7">Danh sách rỗng</td>
+                                            <td colspan="3">Danh sách rỗng</td>
                                         </tr>
                                     </c:if>
                                     </tbody>
                                 </table>
-
                                 <div class="row">
-                                    <div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
+                                    <div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-10 page">
                                         <a>
                                             <button><<</button>
                                             <button><</button>
@@ -168,7 +180,7 @@
                                             <button>>></button>
                                         </a>
                                     </div>
-                                    <div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
+                                    <div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-2">
                                         <a style=float:right;">
                                             <label>View</label>
                                             <label>1</label>
@@ -179,27 +191,6 @@
                                         </a>
                                     </div>
                                 </div>
-
-                                <div class="ui modal">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                        Xóa hợp đồng
-                                    </div>
-                                    <div class="content">
-                                        <h4>Bạn có muốn xóa <span id="name"></span> không?</h4>
-                                    </div>
-                                    <div class="actions">
-                                        <a id="deleteComfirm"
-                                           data-hrefbefore="${pageContext.request.contextPath}/admin/deleteContract/">
-                                            <button class="ui black deny button" style="background: green;">
-                                                Ok
-                                            </button>
-                                        </a>
-                                        <button class="ui black deny button" onclick="deleteTooltip()">
-                                            Hủy bỏ
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,6 +199,9 @@
         </div>
     </div>
 </div>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
 <script>
     $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);
 </script>

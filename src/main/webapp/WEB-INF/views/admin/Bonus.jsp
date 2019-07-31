@@ -24,7 +24,6 @@
 		margin-right: auto;
 	}
 	form button{
-		margin-left: 5px;
 		height: 35px;
 		color: white;
 		background: #0ea432;
@@ -36,9 +35,7 @@
 		background: #68a458;
 	}
 	.tennv{
-		width: 50%;
 		height: 35px;
-		margin-left: 10px;
 	}
 	.page button{
 		height: 30px;
@@ -56,6 +53,26 @@
 		width: 25%;
 		height: 40px;
 	}
+    @media (min-width: 1200px) {
+        .col-lg-2 {
+            margin-left: 5px;
+        }
+    }
+    @media (max-width: 500px) {
+        .col-xs-4,.col-xs-6{
+            margin-top: 8px!important;
+        }
+        form{
+            width: 100%!important;
+        }
+        .btn.btn-success{
+            margin-bottom: 15px;
+            width: 92%!important;
+        }
+        .table.table-bordered.table-hover{
+            width: 80%;
+        }
+    }
 </style>
 <c:if test="${not empty searchFail}">
 	<label class="alert alert-danger" id="name_errors" style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
@@ -70,15 +87,19 @@
 							<div class="panel-heading">
 								<h2 class="panel-title">Quản lý khen thưởng</h2>
 							</div>
-							<form action="${pageContext.request.contextPath}/admin/listBonus" method="POST" style="float: left;padding: 16px;width: 50%;">
-								<label>Tên nhân viên:</label>
-								<input type="text" name="tennv" class="tennv" placeholder="Tên nhân viên..." style="border-radius: 5px!important;
-" value="${nameSearch}"/>
-								<button type="submit" style="font-family: Tahoma">Tìm kiếm</button>
+							<form action="${pageContext.request.contextPath}/admin/listBonus" method="POST" style="float: left;padding: 16px;width: 82.8%;">
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-10">
+                                        <label class="col-12 col-sm-3 col-xs-12  col-md-4 col-lg-2" style="margin-top: 8px;padding-left: 0px;">Tên nhân viên:</label>
+                                        <input type="text" name="tennv" class="col-12 col-sm-9 col-xs-12  col-md-7 col-lg-5 tennv" placeholder="Tên nhân viên..." style="border-radius: 5px!important;
+		" value="${nameSearch}"/>
+                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-2" type="submit" style="font-family: Tahoma">Tìm kiếm</button>
+                                    </div>
+                                </div>
 							</form>
 							<a href="${pageContext.request.contextPath}/admin/addBonus">
 								<button class="btn btn-success"
-										style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin: 10px 15px; ">
+                                        style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin: 10px 14px; ">
 									Thêm khen thưởng
 								</button>
 							</a>
@@ -125,22 +146,30 @@
 									</c:if>
 									</tbody>
 								</table>
-								<div style="margin-left: 400px;" class="page">
-									<a>
-										<button><<</button>
-										<button><</button>
-										<input type="text" style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
-										of <input type="text" style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;" readonly="true">
-										<button>></button>
-										<button>>></button>
-									</a> <a style=float:right;">
-									<label>View</label>
-									<label>1</label>
-									<label>-</label>
-									<label>5</label>
-									<label>of</label>
-									<label>12</label>
-								</a>
+								<div class="row">
+									<div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
+										<a>
+											<button><<</button>
+											<button><</button>
+											<input type="text"
+												   style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
+											of <input type="text"
+													  style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;"
+													  readonly="true">
+											<button>></button>
+											<button>>></button>
+										</a>
+									</div>
+									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
+										<a style=float:right;">
+											<label>View</label>
+											<label>1</label>
+											<label>-</label>
+											<label>5</label>
+											<label>of</label>
+											<label>12</label>
+										</a>
+									</div>
 								</div>
 								<div class="ui modal">
 									<i class="close icon"></i>

@@ -30,7 +30,7 @@
 						<div class="col-xs-11 col-sm-11 col-md-11">
 							<div class="panel panel-warning">
 								<div class="panel-heading">
-									<h2 class="panel-title">Nhân Viên</h2>
+									<h2 class="panel-title">Quản lý nhân viên</h2>
 								</div>
 								
 								<span style="color:red">${error}</span>
@@ -100,22 +100,30 @@
 												onclick="deleteTooltip()">Hủy bỏ</button>
 										</div>
 									</div>
-									<div style="margin-left: 400px;" class="page">
-										<a>
-											<button><<</button>
-											<button><</button>
-											<input type="text" style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
-											of <input type="text" style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;" readonly="true">
-											<button>></button>
-											<button>>></button>
-										</a> <a style=float:right;">
-										<label>View</label>
-										<label>1</label>
-										<label>-</label>
-										<label>5</label>
-										<label>of</label>
-										<label>12</label>
-									</a>
+									<div class="row">
+										<div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
+											<a>
+												<button><<</button>
+												<button><</button>
+												<input type="text"
+													   style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
+												of <input type="text"
+														  style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;"
+														  readonly="true">
+												<button>></button>
+												<button>>></button>
+											</a>
+										</div>
+										<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
+											<a style=float:right;">
+												<label>View</label>
+												<label>1</label>
+												<label>-</label>
+												<label>5</label>
+												<label>of</label>
+												<label>12</label>
+											</a>
+										</div>
 									</div>
 									<!--  -->
 

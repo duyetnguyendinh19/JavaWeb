@@ -432,11 +432,6 @@
 							Quản lý nhân viên </span>
 				</a> <b class="arrow"></b></li>
 
-				<%-- <li class=""><a
-					href="${pageContext.request.contextPath}/admin/listUser"> <i
-						class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
-							Quản lý lý lịch </span>
-				</a> <b class="arrow"></b></li> --%>
 				<li class=""><a
 					href="${pageContext.request.contextPath}/admin/listContract"> <i
 						class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
@@ -451,6 +446,18 @@
 					href="${pageContext.request.contextPath}/admin/listDiscipline">
 						<i class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							Quản lý kỷ luật </span>
+				</a> <b class="arrow"></b></li>
+
+				<li class=""><a
+						href="${pageContext.request.contextPath}/admin/listAttendance">
+					<i class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
+							Quản lý công</span>
+				</a> <b class="arrow"></b></li>
+
+				<li class=""><a
+						href="${pageContext.request.contextPath}/admin/listSalary">
+					<i class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
+							Thống kê lương </span>
 				</a> <b class="arrow"></b></li>
 
 				<!-- /.nav-list -->
