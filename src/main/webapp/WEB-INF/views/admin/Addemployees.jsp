@@ -105,10 +105,16 @@ input[type=text] {
 					</div>
 					<div class="row"
 						style="float: left; width: 85%; margin: 0px !important; margin-left: 22px !important; padding-bottom: 25px;">
-						<div class="col-md-10 mb-3">
+						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Địa chỉ <font color="red">*</font></label>
 							<form:input type="text" path="address" class="form-control"
 								placeholder="Địa chỉ" />
+						</div>
+						
+						<div class="col-md-5 mb-3">
+							<label for="validationDefault3">Tài khoản<font color="red">*</font></label>
+							<input type="text" name="username" class="form-control"
+								placeholder="Tài khoản" />
 						</div>
 
 						<div class="col-md-2" style="text-align: center;">
