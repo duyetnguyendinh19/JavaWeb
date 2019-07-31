@@ -69,13 +69,23 @@ public class DepartmentController {
 	@PostMapping(value = "admin/saveDepartment")
 	public String saveDepartment(ModelMap model, @ModelAttribute("department") Department depart) {
 		try {
-			if(!depart.getName().isEmpty()) {
+ 			if(!depart.getName().isEmpty()) {
 				if(depart.getId()!=0) {
-					departService.update(depart);
+					if(departService.checkName(depart.getName(), depart.getId())==0) {
+						departService.update(depart);
+						return "redirect:/admin/listDepartment";
+					}else {
+						model.put("error", "Tên phòng ban đã tồn tại");
+					}
 				}else {
-					departService.insert(depart);
-				}
-				return "redirect:/admin/listDepartment";
+					if(departService.checkName(depart.getName(), depart.getId())==0) {
+						departService.insert(depart);
+						return "redirect:/admin/listDepartment";
+					}else {
+						model.put("error", "Tên phòng ban đã tồn tại");
+					}		
+				}	
+				return "admin/AddDepartment";
 			}else {
 				model.put("error", "Không được để trống tên phòng ban");
 				return "admin/AddDepartment";
