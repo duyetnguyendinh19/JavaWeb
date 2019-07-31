@@ -55,4 +55,9 @@ public class DepartmentServiceImpl implements DepartmentService{
 		return departDao.getAlls();
 	}
 
+	@Override
+	public long checkName(String nameDepart, int idDepart) {
+		return departDao.checkName(nameDepart,idDepart);
+	}
+
 }
