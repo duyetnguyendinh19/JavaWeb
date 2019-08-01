@@ -7,13 +7,13 @@
 
 <style>
 .page button {
-	height: 30px;
+	height: 35px;
 	color: white;
 	background: #4e4ee6;
 	border: none;
 	font-size: 11px;
 	border-radius: 3px;
-	width: 30px;
+	width: 90px;
 }
 
 .page button:hover {
@@ -87,7 +87,8 @@
 									<div class="header">Xóa nhân viên</div>
 									<div class="content">
 										<h4>
-											Bạn có muốn xóa nhân viên <span id="name"></span> không?
+											Nhân viên <span id="name"></span> có thể còn hợp đồng, khen
+											thưởng, kỷ luật bạn có chắc chắn không?
 										</h4>
 									</div>
 									<div class="actions">
@@ -125,7 +126,7 @@
 								<!--  -->
 
 							</div>
-						
+
 						</div>
 
 					</div>
@@ -149,7 +150,7 @@
 				.attr('data-hrefbefore')
 				+ id;
 	}
-	
+
 	var url = window.location.href.split('/')[6];
 	var numbertotal = Number($('#totalPage').val());
 	$("#page")
