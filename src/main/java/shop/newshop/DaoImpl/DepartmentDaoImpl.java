@@ -16,13 +16,17 @@ import shop.newshop.util.HibernateUtils;
 public class DepartmentDaoImpl implements DepartmentDao{
 
 	@Override
-	public List<Department> getAlls(int startnum, int rownum) {
+	public List<Department> getAlls(int startnum, int rownum, String nameDepart) {
 		List<Department> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			String sql = "FROM Department";
-			Query query = session.createQuery(sql);
+			String sql = "FROM Department Where 1=1";
+			String hqlWhere = " ";
+			if(nameDepart!=null && !nameDepart.isEmpty()) {
+				hqlWhere += "AND name LIKE '%"+nameDepart+"%'";
+			}
+			Query query = session.createQuery(sql+hqlWhere);
 			query.setFirstResult(startnum);
 			query.setMaxResults(rownum);
 			list = query.list();
@@ -90,13 +94,17 @@ public class DepartmentDaoImpl implements DepartmentDao{
 	}
 
 	@Override
-	public long countAll() {
+	public long countAll(String nameDepart) {
 		long result = 0;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			String hql = "SELECT COUNT(*) FROM Department";
-			Query query = session.createQuery(hql);
+			String hql = "SELECT COUNT(*) FROM Department Where 1=1";
+			String hqlWhere = " ";
+			if(nameDepart!=null && !nameDepart.isEmpty()) {
+				hqlWhere += " AND name LIKE '%"+nameDepart+"%'";
+			}
+			Query query = session.createQuery(hql+hqlWhere);
 			result = (long) query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,15 +139,15 @@ public class DepartmentDaoImpl implements DepartmentDao{
 			session.beginTransaction();
 			String hql = "Select Count(*) From Department Where name = '" + nameDepart + "' ";
 			String hqlWhere = " ";
-			
+
 			if(idDepart!=0) {
 				hqlWhere += " AND id != " + idDepart;
 			}
-			
+
 			Query query = session.createQuery(hql+hqlWhere);
-			
+
 			result = (long) query.uniqueResult();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
