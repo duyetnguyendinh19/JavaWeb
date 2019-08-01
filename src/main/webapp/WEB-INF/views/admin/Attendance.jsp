@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <a href="${pageContext.request.contextPath}/admin/addBonus">
+                            <a href="${pageContext.request.contextPath}/admin/addAttendance">
                                 <button class="btn btn-success col-12 col-sm-12 col-xs-12 col-md-4 col-lg-2"
                                         style="font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;float:right;margin-top: 12px;margin-right: 15px;">
                                     Thêm chấm công

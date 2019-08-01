@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-7">
                                         <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2"
-                                               style="margin-top: 8px;float:left;padding-left: 0px">Ngày:</label>
+                                               style="margin-top: 8px;float:left;padding-left: 0px">Tháng:</label>
                                         <select class="ui dropdown col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
                                                 name="month" style="height: 35px;border-radius: 5px!important;">
                                             <option>Tháng 1</option>
@@ -139,7 +139,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr style="text-align: center;border-bottom: 2px solid #dddddd;">
-                                        <th>STT</th>
+                                        <th>Mã nhân viên</th>
                                         <th>Tên nhân viên</th>
                                         <th>Tháng</th>
                                         <th>Số công</th>
@@ -150,7 +150,7 @@
                                     <tbody>
                                     <c:forEach items="${listSalary}" var="listSalary" varStatus="loop">
                                         <tr style="text-align: center;">
-                                            <td>${loop.count}</td>
+                                            <td>${listSalary.idEmployee}</td>
                                             <td>${listSalary.nameEmployee}</td>
                                             <td>Tháng ${listSalary.month}</td>
                                             <td>${listSalary.count}</td>

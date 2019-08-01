@@ -26,15 +26,27 @@ public class Salary {
     @Column(name = "day_off")
     private int dayoff;
 
+    @Column(name = "idEmployee")
+    private int idEmployee;
+
     public Salary() {
     }
 
-    public Salary(String month, String nameEmployee, int count, double total, int dayoff) {
+    public Salary(String month, String nameEmployee, int count, double total, int dayoff, int idEmployee) {
         this.month = month;
         this.nameEmployee = nameEmployee;
         this.count = count;
         this.total = total;
         this.dayoff = dayoff;
+        this.idEmployee = idEmployee;
+    }
+
+    public int getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public int getId() {
