@@ -118,7 +118,7 @@ input[type=text] {
 						</div>
 
 						<div class="col-md-2" style="text-align: center;">
-							<form:button type="name" class="btn btn-success"
+							<form:button type="submit" class="btn btn-success"
 								style="margin-top:20px;width: 80px;font-weight: bold;border-radius:5px;">Lưu</form:button>
 						</div>
 					</div>
