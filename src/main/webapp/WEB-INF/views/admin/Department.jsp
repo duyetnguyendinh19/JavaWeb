@@ -104,7 +104,7 @@ form button:hover {
 									<div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-10">
 										<label class="col-12 col-sm-3 col-xs-12  col-md-4 col-lg-2"
 											style="margin-top: 8px; padding-left: 0px;">Tên phòng
-											ban:</label> <input type="text" name="user"
+											ban:</label> <input type="text" name="nameDepart"
 											class="col-12 col-sm-9 col-xs-12  col-md-7 col-lg-5 tennv"
 											placeholder="Tên phòng ban..."
 											style="border-radius: 5px !important;" value="${nameSearch}" />
@@ -158,22 +158,22 @@ form button:hover {
 								<div class="row">
 									<div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
 
-										<button><<</button>
-										<button><</button>
+										<button onclick="firstpage()"><<</button>
+										<button onclick="previous()"><</button>
 										<%-- <form onsubmit="pagination()"> --%>
 										<input type="number" id="page" value="1"
 											style="width: 40px; border-radius: 3px !important; margin-left: 3px;">
 										<%-- </form> --%>
-										of <input type="text" value="${totalPage}"
+										of <input type="text" id="totalPage" value="${totalPage}"
 											style="width: 30px; border-radius: 3px !important; margin-left: 2px; margin-right: 3px;"
 											readonly="readonly">
-										<button>></button>
-										<button>>></button>
+										<button onclick="next()">></button>
+										<button onclick="lastpage()">>></button>
 
 									</div>
 									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
-										<a style="float: right;""> <label>View</label> <label>1</label>
-											<label>-</label> <label>5</label> <label>of</label> <label>12</label>
+										<a style="float: right;"> <label>View</label> <label>${firstDepart}</label>
+											<label>-</label> <label>${lastDepart}</label> <label>of</label> <label>${totalDepart}</label>
 										</a>
 									</div>
 								</div>
@@ -182,7 +182,7 @@ form button:hover {
 									<div class="header">Xóa phòng ban</div>
 									<div class="content">
 										<h4>
-											Bạn có muốn xóa <span id="name"></span> không?
+											Phòng <span id="name"></span> có thể còn nhân viên bạn có chắc không?
 										</h4>
 									</div>
 									<div class="actions">
@@ -227,24 +227,76 @@ form button:hover {
 	});
 </script>
 <script type="text/javascript">
-	
-	$("#page").keypress(function(event) {
-		var number = $('#page').val();
-		if (event.keyCode === 13) {
-		window.location.assign("http://localhost:9999/Manager/admin/listDepartment/"+ number);
-		}
-	});
-	
 	var url = window.location.href.split('/')[6];
-	setTimeout(function(){
-		if(url = 'undefined'){
-			$('#page').val(1);
-		}else{
-			$('#page').val(url);
-			
+	var numbertotal = Number($('#totalPage').val());
+	$("#page")
+			.keypress(
+					function(event) {
+						var number = Number($('#page').val());
+						if (event.keyCode === 13) {
+							if (number < 1) {
+								window.location
+										.assign("http://localhost:9999/Manager/admin/listDepartment/" + 1);
+							} else if (number > numbertotal) {
+
+								window.location
+										.assign("http://localhost:9999/Manager/admin/listDepartment/"
+												+ numbertotal);
+
+							} else {
+								window.location
+										.assign("http://localhost:9999/Manager/admin/listDepartment/"
+												+ number);
+							}
+						}
+					});
+
+	function firstpage() {
+		window.location
+				.assign("http://localhost:9999/Manager/admin/listDepartment/" + 1);
+	}
+
+	function previous() {
+		var number = Number($('#page').val());
+		if (number > 1) {
+			var newNumber = number - 1;
+			window.location
+					.assign("http://localhost:9999/Manager/admin/listDepartment/"
+							+ newNumber);
+		} else {
+			var newNumber = number - 1;
+			window.location
+					.assign("http://localhost:9999/Manager/admin/listDepartment/" + 1);
 		}
-	},1500)
-	
+
+	}
+
+	function next() {
+		var number = Number($('#page').val());
+		if (number < numbertotal) {
+			var newNumber = number + 1;
+			window.location
+					.assign("http://localhost:9999/Manager/admin/listDepartment/"
+							+ newNumber);
+		} else {
+			window.location
+					.assign("http://localhost:9999/Manager/admin/listDepartment/"
+							+ numbertotal);
+		}
+
+	}
+
+	function lastpage() {
+		window.location
+				.assign("http://localhost:9999/Manager/admin/listDepartment/"
+						+ numbertotal);
+	}
+
+	if (typeof url !== 'undefined') {
+		$('#page').val(url);
+	} else {
+		$('#page').val(1);
+	}
 </script>
 
 </body>
