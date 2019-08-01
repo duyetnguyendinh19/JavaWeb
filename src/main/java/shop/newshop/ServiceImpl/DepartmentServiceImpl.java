@@ -14,40 +14,40 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Autowired
 	private DepartmentDao departDao;
-	
+
 	@Override
-	public List<Department> getAlls(int startnum, int rownum) {
-		
-		return departDao.getAlls( startnum,  rownum);
+	public List<Department> getAlls(int startnum, int rownum,String nameDepart) {
+
+		return departDao.getAlls( startnum,  rownum,nameDepart);
 	}
 
 	@Override
 	public boolean insert(Department de) {
-		
+
 		return departDao.insert(de);
 	}
 
 	@Override
 	public boolean update(Department de) {
-		
+
 		return departDao.update(de);
 	}
 
 	@Override
 	public boolean delete(int idDepart) {
-		
+
 		return departDao.delete(idDepart);
 	}
 
 	@Override
 	public Department getDepartById(int idDepart) {
-		
+
 		return departDao.getDepartById(idDepart);
 	}
 
 	@Override
-	public long countAll() {
-		return departDao.countAll();
+	public long countAll(String nameDepart) {
+		return departDao.countAll(nameDepart);
 	}
 
 	@Override
