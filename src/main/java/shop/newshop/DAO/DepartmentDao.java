@@ -6,7 +6,7 @@ import shop.newshop.Entity.Department;
 
 public interface DepartmentDao {
 
-	public List<Department> getAlls(int startnum, int rownum);
+	public List<Department> getAlls(int startnum, int rownum, String nameDepart);
 
 	public boolean insert(Department de);
 
@@ -18,7 +18,7 @@ public interface DepartmentDao {
 
 	public long checkName(String nameDepart, int idDepart);
 
-	public long countAll();
+	public long countAll(String nameDepart);
 
 	public List<Department> getAlls();
 
