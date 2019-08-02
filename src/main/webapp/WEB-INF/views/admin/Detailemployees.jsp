@@ -41,8 +41,7 @@ input[type=text] {
 							<div class="wrap-custom-file"
 								style="margin-top: 15px; margin-left: 20px; margin-bottom: 20px">
 								<label for="avatar1" id="avatar1-background"
-									style="width: 190px; height: 160px;background-image: url(' ${urlimage}')"
-									>
+									style="width: 190px; height: 160px;background-image: url(' ${urlimage}')">
 
 								</label>
 							</div>
@@ -99,12 +98,17 @@ input[type=text] {
 					</div>
 					<div class="row"
 						style="float: left; width: 85%; margin: 0px !important; margin-left: 22px !important; padding-bottom: 25px;">
-						<div class="col-md-10 mb-3">
+						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Địa chỉ <font color="red">*</font></label>
 							<input type="text" class="form-control" placeholder="Địa chỉ"
 								value="${employee.address}" readonly="readonly" />
 						</div>
 
+						<div class="col-md-5 mb-3">
+							<label for="validationDefault3">Tài khoản <font color="red">*</font></label>
+							<input type="text" class="form-control" 
+								value="${employee.account.username}" readonly="readonly" />
+						</div>
 
 					</div>
 				</form>
