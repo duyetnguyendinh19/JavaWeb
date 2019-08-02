@@ -5,7 +5,12 @@ import java.util.List;
 import shop.newshop.Entity.Bonus;
 
 public interface BonusDao {
+	
 	public List<Bonus> getAlls();
+
+	public List<Bonus> getLimit(int num, int row, String name);
+
+	public long countAll(String name);
 
 	public boolean insert(Bonus bn);
 
@@ -15,5 +20,4 @@ public interface BonusDao {
 
 	public Bonus getBonusById(int idBonus);
 
-	public List<Bonus> searchNameEmployee(String nameEmployee);
 }
