@@ -10,17 +10,16 @@ import shop.newshop.Entity.Discipline;
 import shop.newshop.Service.DisciplineService;
 
 @Service
-public class DisciplineServiceImpl implements DisciplineService{
-	
+public class DisciplineServiceImpl implements DisciplineService {
+
 	@Autowired
 	private DisciplineDao disDao;
-	
+
 	@Override
 	public List<Discipline> getAlls() {
-		
+
 		return disDao.getAlls();
 	}
-
 
 	@Override
 	public boolean insert(Discipline di) {
@@ -29,26 +28,38 @@ public class DisciplineServiceImpl implements DisciplineService{
 
 	@Override
 	public boolean update(Discipline di) {
-		
+
 		return disDao.update(di);
 	}
 
 	@Override
 	public boolean delete(int idDiscipline) {
-		
+
 		return disDao.delete(idDiscipline);
 	}
 
 	@Override
 	public Discipline getDisciplineById(int idDiscipline) {
-		
+
 		return disDao.getDisciplineById(idDiscipline);
 	}
 
 	@Override
-	public List<Discipline> searchNameEmployee(String nameEmployee) {
-		return disDao.searchNameEmployee(nameEmployee);
+	public List<Discipline> getLimit(int num, int row, String name) {
+		if (name != null) {
+			return disDao.getLimit(num, row, name.toLowerCase());
+		} else {
+			return disDao.getLimit(num, row, name);
+		}
 	}
 
+	@Override
+	public long countAll(String name) {
+		if (name != null) {
+			return disDao.countAll(name.toLowerCase());
+		} else {
+			return disDao.countAll(name);
+		}
+	}
 
 }
