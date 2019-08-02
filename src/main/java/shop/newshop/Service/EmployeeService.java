@@ -7,6 +7,8 @@ import shop.newshop.Entity.Employee;
 
 public interface EmployeeService {
 	public List<Employee> getAlls();
+	
+	public List<Employee> getLimit(int num,int row,String name);
 
 	public boolean insert(Employee emp,Account account);
 
@@ -15,4 +17,6 @@ public interface EmployeeService {
 	public boolean delete(int idEmployee);
 
 	public Employee getEmployeeById(int idEmployee);
+	
+	public long countAll(String name);
 }
