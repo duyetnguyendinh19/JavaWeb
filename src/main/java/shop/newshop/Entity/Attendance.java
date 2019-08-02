@@ -23,7 +23,7 @@ public class Attendance {
     @Column(name = "endtime")
     private Time endtime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
