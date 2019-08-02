@@ -8,6 +8,10 @@ public interface DisciplineService {
 
 	public List<Discipline> getAlls();
 
+	public List<Discipline> getLimit(int num, int row, String name);
+
+	public long countAll(String name);
+
 	public boolean insert(Discipline di);
 
 	public boolean update(Discipline di);
@@ -16,5 +20,4 @@ public interface DisciplineService {
 
 	public Discipline getDisciplineById(int idDiscipline);
 
-	public List<Discipline> searchNameEmployee(String nameEmployee);
 }
