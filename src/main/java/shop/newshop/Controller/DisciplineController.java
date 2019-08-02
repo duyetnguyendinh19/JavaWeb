@@ -34,10 +34,14 @@ public class DisciplineController {
 		long countAll = disciplineService.countAll(nameSearch);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
@@ -60,10 +64,14 @@ public class DisciplineController {
 		long countAll = disciplineService.countAll(null);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
@@ -87,10 +95,14 @@ public class DisciplineController {
 		long countAll = disciplineService.countAll(name);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
