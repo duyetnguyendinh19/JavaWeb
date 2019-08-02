@@ -24,7 +24,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 			String sql = "FROM Department Where 1=1";
 			String hqlWhere = " ";
 			if(nameDepart!=null && !nameDepart.isEmpty()) {
-				hqlWhere += "AND name LIKE '%"+nameDepart+"%'";
+				hqlWhere += "AND LOWER(name) LIKE '%"+nameDepart+"%'";
 			}
 			Query query = session.createQuery(sql+hqlWhere);
 			query.setFirstResult(startnum);
@@ -102,7 +102,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 			String hql = "SELECT COUNT(*) FROM Department Where 1=1";
 			String hqlWhere = " ";
 			if(nameDepart!=null && !nameDepart.isEmpty()) {
-				hqlWhere += " AND name LIKE '%"+nameDepart+"%'";
+				hqlWhere += " AND LOWER(name) LIKE '%"+nameDepart+"%'";
 			}
 			Query query = session.createQuery(hql+hqlWhere);
 			result = (long) query.uniqueResult();
@@ -137,7 +137,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			String hql = "Select Count(*) From Department Where name = '" + nameDepart + "' ";
+			String hql = "Select Count(*) From Department Where LOWER(name) = '" + nameDepart + "' ";
 			String hqlWhere = " ";
 
 			if(idDepart!=0) {
