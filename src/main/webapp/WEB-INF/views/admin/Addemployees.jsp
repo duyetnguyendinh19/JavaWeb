@@ -52,7 +52,7 @@ input[type=text] {
 								color="red">*</font>
 							</label>
 							<form:input path="name" type="text" class="form-control"
-								placeholder="Tên nhân viên" />
+								placeholder="Tên nhân viên" maxlength="64" />
 						</div>
 						<div class="col-md-4 mb-3"
 							style="margin-bottom: 30px; margin-top: 5px;">
@@ -61,7 +61,7 @@ input[type=text] {
 									color="red">*</font></label>
 								<form:input path="birthday" class="form-control datepicker"
 									type="text" id="startDate" name="startday"
-									placeholder="Ngày sinh" />
+									placeholder="Ngày sinh" maxlength="64" />
 							</div>
 						</div>
 						<div class="col-md-5 mb-3">
@@ -87,33 +87,33 @@ input[type=text] {
 							<label for="validationDefault3">Số điện thoại <font
 								color="red">*</font></label>
 							<form:input path="phone" type="text" class="form-control"
-								placeholder="Số điện thoại" />
+								placeholder="Số điện thoại" maxlength="10" />
 						</div>
 
 						<div class="col-md-4 mb-3" style="margin-bottom: 30px">
 							<label for="validationDefault3">Email <font color="red">*</font></label>
 							<form:input type="text" path="email" class="form-control"
-								placeholder="Email" />
+								placeholder="Email" maxlength="64" />
 						</div>
 
 						<div class="col-md-4 mb-3">
 							<label for="validationDefault3">Chứng minh nhân dân <font
 								color="red">*</font></label>
 							<form:input type="text" path="identitycard" class="form-control"
-								placeholder="Chứng minh nhân dân" />
+								placeholder="Chứng minh nhân dân" maxlength="12" />
 						</div>
 					</div>
 					<div class="row"
 						style="float: left; width: 85%; margin: 0px !important; margin-left: 22px !important; padding-bottom: 25px;">
 						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Địa chỉ <font color="red">*</font></label>
-							<form:input type="text" path="address" class="form-control"
+							<form:input type="text" path="address" class="form-control" maxlength="128" 
 								placeholder="Địa chỉ" />
 						</div>
 						
 						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Tài khoản<font color="red">*</font></label>
-							<input type="text" name="username" class="form-control"
+							<input type="text" name="username" class="form-control" maxlength="24" value="${username}"
 								placeholder="Tài khoản" />
 						</div>
 
