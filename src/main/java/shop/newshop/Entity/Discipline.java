@@ -32,7 +32,7 @@ public class Discipline {
 	private Date date;
 	
 	@NotNull
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 
