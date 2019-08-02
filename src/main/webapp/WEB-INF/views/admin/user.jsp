@@ -112,7 +112,7 @@ form button:hover {
 									<thead>
 										<tr
 											style="text-align: center; border-bottom: 2px solid #dddddd;">
-											<th>STT</th>
+											<th>Mã nhân viên</th>
 											<th>Nhân Viên</th>
 											<th>Tài khoản</th>
 											<th>Quyền</th>
@@ -122,9 +122,8 @@ form button:hover {
 										<c:forEach items="${listAccount}" var="listAccount"
 											varStatus="loop">
 											<tr style="text-align: center;">
-												<td>${loop.count}</td>
-												<td>${listAccount.employee.id}-
-													${listAccount.employee.name}</td>
+												<td>${listAccount.employee.id}</td>
+												<td>${listAccount.employee.name}</td>
 												<td>${listAccount.username}</td>
 												<td>${listAccount.role == 1 ? "Admin" : "User"}</td>
 											</tr>
