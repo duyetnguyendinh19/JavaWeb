@@ -194,7 +194,7 @@ CREATE TABLE `employee` (
   `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `birthday` datetime NOT NULL,
   `level` varchar(64) NOT NULL,
-  `name` varchar(128) NOT NULL,
+  `name` varchar(64) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `idDepartment` int(11) NOT NULL,
   `avatar` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
