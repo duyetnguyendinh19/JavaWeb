@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
 
@@ -34,90 +37,100 @@ public class EmployeeController {
 	DepartmentService departService;
 
 	private String regexphone = "^0[0-9]+$";
-	private String regexname="^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
+	private String regexname = "^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
 	private String regexemail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
 	private static final String PATH = "D:\\Git\\JavaWeb\\src\\main\\resources\\static\\images\\";
 	private String name;
-	
-	
+	private String oldImg = "";
+	private Account account;
+
 	@PostMapping(value = "admin/listEmployee")
 	public String listEmployeeSearch(ModelMap model, @RequestParam("nameEmployee") String nameSearch) {
 		name = nameSearch;
 		model.put("error", "");
-		model.put("listEmployee", empService.getLimit(0,5,nameSearch));
+		model.put("listEmployee", empService.getLimit(0, 5, nameSearch));
 		long countAll = empService.countAll(nameSearch);
 		long totalPage = 0;
 
-		if(countAll%5==0) {
-			totalPage = countAll/5;
-		}else {
-			totalPage = countAll/5 + 1;
+		if (countAll == 0) {
+			totalPage = 1;
+		} else {
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
-
 		model.put("totalPage", totalPage);
 		model.put("totalEmp", countAll);
 		model.put("firstEmp", 1);
-		if(countAll<5) {
+		if (countAll < 5) {
 			model.put("lastEmp", countAll);
-		}else {
+		} else {
 			model.put("lastEmp", 5);
 		}
 		model.put("nameSearch", nameSearch);
-	
-		
+
 		return "admin/Employees";
 	}
 
 	@GetMapping(value = "admin/listEmployee")
 	public String listEmployee(ModelMap model) {
 		model.put("error", "");
-		model.put("listEmployee", empService.getLimit(0,5,null));
+		model.put("listEmployee", empService.getLimit(0, 5, null));
 		long countAll = empService.countAll(null);
 		long totalPage = 0;
 
-		if(countAll%5==0) {
-			totalPage = countAll/5;
-		}else {
-			totalPage = countAll/5 + 1;
+		if (countAll == 0) {
+			totalPage = 1;
+		} else {
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
 		model.put("totalEmp", countAll);
 		model.put("firstEmp", 1);
-		if(countAll<5) {
+		if (countAll < 5) {
 			model.put("lastEmp", countAll);
-		}else {
+		} else {
 			model.put("lastEmp", 5);
 		}
 		model.put("nameSearch", null);
-	
-		
+
 		return "admin/Employees";
 	}
-	
+
 	@GetMapping(value = "admin/listEmployee/{page}")
-	public String listEmployeePage(ModelMap model,@PathVariable("page") int page) {
+	public String listEmployeePage(ModelMap model, @PathVariable("page") int page) {
 		model.put("error", "");
-		model.put("listEmployee", empService.getLimit((page-1)*5, 5, name));
+		model.put("listEmployee", empService.getLimit((page - 1) * 5, 5, name));
 
 		long countAll = empService.countAll(name);
 		long totalPage = 0;
 
-		if(countAll%5==0) {
-			totalPage = countAll/5;
-		}else {
-			totalPage = countAll/5 + 1;
+		if (countAll == 0) {
+			totalPage = 1;
+		} else {
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
 		model.put("totalEmp", countAll);
-		model.put("firstEmp", (page-1)*5+1);
-		if(page<totalPage) {
-			model.put("lastEmp", (page-1)*5+5);
-		}else {
+		model.put("firstEmp", (page - 1) * 5 + 1);
+		if (page < totalPage) {
+			model.put("lastEmp", (page - 1) * 5 + 5);
+		} else {
 			model.put("lastEmp", countAll);
 		}
-		
+
 		model.put("nameSearch", name);
 		return "admin/Employees";
 	}
@@ -133,8 +146,14 @@ public class EmployeeController {
 
 	@GetMapping(value = "admin/editEmployee/{id}")
 	public String editEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
-		Employee employee =  empService.getEmployeeById(idEmployee);
-		model.put("employee",employee);
+		Employee employee = empService.getEmployeeById(idEmployee);
+		model.put("employee", employee);
+		if (employee.getAvatar() != null) {
+			File file = new File(PATH + employee.getAvatar());
+			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)));
+			oldImg = ("data:image/jpeg;base64," + encodeFileToBase64Binary(file));
+		}
+		account = employee.getAccount();
 		model.put("username", employee.getAccount().getUsername());
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
@@ -144,70 +163,81 @@ public class EmployeeController {
 	@GetMapping(value = "admin/inforEmployee/{id}")
 	public String inforEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
 		Employee employee = empService.getEmployeeById(idEmployee);
-		if(employee.getAvatar()!=null) {
+		if (employee.getAvatar() != null) {
 			File file = new File(PATH + employee.getAvatar());
-			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)) );	
-		}	
+			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)));
+		}
 		model.put("employee", employee);
-		
+
 		return "admin/Detailemployees";
 	}
 
 	@PostMapping(value = "admin/saveEmployee")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model, @RequestParam("avatar1") MultipartFile file ,
-			@RequestParam("idDepartment") String idDepartment, @RequestParam("username") String username) {
+	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model,
+			@RequestParam("avatar1") MultipartFile file, @RequestParam("idDepartment") String idDepartment,
+			@RequestParam("username") String username) {
 		try {
 			int idDepart = Integer.parseInt(idDepartment);
-			if(employee.getName().isEmpty()) {
+			if (employee.getName().isEmpty()) {
 				model.put("error", "Không được để trống Tên nhân viên");
-			}else if(employee.getBirthday()==null) {
+			} else if (employee.getBirthday() == null) {
 				model.put("error", "Không được để trống Ngày sinh");
-			}else if(employee.getPhone().isEmpty()) {
+			} else if (employee.getPhone().isEmpty()) {
 				model.put("error", "Không được để trống Số điện thoại");
-			}else if(employee.getIdentitycard().isEmpty()) {
+			} else if (employee.getIdentitycard().isEmpty()) {
 				model.put("error", "Không được để trống Chứng minh nhân dân");
-			}else if(employee.getEmail().isEmpty()) {
+			} else if (employee.getEmail().isEmpty()) {
 				model.put("error", "Không được để trống Email");
-			}
-			else if(employee.getAddress().isEmpty()) {	
+			} else if (employee.getAddress().isEmpty()) {
 				model.put("error", "Không được để trống Địa chỉ");
-			}else if(username.isEmpty()) {
+			} else if (username.isEmpty()) {
 				model.put("error", "Không được để trống tài khoản");
-			}
-			else {
-				if(!employee.getName().matches(regexname)) {
+			} else {
+				if (!employee.getName().matches(regexname)) {
 					model.put("error", "Tên nhân viên không được chứa ký tự đặc biệt");
-				}else if(employee.getBirthday().compareTo(new Date())>=0) {
+				} else if (employee.getBirthday().compareTo(new Date()) >= 0) {
 					model.put("error", "Ngày sinh phải nhỏ hơn ngày hiện tại");
-				}
-				else if(employee.getPhone().length()!=10) {
+				} else if (employee.getPhone().length() != 10) {
 					model.put("error", "Số điện thoại phải có 10 số");
-				}else if(!employee.getPhone().matches(regexphone)){
+				} else if (!employee.getPhone().matches(regexphone)) {
 					model.put("error", "Sai định dạng Số điện thoại");
-				}else if(!employee.getEmail().matches(regexemail)) {
+				} else if (!employee.getEmail().matches(regexemail)) {
 					model.put("error", "Sai định dạng Email");
-				}else if(!(employee.getIdentitycard().length() == 10 || employee.getIdentitycard().length() == 12)) {
+				} else if (!(employee.getIdentitycard().length() == 10 || employee.getIdentitycard().length() == 12)) {
 					model.put("error", "Chứng minh nhân dân phải có 10 số hoặc 12 số");
-				}
-				else if(username.length() < 6 || username.length()>24) {
+				} else if (username.length() < 6 || username.length() > 24) {
 					model.put("error", "Tài khoản từ 6 đến 24 ký tự");
-				}
-				else {
+				} else {
 					employee.setDepartment(departService.getDepartById(idDepart));
-					if(employee.getId() == 0) {	
-						if(!file.isEmpty()) {
+					if (employee.getId() == 0) {
+						if (!file.isEmpty()) {
 							byte[] bytes = file.getBytes();
-							String filename = ( randomAlphaNumeric(10) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),file.getOriginalFilename().length())).toLowerCase();
+							String filename = (randomAlphaNumeric(10) + file.getOriginalFilename().substring(
+									file.getOriginalFilename().lastIndexOf("."), file.getOriginalFilename().length()))
+											.toLowerCase();
 							employee.setAvatar(filename);
-							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(PATH+filename));
+							BufferedOutputStream stream = new BufferedOutputStream(
+									new FileOutputStream(PATH + filename));
 							stream.write(bytes);
 						}
 						Account account = new Account();
 						account.setUsername(username);
-						account.setPassword("1");
-						empService.insert(employee,account);
-					}else {
-
+						account.setPassword(encryptThisString("123456"));
+						empService.insert(employee, account);
+					} else {
+						if(!file.isEmpty()) {
+							if(oldImg != file.getOriginalFilename()) {
+								byte[] bytes = file.getBytes();
+								String filename = (randomAlphaNumeric(10) + file.getOriginalFilename().substring(
+										file.getOriginalFilename().lastIndexOf("."), file.getOriginalFilename().length()))
+												.toLowerCase();
+								employee.setAvatar(filename);
+								BufferedOutputStream stream = new BufferedOutputStream(
+										new FileOutputStream(PATH + filename));
+								stream.write(bytes);
+							}
+						}
+						employee.setAccount(account);
 						empService.update(employee);
 					}
 					return "redirect:/admin/listEmployee";
@@ -222,7 +252,7 @@ public class EmployeeController {
 		return "admin/Addemployees";
 	}
 
-	@GetMapping( value = "admin/deleteEmployee/{id}")
+	@GetMapping(value = "admin/deleteEmployee/{id}")
 	public String delete(@PathVariable("id") int id, ModelMap model) {
 		try {
 			empService.delete(id);
@@ -234,21 +264,22 @@ public class EmployeeController {
 	}
 
 	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
 	public static String randomAlphaNumeric(int count) {
 		StringBuilder builder = new StringBuilder();
 		while (count-- != 0) {
-			int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+			int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
 			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
 		}
 		return builder.toString();
 	}
 
-	//ConvertToBase64
-	private static String encodeFileToBase64Binary(File file){
+	// ConvertToBase64
+	private static String encodeFileToBase64Binary(File file) {
 		String encodedfile = null;
 		try {
 			FileInputStream fileInputStreamReader = new FileInputStream(file);
-			byte[] bytes = new byte[(int)file.length()];
+			byte[] bytes = new byte[(int) file.length()];
 			fileInputStreamReader.read(bytes);
 			encodedfile = Base64.getEncoder().encodeToString(bytes);
 		} catch (FileNotFoundException e) {
@@ -260,6 +291,37 @@ public class EmployeeController {
 		}
 
 		return encodedfile;
+	}
+
+	public static String encryptThisString(String input) {
+		try {
+			// getInstance() method is called with algorithm SHA-512
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+
+			// digest() method is called
+			// to calculate message digest of the input string
+			// returned as array of byte
+			byte[] messageDigest = md.digest(input.getBytes());
+
+			// Convert byte array into signum representation
+			BigInteger no = new BigInteger(1, messageDigest);
+
+			// Convert message digest into hex value
+			String hashtext = no.toString(16);
+
+			// Add preceding 0s to make it 32 bit
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+
+			// return the HashText
+			return hashtext;
+		}
+
+		// For specifying wrong message digest algorithms
+		catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
