@@ -6,16 +6,18 @@ import java.util.List;
 
 public interface AccountService {
 
-    public List<Account> getAlls();
+	public List<Account> getAlls();
 
-    public boolean insert(Account account);
+	public List<Account> getLimit(int num,int row,String name);
 
-    public boolean update(Account account);
+	public boolean insert(Account account);
 
-    public boolean delete(int idAccount);
+	public boolean update(Account account);
 
-    public Account getAccountById(int idAccount);
+	public boolean delete(int idAccount);
 
-    public List<Account> searchByUser(String user);
+	public Account getAccountById(int idAccount);
+
+	public long countAll(String name);
 
 }
