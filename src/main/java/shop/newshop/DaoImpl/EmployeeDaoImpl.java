@@ -8,15 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.EmployeeDao;
 import shop.newshop.Entity.Account;
-import shop.newshop.Entity.Contract;
 import shop.newshop.Entity.Employee;
-import shop.newshop.ServiceImpl.EmployeeServiceImpl;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Employee> getAlls() {
         List<Employee> list = null;
         Session session = HibernateUtils.getSessionFactory().getCurrentSession();
@@ -61,7 +60,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             return true;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            System.out.println(e);
         }
         return false;
     }
@@ -90,5 +88,50 @@ public class EmployeeDaoImpl implements EmployeeDao {
         session.close();
         return employee;
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getLimit(int num, int row, String name) {
+		List<Employee> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String sql = "FROM Employee Where 1=1";
+			String hqlWhere = " ";
+			if(name!=null && !name.isEmpty()) {
+				hqlWhere += "AND LOWER(name) LIKE '%"+name+"%'";
+			}
+			Query query = session.createQuery(sql+hqlWhere);
+			query.setFirstResult(num);
+			query.setMaxResults(row);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public long countAll(String name) {
+		long result = 0;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String hql = "SELECT COUNT(*) FROM Employee Where 1=1";
+			String hqlWhere = " ";
+			if(name!=null && !name.isEmpty()) {
+				hqlWhere += " AND LOWER(name) LIKE '%"+name+"%'";
+			}
+			Query query = session.createQuery(hql+hqlWhere);
+			result = (long) query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return result;
+	}
 
 }
