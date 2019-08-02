@@ -30,7 +30,7 @@ public class Bonus {
 	private Date date;
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 
