@@ -29,7 +29,7 @@ public class Contract {
 	private float salary;
 	
 	@NotNull
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 	
