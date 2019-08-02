@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 @Entity
 @Table( name = "bonus")
@@ -31,7 +30,7 @@ public class Bonus {
 	private Date date;
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 
