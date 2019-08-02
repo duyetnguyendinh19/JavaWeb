@@ -41,8 +41,19 @@ public class BonusServiceImpl implements BonusService{
 	}
 
 	@Override
-	public List<Bonus> searchNameEmployee(String nameEmployee) {
-		return bonusDao.searchNameEmployee(nameEmployee);
+	public List<Bonus> getLimit(int num, int row, String name) {
+		if(name!=null) {
+			return bonusDao.getLimit(num, row, name.toLowerCase());
+		}
+		return bonusDao.getLimit(num, row, name);
+	}
+
+	@Override
+	public long countAll(String name) {
+		if(name!=null) {
+			return bonusDao.countAll(name.toLowerCase());
+		}
+		return bonusDao.countAll(name);
 	}
 
 }
