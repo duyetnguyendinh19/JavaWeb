@@ -36,7 +36,7 @@ public class Employee {
 	private String level;
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn( name = "idDepartment")
 	private Department department;
 
