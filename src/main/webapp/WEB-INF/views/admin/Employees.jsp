@@ -6,6 +6,27 @@
 	pageEncoding="UTF-8"%>
 
 <style>
+tr th {
+	text-align: center;
+}
+
+.tennv {
+	height: 35px;
+}
+
+form button {
+	height: 35px;
+	color: white;
+	background: #0ea432;
+	border: none;
+	border-radius: 4px;
+	width: 90px;
+}
+
+form button:hover {
+	background: #68a458;
+}
+
 .page button {
 	height: 35px;
 	color: white;
@@ -19,7 +40,33 @@
 .page button:hover {
 	background: #a7a7ef;
 }
+
+@media ( min-width : 1200px) {
+	.col-lg-2 {
+		margin-left: 5px;
+	}
+}
+
+@media ( max-width : 500px) {
+	.col-xs-4, .col-xs-6 {
+		margin-top: 8px !important;
+	}
+	form {
+		width: 100% !important;
+	}
+	.btn.btn-success {
+		margin-bottom: 15px;
+		width: 92% !important;
+	}
+	.table.table-bordered.table-hover {
+		width: 80%;
+	}
+}
 </style>
+<c:if test="${not empty searchFail}">
+	<label class="alert alert-danger" id="name_errors"
+		style="margin-left: 25px; width: 91.3%; color: red; font-size: 18px;">${searchFail}</label>
+</c:if>
 <div class="container">
 	<div class="row">
 
@@ -33,6 +80,23 @@
 							<div class="panel-heading">
 								<h2 class="panel-title">Quản lý nhân viên</h2>
 							</div>
+
+							<form
+								action="${pageContext.request.contextPath}/admin/listEmployee"
+								method="POST" style="float: left; padding: 16px; width: 82.8%;">
+								<div class="row">
+									<div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-10">
+										<label class="col-12 col-sm-3 col-xs-12  col-md-4 col-lg-2"
+											style="margin-top: 8px; padding-left: 0px;">Tên nhân
+											viên:</label> <input type="text" name="nameEmployee"
+											class="col-12 col-sm-9 col-xs-12  col-md-7 col-lg-5 tennv"
+											placeholder="Tên nhân viên..."
+											style="border-radius: 5px !important;" value="${nameSearch}" />
+										<button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-2"
+											type="submit" style="font-family: Tahoma">Tìm kiếm</button>
+									</div>
+								</div>
+							</form>
 
 							<span style="color: red">${error}</span> <a
 								href="${pageContext.request.contextPath}/admin/addEmployee"
@@ -49,7 +113,7 @@
 											<th>Tên Nhân Viên</th>
 											<th>Chức Vụ</th>
 											<th>Bộ Phận</th>
-											<th width="120px">Chức năng</th>
+											<th width="180px">Chức năng</th>
 
 										</tr>
 									</thead>
@@ -63,6 +127,11 @@
 
 
 												<td><a
+													href="${pageContext.request.contextPath}/admin/inforEmployee/${item.id}"><button
+															class="btn btn-success" data-toggle="tooltip"
+															title="Thông tin nhân viên">
+															<i class="fa fa-list-alt"></i>
+														</button></a> <a
 													href="${pageContext.request.contextPath}/admin/editEmployee/${item.id}"><button
 															class="btn btn-warning" data-toggle="tooltip"
 															title="Sửa nhân viên">
