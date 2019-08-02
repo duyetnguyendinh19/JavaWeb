@@ -43,11 +43,21 @@ public class ContractServiceImpl implements ContractService{
 	public Contract getContractByEmployeeId(int id) {
 		return contractDao.getContractByEmployeeId(id);
 	}
-
 	@Override
-	public List<Contract> searchNameEmployee(String nameEmployee) {
-		return contractDao.searchNameEmployee(nameEmployee);
+	public List<Contract> getLimit(int num, int row, String name) {
+		if(name!=null) {
+			return contractDao.getLimit(num, row, name.toLowerCase());
+		}
+		
+		return contractDao.getLimit(num, row, name);
 	}
-
+	@Override
+	public long countAll(String name) {
+		if(name!=null) {
+			return contractDao.countAll(name.toLowerCase());
+		}
+		
+		return contractDao.countAll(name);
+	}
 
 }
