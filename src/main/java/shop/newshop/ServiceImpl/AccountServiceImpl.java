@@ -39,8 +39,20 @@ public class AccountServiceImpl implements AccountService {
         return accountDao.getAccountById(idAccount);
     }
 
-    @Override
-    public List<Account> searchByUser(String user) {
-        return accountDao.searchByUser(user);
-    }
+	@Override
+	public List<Account> getLimit(int num, int row, String name) {
+		if(name!=null) {
+			return accountDao.getLimit(num, row, name.toLowerCase());
+		}
+		
+		return accountDao.getLimit(num, row, name);
+	}
+
+	@Override
+	public long countAll(String name) {
+		if(name!=null) {
+			return accountDao.countAll(name.toLowerCase());
+		}
+		return accountDao.countAll(name);
+	}
 }
