@@ -5,7 +5,12 @@ import java.util.List;
 import shop.newshop.Entity.Discipline;
 
 public interface DisciplineDao {
+	
 	public List<Discipline> getAlls();
+	
+	public List<Discipline> getLimit(int num,int row,String name);
+	
+	public long countAll(String name);
 
 	public boolean insert(Discipline di);
 
@@ -15,5 +20,4 @@ public interface DisciplineDao {
 
 	public Discipline getDisciplineById(int idDiscipline);
 
-	public List<Discipline> searchNameEmployee(String nameEmployee);
 }
