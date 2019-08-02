@@ -80,10 +80,14 @@ public class ContractController {
 		long countAll = contractService.countAll(nameSearch);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
@@ -106,12 +110,15 @@ public class ContractController {
 		long countAll = contractService.countAll(null);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
-
 		model.put("totalPage", totalPage);
 		model.put("totalContract", countAll);
 		model.put("firstContract", 1);
@@ -133,10 +140,14 @@ public class ContractController {
 		long countAll = contractService.countAll(name);
 		long totalPage = 0;
 
-		if (countAll % 5 == 0) {
-			totalPage = countAll / 5;
+		if (countAll == 0) {
+			totalPage = 1;
 		} else {
-			totalPage = countAll / 5 + 1;
+			if (countAll % 5 == 0) {
+				totalPage = countAll / 5;
+			} else {
+				totalPage = countAll / 5 + 1;
+			}
 		}
 
 		model.put("totalPage", totalPage);
