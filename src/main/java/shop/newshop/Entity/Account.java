@@ -20,7 +20,7 @@ public class Account {
     @Column(name = "role")
     private int role;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "account")
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,mappedBy = "account")
     private Employee employee;
 
 
