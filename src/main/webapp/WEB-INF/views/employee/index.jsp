@@ -60,12 +60,8 @@
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="login-container">
                     <div class="center">
-                        <h1>
-                            <i class="ace-icon fa fa-leaf green"></i>
-                            <span class="red">Ace</span>
-                            <span class="white" id="id-text2">Application</span>
-                        </h1>
-                        <h4 class="blue" id="id-company-text">&copy; Company Name</h4>
+                       	<img alt="Admin" src="${pageContext.request.contextPath}/images/boss.png"  width="50px" height="50px" />
+                        <h4 class="blue" id="id-company-text">&copy; Quản lý nhân viên</h4>
                     </div>
 
                     <div class="space-6"></div>
