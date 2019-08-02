@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.BonusDao;
 import shop.newshop.Entity.Bonus;
-import shop.newshop.ServiceImpl.BonusServiceImpl;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
 public class BonusDaoImpl implements BonusDao{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Bonus> getAlls() {
 		List<Bonus> list = null;
@@ -61,23 +61,6 @@ public class BonusDaoImpl implements BonusDao{
 	}
 
 	@Override
-	public List<Bonus> searchNameEmployee(String nameEmployee) {
-		List<Bonus> list = null;
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		try {
-			String sql = "FROM Bonus c WHERE c.employee.name LIKE '%" + nameEmployee + "%'";
-			session.beginTransaction();
-			Query query = session.createQuery(sql);
-			list = query.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return list;
-	}
-
-	@Override
 	public boolean delete(int idBonus) {
 		Bonus bonus = getBonusById(idBonus);
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
@@ -100,6 +83,51 @@ public class BonusDaoImpl implements BonusDao{
 		Bonus bonus = (Bonus) session.get(Bonus.class, idBonus);
 		session.close();
 		return bonus;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Bonus> getLimit(int num, int row, String name) {
+		List<Bonus> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String sql = "FROM Bonus Where 1=1";
+			String hqlWhere = " ";
+			if(name!=null && !name.isEmpty()) {
+				hqlWhere += "AND LOWER(employee.name) LIKE '%"+name+"%'";
+			}
+			Query query = session.createQuery(sql+hqlWhere);
+			query.setFirstResult(num);
+			query.setMaxResults(row);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public long countAll(String name) {
+		long result = 0;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			String hql = "SELECT COUNT(*) FROM Bonus Where 1=1";
+			String hqlWhere = " ";
+			if(name!=null && !name.isEmpty()) {
+				hqlWhere += " AND LOWER(employee.name) LIKE '%"+name+"%'";
+			}
+			Query query = session.createQuery(hql+hqlWhere);
+			result = (long) query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return result;
 	}
 
 }
