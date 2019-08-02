@@ -7,6 +7,10 @@ import shop.newshop.Entity.Bonus;
 public interface BonusService {
 
 	public List<Bonus> getAlls();
+	
+	public List<Bonus> getLimit(int num,int row,String name);
+	
+	public long countAll(String name);
 
 	public boolean insert(Bonus bn);
 
@@ -16,6 +20,5 @@ public interface BonusService {
 
 	public Bonus getBonusById(int idBonus);
 
-	public List<Bonus> searchNameEmployee(String nameEmployee);
 
 }
