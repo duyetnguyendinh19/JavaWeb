@@ -1,6 +1,5 @@
 package shop.newshop.Controller;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +18,10 @@ public class DepartmentController {
 
 	@Autowired
 	DepartmentService departService;
-	
+
 	private String name;
 
-	
+
 	@PostMapping(value = "admin/listDepartment")
 	public String listDepartmentSearch(ModelMap model,@RequestParam("nameDepart") String nameDepart) {
 		model.put("listDepart", departService.getAlls(0,5,nameDepart));
@@ -45,10 +44,10 @@ public class DepartmentController {
 			model.put("lastDepart", 5);
 		}
 		model.put("nameSearch", name);
-	
+
 		return  "admin/Department";
 	}
-	
+
 	@GetMapping(value = "admin/listDepartment")
 	public String listDepartment(ModelMap model) {
 		model.put("listDepart", departService.getAlls(0,5,null));
@@ -70,7 +69,7 @@ public class DepartmentController {
 			model.put("lastDepart", 5);
 		}
 		model.put("nameSearch", null);
-	
+
 		return  "admin/Department";
 	}
 
@@ -95,7 +94,7 @@ public class DepartmentController {
 		}else {
 			model.put("lastDepart", countAll);
 		}
-		
+
 		model.put("nameSearch", name);
 		return  "admin/Department";
 	}
@@ -115,7 +114,7 @@ public class DepartmentController {
 	@PostMapping(value = "admin/saveDepartment")
 	public String saveDepartment(ModelMap model, @ModelAttribute("department") Department depart) {
 		try {
- 			if(!depart.getName().isEmpty()) {
+			if(!depart.getName().isEmpty()) {
 				if(depart.getId()!=0) {
 					if(departService.checkName(depart.getName(), depart.getId())==0) {
 						departService.update(depart);
@@ -131,13 +130,16 @@ public class DepartmentController {
 						model.put("error", "Tên phòng ban đã tồn tại");
 					}		
 				}	
+				model.put("department", depart);
 				return "admin/AddDepartment";
 			}else {
 				model.put("error", "Không được để trống tên phòng ban");
+				model.put("department", depart);
 				return "admin/AddDepartment";
 			}	
 		} catch (Exception e) {
 			model.put("error", "Lỗi không xác định");
+			model.put("department", depart);
 			return "admin/AddDepartment";
 		}
 
