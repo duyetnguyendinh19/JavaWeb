@@ -3,11 +3,13 @@ package shop.newshop.DAO;
 import java.util.List;
 
 import shop.newshop.Entity.Contract;
-import shop.newshop.Entity.Employee;
 
 
 public interface ContractDao {
+
 	public List<Contract> getAlls();
+
+	public List<Contract> getLimit(int num,int row,String name);
 
 	public boolean insert(Contract ct);
 
@@ -19,5 +21,7 @@ public interface ContractDao {
 
 	public Contract getContractByEmployeeId(int id);
 
-	public List<Contract> searchNameEmployee(String nameEmployee);
+	public long countAll(String name);
+
+
 }
