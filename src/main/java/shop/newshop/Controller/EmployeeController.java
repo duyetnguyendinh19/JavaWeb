@@ -37,12 +37,88 @@ public class EmployeeController {
 	private String regexname="^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
 	private String regexemail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
 	private static final String PATH = "D:\\Git\\JavaWeb\\src\\main\\resources\\static\\images\\";
+	private String name;
+	
+	
+	@PostMapping(value = "admin/listEmployee")
+	public String listEmployeeSearch(ModelMap model, @RequestParam("nameEmployee") String nameSearch) {
+		name = nameSearch;
+		model.put("error", "");
+		model.put("listEmployee", empService.getLimit(0,5,nameSearch));
+		long countAll = empService.countAll(nameSearch);
+		long totalPage = 0;
 
+		if(countAll%5==0) {
+			totalPage = countAll/5;
+		}else {
+			totalPage = countAll/5 + 1;
+		}
+
+		model.put("totalPage", totalPage);
+		model.put("totalEmp", countAll);
+		model.put("firstEmp", 1);
+		if(countAll<5) {
+			model.put("lastEmp", countAll);
+		}else {
+			model.put("lastEmp", 5);
+		}
+		model.put("nameSearch", nameSearch);
+	
+		
+		return "admin/Employees";
+	}
 
 	@GetMapping(value = "admin/listEmployee")
 	public String listEmployee(ModelMap model) {
 		model.put("error", "");
-		model.put("listEmployee", empService.getAlls());
+		model.put("listEmployee", empService.getLimit(0,5,null));
+		long countAll = empService.countAll(null);
+		long totalPage = 0;
+
+		if(countAll%5==0) {
+			totalPage = countAll/5;
+		}else {
+			totalPage = countAll/5 + 1;
+		}
+
+		model.put("totalPage", totalPage);
+		model.put("totalEmp", countAll);
+		model.put("firstEmp", 1);
+		if(countAll<5) {
+			model.put("lastEmp", countAll);
+		}else {
+			model.put("lastEmp", 5);
+		}
+		model.put("nameSearch", null);
+	
+		
+		return "admin/Employees";
+	}
+	
+	@GetMapping(value = "admin/listEmployee/{page}")
+	public String listEmployeePage(ModelMap model,@PathVariable("page") int page) {
+		model.put("error", "");
+		model.put("listEmployee", empService.getLimit((page-1)*5, 5, name));
+
+		long countAll = empService.countAll(name);
+		long totalPage = 0;
+
+		if(countAll%5==0) {
+			totalPage = countAll/5;
+		}else {
+			totalPage = countAll/5 + 1;
+		}
+
+		model.put("totalPage", totalPage);
+		model.put("totalEmp", countAll);
+		model.put("firstEmp", (page-1)*5+1);
+		if(page<totalPage) {
+			model.put("lastEmp", (page-1)*5+5);
+		}else {
+			model.put("lastEmp", countAll);
+		}
+		
+		model.put("nameSearch", name);
 		return "admin/Employees";
 	}
 
@@ -51,6 +127,7 @@ public class EmployeeController {
 		model.put("employee", new Employee());
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
+		model.put("username", null);
 		return "admin/Addemployees";
 	}
 
@@ -118,7 +195,7 @@ public class EmployeeController {
 				else {
 					employee.setDepartment(departService.getDepartById(idDepart));
 					if(employee.getId() == 0) {	
-						if(file!=null) {
+						if(!file.isEmpty()) {
 							byte[] bytes = file.getBytes();
 							String filename = ( randomAlphaNumeric(10) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),file.getOriginalFilename().length())).toLowerCase();
 							employee.setAvatar(filename);
@@ -141,6 +218,7 @@ public class EmployeeController {
 			model.put("error", "Lỗi không xác định");
 		}
 		model.put("deparment", departService.getAlls());
+		model.put("username", username);
 		return "admin/Addemployees";
 	}
 
