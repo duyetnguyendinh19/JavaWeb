@@ -7,6 +7,10 @@ import shop.newshop.Entity.Contract;
 public interface  ContractService {
 
 	public List<Contract> getAlls();
+	
+	public List<Contract> getLimit(int num,int row,String name);
+	
+	public long countAll(String name);
 
 	public boolean insert(Contract ct);
 
@@ -18,6 +22,5 @@ public interface  ContractService {
 
 	public Contract getContractByEmployeeId(int id);
 
-	public List<Contract> searchNameEmployee(String nameEmployee);
 
 }
