@@ -18,7 +18,12 @@ public class DepartmentServiceImpl implements DepartmentService{
 	@Override
 	public List<Department> getAlls(int startnum, int rownum,String nameDepart) {
 
-		return departDao.getAlls( startnum,  rownum,nameDepart);
+		if(nameDepart!=null) {
+			return departDao.getAlls(startnum,  rownum,nameDepart.toLowerCase());
+		}
+
+		return departDao.getAlls(startnum,  rownum,nameDepart);
+
 	}
 
 	@Override
@@ -47,6 +52,10 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public long countAll(String nameDepart) {
+
+		if(nameDepart!=null) {
+			return departDao.countAll(nameDepart.toLowerCase());
+		}
 		return departDao.countAll(nameDepart);
 	}
 
@@ -57,6 +66,9 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public long checkName(String nameDepart, int idDepart) {
+		if(nameDepart!=null) {
+			return departDao.checkName(nameDepart.toLowerCase(),idDepart);
+		}
 		return departDao.checkName(nameDepart,idDepart);
 	}
 
