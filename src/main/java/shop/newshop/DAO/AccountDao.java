@@ -2,11 +2,14 @@ package shop.newshop.DAO;
 
 import shop.newshop.Entity.Account;
 
+
 import java.util.List;
 
 public interface AccountDao {
 
     public List<Account> getAlls();
+    
+    public List<Account> getLimit(int num,int row,String name);
 
     public boolean insert(Account account);
 
@@ -15,7 +18,7 @@ public interface AccountDao {
     public boolean delete(int idAccount);
 
     public Account getAccountById(int idAccount);
-
-    public List<Account> searchByUser(String user);
+    
+    public long countAll(String name);
 
 }
