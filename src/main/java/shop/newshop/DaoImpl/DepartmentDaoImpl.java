@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.DepartmentDao;
 import shop.newshop.Entity.Department;
-import shop.newshop.ServiceImpl.DepartmentServiceImpl;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
 public class DepartmentDaoImpl implements DepartmentDao{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Department> getAlls(int startnum, int rownum, String nameDepart) {
 		List<Department> list = null;
@@ -114,6 +113,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Department> getAlls() {
 		List<Department> list = null;
