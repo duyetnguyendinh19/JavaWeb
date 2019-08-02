@@ -72,13 +72,13 @@
 					</div>
 					<div class="col-md-6 mb-3" style="margin-top: 15px;">
 						<label>Mô tả khen thưởng</label>
-						<textarea rows="6" name="descent" placeholder="Mô tả hủy phòng"
+						<textarea rows="6" name="descent" placeholder="Mô tả khen thưởng"
 								  style="width: 100%;border-radius: 5px!important;padding: 10px;float:left;"></textarea>
 						<label style="color: red;margin-top: 5px;"></label>
 					</div>
 					<div class="col-md-6 mb-3" style="margin-top: 15px;">
 						<label>Lý do khen thưởng</label>
-						<textarea rows="6" name="reason" placeholder="Lý do hủy phòng"
+						<textarea rows="6" name="reason" placeholder="Lý do khen thưởng"
 								  style="width: 100%;border-radius: 5px!important;padding: 10px;"></textarea>
 						<label style="color: red;margin-top: 5px;">${errorReason}</label>
 					</div>
