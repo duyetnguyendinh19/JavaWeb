@@ -1,6 +1,5 @@
 package shop.newshop.Entity;
 
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -33,7 +32,7 @@ public class Discipline {
 	private Date date;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 
