@@ -34,7 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public boolean insert(Employee emp,Account account) {
-        Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtils.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             session.save(account);
@@ -46,6 +46,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
         } catch (Exception e) {
             session.getTransaction().rollback();
             e.printStackTrace();
+        }finally {
+        	session.close();
         }
         return false;
     }
