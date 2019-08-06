@@ -1,5 +1,4 @@
-<%--<%@page import="shop.newshop.DaoImpl.CategoryDAOImpl"%>--%>
-<%--<%@page import="shop.newshop.Service.CategoryService"%>--%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
