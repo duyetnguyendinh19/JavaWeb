@@ -45,6 +45,7 @@ public class AccountController {
 			model.put("lastAccount", 5);
 		}
 		model.put("nameSearch", nameSearch);
+		
 
 		return "admin/user";
 	}
@@ -107,6 +108,7 @@ public class AccountController {
 		}
 
 		model.put("nameSearch", name);
+		
 		return "admin/user";
 	}
 }
