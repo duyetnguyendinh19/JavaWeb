@@ -128,7 +128,7 @@ form button:hover {
 												<td>${listAccount.role == 1 ? "Admin" : "User"}</td>
 											</tr>
 										</c:forEach>
-										<c:if test="${not empty searchFail}">
+										<c:if test="${not empty listAccount}">
 											<tr>
 												<td colspan="3">Danh sách rỗng</td>
 											</tr>
