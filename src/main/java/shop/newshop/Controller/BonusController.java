@@ -52,7 +52,7 @@ public class BonusController {
 			model.put("lastBonus", 5);
 		}
 		model.put("nameSearch", nameSearch);
-
+		
 		return "admin/Bonus";
 	}
 
@@ -82,7 +82,7 @@ public class BonusController {
 			model.put("lastBonus", 5);
 		}
 		model.put("nameSearch", null);
-
+		
 		return "admin/Bonus";
 	}
 
@@ -112,7 +112,7 @@ public class BonusController {
 		} else {
 			model.put("lastBonus", countAll);
 		}
-
+		
 		model.put("nameSearch", name);
 		return "admin/Bonus";
 	}
@@ -121,6 +121,7 @@ public class BonusController {
 	public String addContract(ModelMap model) {
 		List<Employee> employees = employeeService.getAlls();
 		model.addAttribute("employee", employees);
+		
 		return "admin/AddBonus";
 	}
 
@@ -138,6 +139,7 @@ public class BonusController {
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("employee", employees);
 				model.addAttribute("errorType", "Vui lòng chọn kiểu khen thưởng");
+				
 				return "admin/AddBonus";
 			}
 			if (Strings.isEmpty(date)) {
@@ -146,6 +148,7 @@ public class BonusController {
 				model.addAttribute("typeBonus", typeBonus);
 				model.addAttribute("employee", employees);
 				model.addAttribute("errorDate", "Ngày khen thưởng không được để trống");
+				
 				return "admin/AddBonus";
 			}
 			if (Strings.isEmpty(reason)) {
@@ -154,6 +157,7 @@ public class BonusController {
 				model.addAttribute("typeBonus", typeBonus);
 				model.addAttribute("employee", employees);
 				model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
+				
 				return "admin/AddBonus";
 			}
 			bonus.setDate(sdf.parse(date));
