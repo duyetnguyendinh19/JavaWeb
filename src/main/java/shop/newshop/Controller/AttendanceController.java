@@ -26,6 +26,7 @@ public class AttendanceController {
     public String getAttendance(ModelMap model){
         List<Attendance> attendanceList = attendanceService.getAll();
         model.addAttribute("listAttendance", attendanceList);
+        
         return "admin/Attendance";
     }
 
@@ -33,6 +34,7 @@ public class AttendanceController {
     public String addAttendance(ModelMap model){
         List<Employee> employees = employeeService.getAlls();
         model.addAttribute("employee", employees);
+        
         return "admin/AddAttendance";
     }
 }
