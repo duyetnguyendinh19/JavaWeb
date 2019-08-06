@@ -114,10 +114,10 @@
                                         </fieldset>
                                     </form>
 
-                                    <div class="social-or-login center">
+                                  <!--   <div class="social-or-login center">
 												<span class="bigger-110" style="cursor: pointer; border: none;border-radius: 5px;color: red;background: white;
 												font-size: 18px!important;font-weight: bold;">Đăng ký</span>
-                                    </div>
+                                    </div> -->
 
                                     <div class="space-6"></div>
 
