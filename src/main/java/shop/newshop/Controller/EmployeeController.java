@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import shop.newshop.Entity.Account;
+import shop.newshop.Entity.Department;
 import shop.newshop.Entity.Employee;
 import shop.newshop.Service.DepartmentService;
 import shop.newshop.Service.EmployeeService;
@@ -208,7 +209,8 @@ public class EmployeeController {
 				} else if (username.length() < 6 || username.length() > 24) {
 					model.put("error", "Tài khoản từ 6 đến 24 ký tự");
 				} else {
-					employee.setDepartment(departService.getDepartById(idDepart));
+					Department department = departService.getDepartById(idDepart);
+					employee.setDepartment(department);
 					if (employee.getId() == 0) {
 						if (!file.isEmpty()) {
 							byte[] bytes = file.getBytes();
@@ -223,6 +225,9 @@ public class EmployeeController {
 						Account account = new Account();
 						account.setUsername(username);
 						account.setPassword(encryptThisString("123456"));
+						if(department.getName().toLowerCase().contains("nhân sự")) {
+							account.setRole(1);
+						}
 						empService.insert(employee, account);
 					} else {
 						if(!file.isEmpty()) {
