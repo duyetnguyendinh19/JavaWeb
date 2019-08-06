@@ -138,7 +138,9 @@ public class EmployeeController {
 
 	@GetMapping(value = "admin/addEmployee")
 	public String addEmployee(ModelMap model) {
-		model.put("employee", new Employee());
+		Employee employee = new Employee();
+		employee.setBirthday(new Date());
+		model.put("employee", employee);
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
 		model.put("username", null);
