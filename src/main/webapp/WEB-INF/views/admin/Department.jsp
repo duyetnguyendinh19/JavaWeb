@@ -155,7 +155,7 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-                                    <c:if test="${not empty searchFail}">
+                                    <c:if test="${not empty listDepart}">
                                         <tr>
                                             <td colspan="3">Danh sách rỗng</td>
                                         </tr>
