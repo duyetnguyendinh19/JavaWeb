@@ -63,10 +63,10 @@ form button:hover {
 	}
 }
 </style>
-<c:if test="${not empty searchFail}">
+<%-- <c:if test="${not empty searchFail}">
 	<label class="alert alert-danger" id="name_errors"
 		style="margin-left: 25px; width: 91.3%; color: red; font-size: 18px;">${searchFail}</label>
-</c:if>
+</c:if> --%>
 <div class="container">
 	<div class="row">
 
@@ -118,6 +118,15 @@ form button:hover {
 										</tr>
 									</thead>
 									<tbody>
+									
+										<c:if test="${empty listEmployee}">
+										
+											<tr>
+												<th colspan="5"> Danh sách rỗng </th>
+											</tr>
+											
+										</c:if>
+
 										<c:forEach var="item" items="${listEmployee}">
 											<tr>
 												<th>${item.id}</th>
