@@ -12,19 +12,19 @@ public class Salary {
     private int id;
 
     @Column(name = "month")
-    private String month;
+    private int month;
 
     @Column(name = "nameEmployee")
     private String nameEmployee;
 
     @Column(name = "count")
-    private int count;
+    private double count;
 
     @Column(name = "total")
     private double total;
 
     @Column(name = "day_off")
-    private int dayoff;
+    private double dayoff;
 
     @Column(name = "idEmployee")
     private int idEmployee;
@@ -32,7 +32,7 @@ public class Salary {
     public Salary() {
     }
 
-    public Salary(String month, String nameEmployee, int count, double total, int dayoff, int idEmployee) {
+    public Salary(int month, String nameEmployee, double count, double total, double dayoff, int idEmployee) {
         this.month = month;
         this.nameEmployee = nameEmployee;
         this.count = count;
@@ -57,11 +57,11 @@ public class Salary {
         this.id = id;
     }
 
-    public String getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 
@@ -73,11 +73,11 @@ public class Salary {
         this.nameEmployee = nameEmployee;
     }
 
-    public int getCount() {
+    public double getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(double count) {
         this.count = count;
     }
 
@@ -89,11 +89,11 @@ public class Salary {
         this.total = total;
     }
 
-    public int getDayoff() {
+    public double getDayoff() {
         return dayoff;
     }
 
-    public void setDayoff(int dayoff) {
+    public void setDayoff(double dayoff) {
         this.dayoff = dayoff;
     }
 }

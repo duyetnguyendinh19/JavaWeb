@@ -35,6 +35,7 @@ public class DisciplineController {
 		long totalPage = 0;
 
 		if (countAll == 0) {
+			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
 			totalPage = 1;
 		} else {
 			if (countAll % 5 == 0) {

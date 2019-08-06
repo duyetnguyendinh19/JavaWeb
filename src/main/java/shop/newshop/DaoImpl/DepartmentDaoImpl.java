@@ -10,6 +10,7 @@ import shop.newshop.DAO.DepartmentDao;
 import shop.newshop.Entity.Department;
 import shop.newshop.util.HibernateUtils;
 
+
 @Repository
 public class DepartmentDaoImpl implements DepartmentDao{
 

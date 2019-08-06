@@ -29,8 +29,7 @@ input[type=text] {
 				<div class="panel-heading">
 					<h2 class="panel-title">Sửa Nhân Viên</h2>
 				</div>
-				<br /> <span style="color: red; margin-left: 10px">${error}</span>
-				<br />
+				<br /> <span style="color: red; margin-left: 10px">${error}</span> <br />
 				<form:form modelAttribute="employee"
 					action="${pageContext.request.contextPath}/admin/saveEmployee"
 					method="POST" enctype="multipart/form-data">
@@ -115,9 +114,9 @@ input[type=text] {
 								placeholder="Địa chỉ" />
 						</div>
 
-						
+
 						<input type="hidden" name="username" value="${username}" />
-						
+
 						<%-- <form:input type="hidden" path="account" class="form-control"
 							placeholder="Tài khoản" readonly="readonly" /> --%>
 

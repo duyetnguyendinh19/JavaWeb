@@ -28,7 +28,7 @@ form button:hover {
 }
 
 .page button {
-	height: 35px;
+	height: 30px;
 	color: white;
 	background: #4e4ee6;
 	border: none;
@@ -39,6 +39,14 @@ form button:hover {
 
 .page button:hover {
 	background: #a7a7ef;
+}
+
+.ui.modal {
+	margin-top: 50px;
+	width: 28%;
+	height: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 @media ( min-width : 1200px) {
@@ -63,10 +71,10 @@ form button:hover {
 	}
 }
 </style>
-<%-- <c:if test="${empty listEmployee}">
+<c:if test="${not empty searchFail}">
 	<label class="alert alert-danger" id="name_errors"
-		style="margin-left: 25px; width: 91.3%; color: red; font-size: 18px;">Không tìm thấy</label>
-</c:if> --%>
+		style="margin-left: 25px; width: 91.3%; color: red; font-size: 18px;">${searchFail}</label>
+</c:if>
 <div class="container">
 	<div class="row">
 
@@ -160,29 +168,6 @@ form button:hover {
 									</tbody>
 								</table>
 
-								<div class="row">
-									<div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
-
-										<button onclick="firstpage()"><<</button>
-										<button onclick="previous()"><</button>
-
-										<input type="number" id="page" value="1"
-											style="width: 40px; border-radius: 3px !important; margin-left: 3px;">
-
-										of <input type="text" id="totalPage" value="${totalPage}"
-											style="width: 30px; border-radius: 3px !important; margin-left: 2px; margin-right: 3px;"
-											readonly="readonly">
-										<button onclick="next()">></button>
-										<button onclick="lastpage()">>></button>
-
-									</div>
-									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
-										<a style="float: right;""> <label>View</label> <label>1</label>
-											<label>-</label> <label>5</label> <label>of</label> <label>12</label>
-										</a>
-									</div>
-								</div>
-
 								<div class="ui modal">
 									<i class="close icon"></i>
 									<div class="header">Xóa nhân viên</div>
@@ -202,7 +187,25 @@ form button:hover {
 											bỏ</button>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-9 page">
+										<button onclick="firstpage()"><<</button>
+										<button onclick="previous()"><</button>
+										<input type="number" id="page" value="1"
+											style="width: 40px; border-radius: 3px !important; margin-left: 3px;">
+										of <input type="text" id="totalPage" value="${totalPage}"
+											style="width: 30px; border-radius: 3px !important; margin-left: 2px; margin-right: 3px;"
+											readonly="readonly">
+										<button onclick="next()">></button>
+										<button onclick="lastpage()">>></button>
 
+									</div>
+									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
+										<a style="float: right;"> <label>View</label> <label>1</label>
+											<label>-</label> <label>5</label> <label>of</label> <label>12</label>
+										</a>
+									</div>
+								</div>
 								<!--  -->
 
 							</div>

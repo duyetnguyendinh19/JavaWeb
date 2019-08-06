@@ -1,8 +1,6 @@
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -129,13 +127,7 @@
 }
 
 /*kết thúc CSS ảnh*/
-.ui.modal {
-	margin-top: 50px;
-	width: 28%;
-	height: 30%;
-	margin-left: auto;
-	margin-right: auto;
-}
+
 </style>
 <body class="no-skin">
 
@@ -152,11 +144,10 @@
 			</button>
 
 			<div class="navbar-header pull-left">
-				<a href="${pageContext.request.contextPath}/admin/listDepartment"
-					class="navbar-brand"> <small><img alt="Admin"
+				<a href="${pageContext.request.contextPath}/admin/listDepartment" class="navbar-brand"> <small><img
+						alt="Admin"
 						src="${pageContext.request.contextPath}/images/boss.png"
-						width="20px" height="20px"> <font style="margin-left: 10px"
-						size="4px">Quản lý nhân viên</font> </small>
+						width="20px" height="20px">  <font style="margin-left: 10px" size="4px">Quản lý nhân viên</font> </small>
 				</a>
 			</div>
 

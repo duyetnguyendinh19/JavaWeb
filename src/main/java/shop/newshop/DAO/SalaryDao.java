@@ -18,5 +18,4 @@ public interface SalaryDao {
 
     public List<Salary> searchByName(String name);
 
-
 }

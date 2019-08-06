@@ -28,6 +28,7 @@ public class AccountController {
 
 		if (countAll == 0) {
 			totalPage = 1;
+			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -45,7 +46,7 @@ public class AccountController {
 			model.put("lastAccount", 5);
 		}
 		model.put("nameSearch", nameSearch);
-		
+
 
 		return "admin/user";
 	}
@@ -108,7 +109,7 @@ public class AccountController {
 		}
 
 		model.put("nameSearch", name);
-		
+
 		return "admin/user";
 	}
 }

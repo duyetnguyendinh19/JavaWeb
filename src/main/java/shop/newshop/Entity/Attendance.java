@@ -27,16 +27,26 @@ public class Attendance {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public Attendance() {
+    @Column(name = "month")
+    private int month;
+
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public Attendance(Date date, Time starttime, Time endtime, Employee employee) {
+    public Attendance(Date date, Time starttime, Time endtime, Employee employee, int month) {
         this.date = date;
         this.starttime = starttime;
         this.endtime = endtime;
         this.employee = employee;
+        this.month = month;
+    }
+    public Attendance() {
     }
 
+    public int getMonth() {
+        return month;
+    }
     public int getId() {
         return id;
     }

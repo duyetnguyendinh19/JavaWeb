@@ -2,6 +2,7 @@ package shop.newshop.DAO;
 
 import shop.newshop.Entity.Attendance;
 
+import java.util.Date;
 import java.util.List;
 
 public interface AttendanceDao {
@@ -17,4 +18,9 @@ public interface AttendanceDao {
     public Attendance getBonusById(int idAttendance);
 
     public List<Attendance> searchNameEmployee(String nameEmployee);
+
+    public long countAttenByEmployeId(int id, int month);
+
+    public List<Attendance> getAttenDanceByDateAndId(int id, Date date);
+
 }

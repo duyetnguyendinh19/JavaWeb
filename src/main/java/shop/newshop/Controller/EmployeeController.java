@@ -56,6 +56,7 @@ public class EmployeeController {
 
 		if (countAll == 0) {
 			totalPage = 1;
+			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;

@@ -6,6 +6,7 @@ import shop.newshop.DAO.AttendanceDao;
 import shop.newshop.Entity.Attendance;
 import shop.newshop.Service.AttendanceService;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -43,4 +44,15 @@ public class AttendanceServiceImpl implements AttendanceService {
     public List<Attendance> searchNameEmployee(String nameEmployee) {
         return attendanceDao.searchNameEmployee(nameEmployee);
     }
+
+    @Override
+    public long countAttenByEmployeId(int id,int month) {
+        return attendanceDao.countAttenByEmployeId(id, month);
+    }
+
+    @Override
+    public List<Attendance> getAttenDanceByDateAndId(int id, Date date) {
+        return attendanceDao.getAttenDanceByDateAndId(id, date);
+    }
+
 }

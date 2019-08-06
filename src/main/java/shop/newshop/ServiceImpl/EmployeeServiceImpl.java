@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean delete(int idEmployee) {
+	public boolean delete(int idEmployee) {		
 		return empDao.delete(idEmployee);
 	}
 

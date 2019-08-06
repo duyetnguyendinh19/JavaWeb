@@ -74,8 +74,8 @@
             margin-top: 8px !important;
         }
 
-        form{
-            width: 100%!important;
+        form {
+            width: 100% !important;
         }
 
         .btn.btn-success {
@@ -87,6 +87,10 @@
 <c:if test="${not empty searchFail}">
     <label class="alert alert-danger" id="name_errors"
            style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${searchFail}</label>
+</c:if>
+<c:if test="${not empty alertWriteExcel}">
+    <label class="alert alert-success" id="name_errors"
+           style="margin-left: 25px;width: 91.3%;color: red;font-size: 18px;">${alertWriteExcel}</label>
 </c:if>
 <div class="container">
     <div class="row">
@@ -114,19 +118,20 @@
                                         <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2"
                                                style="margin-top: 8px;float:left;padding-left: 0px">Tháng:</label>
                                         <select class="ui dropdown col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
-                                                name="month" style="height: 35px;border-radius: 5px!important;">
-                                            <option>Tháng 1</option>
-                                            <option>Tháng 2</option>
-                                            <option>Tháng 3</option>
-                                            <option>Tháng 4</option>
-                                            <option>Tháng 5</option>
-                                            <option>Tháng 6</option>
-                                            <option>Tháng 7</option>
-                                            <option>Tháng 8</option>
-                                            <option>Tháng 9</option>
-                                            <option>Tháng 10</option>
-                                            <option>Tháng 11</option>
-                                            <option>Tháng 12</option>
+                                                name="month" id="month"
+                                                style="height: 35px;border-radius: 5px!important;">
+                                            <option value="1">Tháng 1</option>
+                                            <option value="2">Tháng 2</option>
+                                            <option value="3">Tháng 3</option>
+                                            <option value="4">Tháng 4</option>
+                                            <option value="5">Tháng 5</option>
+                                            <option value="6">Tháng 6</option>
+                                            <option value="7">Tháng 7</option>
+                                            <option value="8">Tháng 8</option>
+                                            <option value="9">Tháng 9</option>
+                                            <option value="10">Tháng 10</option>
+                                            <option value="11">Tháng 11</option>
+                                            <option value="12">Tháng 12</option>
                                         </select>
                                         <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3" type="submit"
                                                 style="font-family: Tahoma;float:left;">
@@ -135,6 +140,12 @@
                                     </div>
                                 </div>
                             </form>
+                            <a href="${pageContext.request.contextPath}/admin/writeExcel">
+                                <button class="btn btn-success col-12 col-sm-12 col-xs-12 col-md-4 col-lg-1"
+                                        style="float:right;margin-top: 12px;margin-right: 15px;padding-left: 5px;border-radius: 5px;height: 40px!important;">
+                                    Xuất excel
+                                </button>
+                            </a>
                             <div class="panel-body">
                                 <table class="table table-bordered table-hover">
                                     <thead>
@@ -201,6 +212,8 @@
 </div>
 <script>
     $('.ui.dropdown').dropdown();
+    var date = new Date();
+    $('#month').val(date.getMonth() + 1).trigger('change');
 </script>
 <script>
     $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);

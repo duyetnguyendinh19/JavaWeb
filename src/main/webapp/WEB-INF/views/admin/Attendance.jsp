@@ -17,8 +17,8 @@
 
     .ui.modal {
         margin-top: 50px;
-        width: 28%;
-        height: 30%;
+        /*width: 28%;*/
+        height: 80%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -60,24 +60,54 @@
     }
 
     .ui.black.deny.button {
-        width: 25%;
+        width: 12%;
         height: 40px;
     }
+    #totalAtten ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    #totalAtten ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    #totalAtten ::-webkit-scrollbar-thumb {
+        background: #e8f2e3;
+        border-radius: 10px;
+    }
+
+    #totalAtten ::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+    }
+
+    .chotcong {
+        float: right;
+        font-size: 16px;
+        border:none;
+        background: none;
+        margin-top: 2px;
+        font-weight: bold;
+    }
+
     @media (min-width: 1200px) {
         .col-lg-3 {
             margin-left: 5px;
         }
     }
+
     @media (max-width: 500px) {
-        .col-xs-4,.col-xs-6{
-            margin-top: 8px!important;
+        .col-xs-4, .col-xs-6 {
+            margin-top: 8px !important;
         }
-        form{
-            width: 100%!important;
+
+        form {
+            width: 100% !important;
         }
-        .btn.btn-success{
+
+        .btn.btn-success {
             margin-bottom: 15px;
-            width: 92%!important;
+            width: 92% !important;
         }
     }
 </style>
@@ -92,27 +122,35 @@
                 <div class="row">
                     <div class="col-xs-14 col-sm-12 col-md-11">
                         <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <h2 class="panel-title">Quản lý công</h2>
+                            <div class="panel-heading" style="height: 45px;line-height: 25px;">
+                                <h2 class="panel-title" style="float:left;">Quản lý công</h2>
+                                <button onclick="loadModal()" class="chotcong">Chốt công</button>
                             </div>
                             <form action="${pageContext.request.contextPath}/admin/listSalary" method="POST"
                                   style="float: left;padding: 16px;width: 81.8%;">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-5">
-                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-4" style="margin-top: 8px;padding-left: 0px!important">Tên nhân viên:</label>
-                                        <input type="text" name="tennv" class="col-12 col-sm-10 col-xs-12  col-md-7 col-lg-8 tennv" placeholder="Tên nhân viên..."
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-4"
+                                               style="margin-top: 8px;padding-left: 0px!important">Tên nhân
+                                            viên:</label>
+                                        <input type="text" name="tennv"
+                                               class="col-12 col-sm-10 col-xs-12  col-md-7 col-lg-8 tennv"
+                                               placeholder="Tên nhân viên..."
                                                style="border-radius: 5px!important;" value="${nameSearch}"/>
                                     </div>
                                     <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-7">
-                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2" style="margin-top: 8px;float:left;padding-left: 0px">Ngày:</label>
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2"
+                                               style="margin-top: 8px;float:left;padding-left: 0px">Ngày:</label>
                                         <div class="ui calendar" id="rangestart">
-                                            <input class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6" type="text" class="datepicker"
+                                            <input class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6" type="text"
+                                                   class="datepicker"
                                                    style="border-radius: 5px!important;height: 35px!important;"
                                                    id="startDate"
                                                    name="date"
                                                    placeholder="Ngày">
                                         </div>
-                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3" type="submit" style="font-family: Tahoma;float:left;">
+                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3" type="submit"
+                                                style="font-family: Tahoma;float:left;">
                                             Tìm kiếm
                                         </button>
                                     </div>
@@ -145,6 +183,8 @@
                                             <td>${listAttendance.starttime}</td>
                                             <td>${listAttendance.endtime}</td>
                                         </tr>
+                                        <input type="text" name="idEmployee" hidden
+                                               value="${listAttendance.employee.id}"/>
                                     </c:forEach>
                                     <c:if test="${not empty searchFail}">
                                         <tr>
@@ -178,6 +218,56 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div class="ui modal">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        Chốt công
+                                    </div>
+                                    <div class="content">
+                                        <table class="table table-bordered table-hover" id="totalAtten">
+                                            <thead>
+                                            <tr style="text-align: center;border-bottom: 2px solid #dddddd;">
+                                                <th>Mã nhân viên</th>
+                                                <th>Tên nhân viên</th>
+                                                <th>Lương</th>
+                                                <th>Tháng</th>
+                                                <th>Số công</th>
+                                                <th>Ngày nghỉ</th>
+                                                <th>Tổng lương</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${listTotal}" var="listTotal" varStatus="loop">
+                                                <tr style="text-align: center;">
+                                                    <td>${listTotal.idEmployee}</td>
+                                                    <td>${listTotal.nameEmployee}</td>
+                                                    <td><fmt:formatNumber type="number" maxIntegerDigits="10" value="${listTotal.salary}" /></td>
+                                                    <td>${listTotal.month}</td>
+                                                    <td>${listTotal.count}</td>
+                                                    <td>${listTotal.day_off}</td>
+                                                    <td><fmt:formatNumber type="number" maxIntegerDigits="10" value="${listTotal.totalSalary}" /></td>
+                                                </tr>
+                                            </c:forEach>
+                                            <c:if test="${not empty searchFail}">
+                                                <tr>
+                                                    <td colspan="3">Danh sách rỗng</td>
+                                                </tr>
+                                            </c:if>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="actions" style="display: list-item;height: 70px;">
+                                        <form action="${pageContext.request.contextPath}/admin/addSalary" method="POST"
+                                              style="float: right;">
+                                            <button class="ui black deny button" style="background: green;width: 100%!important;">
+                                                Tính lương
+                                            </button>
+                                        </form>
+                                        <button class="ui black deny button" style="float: right;">
+                                            Hủy bỏ
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -186,6 +276,11 @@
         </div>
     </div>
 </div>
+<script>
+    function loadModal() {
+        $('.ui.modal1').modal('show');
+    }
+</script>
 <script>
     var toDate = new Date();
     var date = toDate.getDate();
@@ -215,17 +310,14 @@
     });
 </script>
 <script>
-    $('.ui.dropdown').dropdown();
-</script>
-<script>
     $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);
 </script>
 <script>
     function loadModal(name, id) {
         $('.ui.modal').modal('show');
         $('#name').text(name);
-        var $deleteConfirm = $('#deleteComfirm');
-        document.getElementById('deleteComfirm').href = $deleteConfirm.attr('data-hrefbefore') + id;
+        var accept = $('#accept');
+        document.getElementById('accept').href = accept.attr('data-hrefbefore');
     }
 </script>
 <script>

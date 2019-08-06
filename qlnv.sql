@@ -21,14 +21,14 @@
 
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `role` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,17 +47,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `attendance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `attendance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
   `starttime` time NOT NULL,
   `endtime` time NOT NULL,
   `employee_id` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_attendance_employee_idx` (`employee_id`),
-  CONSTRAINT `fk_attendance_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) on delete cascade
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `fk_attendance_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +67,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (30,'2019-08-03','13:20:29','23:59:57',1,8),(33,'2019-08-04','13:34:59','23:59:04',1,8),(34,'2019-08-05','13:42:57','21:04:10',1,8),(35,'2019-08-03','13:44:12','14:37:38',2,8),(36,'2019-08-04','13:45:22','18:35:31',2,8),(37,'2019-08-05','13:47:00','18:47:37',2,8),(38,'2019-08-03','13:47:51','13:47:51',3,8),(39,'2019-08-03','13:47:56','15:25:05',4,8),(40,'2019-08-05','13:48:01','19:35:25',3,8),(41,'2019-08-11','13:49:34','13:49:34',1,8),(43,'2019-08-06','07:45:35','17:30:35',1,8),(44,'2019-08-06','10:27:06','10:27:06',3,8);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +77,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bonus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `bonus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -85,8 +87,8 @@ CREATE TABLE `bonus` (
   `idEmployee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_bonus_employee_idx` (`idEmployee`),
-  CONSTRAINT `fk_bonus_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) on delete cascade
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `fk_bonus_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +107,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contract`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `contract` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `expirationday` datetime NOT NULL,
@@ -114,8 +116,8 @@ CREATE TABLE `contract` (
   `idEmployee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_41uo76i8br4y4d3q8sr2ejrao` (`idEmployee`),
-  CONSTRAINT `FK_41uo76i8br4y4d3q8sr2ejrao` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) on delete cascade
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `FK_41uo76i8br4y4d3q8sr2ejrao` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +126,7 @@ CREATE TABLE `contract` (
 
 LOCK TABLES `contract` WRITE;
 /*!40000 ALTER TABLE `contract` DISABLE KEYS */;
-INSERT INTO `contract` VALUES (3,'2019-07-31 00:00:00',8500000,'2019-07-24 00:00:00',3),(4,'2019-07-30 00:00:00',19000000,'2019-07-23 00:00:00',4),(22,'2019-08-27 00:00:00',11800000,'2019-07-27 00:00:00',1),(23,'2019-10-31 00:00:00',5000000,'2019-10-18 00:00:00',3);
+INSERT INTO `contract` VALUES (3,'2019-07-31 00:00:00',8500000,'2019-07-24 00:00:00',3),(4,'2019-07-30 00:00:00',19000000,'2019-07-23 00:00:00',4),(22,'2019-08-27 00:00:00',11800000,'2019-07-27 00:00:00',1),(25,'2019-11-26 00:00:00',50000000,'2019-11-20 00:00:00',2);
 /*!40000 ALTER TABLE `contract` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,12 +136,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +150,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'Nhân sự'),(2,'Kinh doanh'),(3,'Kế toán'),(4,'Dịch vụ');
+INSERT INTO `department` VALUES (1,'Nhân sự'),(2,'Kinh doanh'),(3,'Kế toán'),(4,'Dịch vụ'),(7,'babaabaa'),(8,'ávav'),(9,'babasbasas'),(10,'bábasba'),(11,'bdbabad'),(12,'baba');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +160,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `discipline`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `discipline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -168,8 +170,8 @@ CREATE TABLE `discipline` (
   `idEmployee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_discipline_employee_idx` (`idEmployee`),
-  CONSTRAINT `fk_discipline_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) on delete cascade
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `fk_discipline_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +180,7 @@ CREATE TABLE `discipline` (
 
 LOCK TABLES `discipline` WRITE;
 /*!40000 ALTER TABLE `discipline` DISABLE KEYS */;
-INSERT INTO `discipline` VALUES (1,'Đuổi việc','Nghịch ngu','Cho chừa xyz','2019-07-27',1),(7,'Đình chỉ','Nghịch ngợm','Chơi game trong giờ','2019-07-31',2);
+INSERT INTO `discipline` VALUES (1,'Đuổi việc','Nghịch ngu','Cho chừa xyz','2019-07-27',1),(7,'Đình chỉ','Nghịch ngợm','Chơi game trong giờ','2019-07-31',2),(9,'Đình chỉ','ababa','babbaaba','2019-08-03',4);
 /*!40000 ALTER TABLE `discipline` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,25 +190,25 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `birthday` datetime NOT NULL,
   `level` varchar(64) NOT NULL,
-  `name` varchar(64) NOT NULL,
+  `name` varchar(128) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `idDepartment` int(11) NOT NULL,
-  `avatar` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `avatar` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `identitycard` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_o58xv1eg6nwb5du5xua34c1sr` (`idDepartment`) /*!80000 INVISIBLE */,
   KEY `fk_employee_account_idx` (`account_id`),
-  CONSTRAINT `fk_employee_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) on delete cascade,
-  CONSTRAINT `fk_employee_department` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`id`) on delete cascade
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `fk_employee_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
+  CONSTRAINT `fk_employee_department` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,16 +227,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `salary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `salary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `month` varchar(45) DEFAULT NULL,
+  `month` int(2) DEFAULT NULL,
   `nameEmployee` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `count` int(30) DEFAULT NULL,
+  `count` double DEFAULT NULL,
   `total` double DEFAULT NULL,
-  `day_off` int(11) DEFAULT NULL,
+  `day_off` double DEFAULT NULL,
+  `idEmployee` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,6 +246,7 @@ CREATE TABLE `salary` (
 
 LOCK TABLES `salary` WRITE;
 /*!40000 ALTER TABLE `salary` DISABLE KEYS */;
+INSERT INTO `salary` VALUES (13,8,'Lương Minh Trí',1.5,490385,24.5,3),(14,8,'Nguyễn Đức Quốc Triệu',0.5,365385,25.5,4),(15,8,'Bùi Văn Tấn',6,2723077,20,1),(16,8,'Nguyễn Đình Duyệt',3,5769231,23,2),(17,8,'abc',1,192308,25,5);
 /*!40000 ALTER TABLE `salary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -255,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-30 19:54:59
+-- Dump completed on 2019-08-06 17:16:37

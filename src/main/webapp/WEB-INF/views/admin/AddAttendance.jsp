@@ -61,21 +61,24 @@
                         <label>Ngày</label>
                         <div class="ui calendar" id="rangestart">
                             <input type="text" class="form-control datepicker" id="startDate" value="${startday}"
-                                   name="startday"
+                                   name="date"
                                    placeholder="Ngày">
-                            <label style="color: red;margin-top: 5px;">${errorstartday}</label>
+                            <label style="color: red;margin-top: 5px;">${errorDate}</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Thời gian bắt đầu</label>
                         <div class="fromTime animated slideInRight">
-                            <input type="text" id="fromTimeInput" style="cursor: pointer;" readonly="readonly"/>
+                            <input type="text" id="fromTimeInput" name="timestart" style="cursor: pointer;"
+                                   readonly="readonly"/>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Thời gian kết thúc</label>
                         <div class="toTime animated slideInLeft">
-                            <input type="text" id="toTimeInput" style="cursor: pointer;" readonly="readonly"/>
+                            <input type="text" id="toTimeInput" name="timeend" style="cursor: pointer;"
+                                   readonly="readonly"/>
+                            <label style="color: red;margin-top: 5px;">${startTime}</label>
                         </div>
                     </div>
                     <br/>
@@ -91,20 +94,32 @@
     </div>
 </div>
 <script>
-    let currDate = new Date()
-    let hour = currDate.getHours()
-    let hourTo = hour + 4
-    let minute = currDate.getMinutes()
-    hour = hour < 10 ? '0' + hour : hour
-    hourTo = hourTo < 10 ? '0' + hourTo : hourTo
-    minute = minute < 10 ? '0' + minute : minute
-    $('#fromTimeInput').val(hour + ':' + minute);
-    $('#toTimeInput').val(hourTo + ':' + minute);
+    let currDate = new Date();
+    let hour = currDate.getHours();
+    let hourto = hour + 4;
+    let minute = currDate.getMinutes();
+    let second = currDate.getSeconds();
+    hour = hour < 10 ? '0' + hour : hour;
+    // hourto = hourto < 10 ? '0' + hourto : hourto;
+    minute = minute < 10 ? '0' + minute : minute;
+    // hourto = hourto > 24 ? '0' + 1 : minute;
+    second = second < 10 ? '0' + second : second;
+    $('#fromTimeInput').val(hour + ':' + minute + ':' + second);
+    $('#toTimeInput').val(hour + ':' + minute + ':' + second);
     $('#fromTimeInput, #toTimeInput').bootstrapMaterialDatePicker({
         date: false,
-        format: 'HH:mm',
-    });
+        format: 'HH:mm:ss',
+    })
 </script>
+<%--<script>--%>
+<%--    $('#fromTimeInput').on('change', function () {--%>
+<%--        let fromTimeArr = $(this).val().split(':')--%>
+<%--        let toHour = parseInt(fromTimeArr[0]) + 4--%>
+<%--        let toTimeStr = (toHour < 10 ? '0' + toHour : toHour) + ':' + fromTimeArr[1]--%>
+<%--        $('#toTimeInput').val(toTimeStr)--%>
+<%--        that.getPriceDetail()--%>
+<%--    })--%>
+<%--</script>--%>
 <script>
     if (${idEmployee}) {
         $('#SelectEmployee').val('${idEmployee}').trigger('change');
@@ -125,6 +140,9 @@
     var month = toDate.getMonth() + 1;
     var endMonth = month + 1;
     var year = toDate.getFullYear();
+    var hh = toDate.getHours();
+    var mm = toDate.getMinutes();
+    var ss = toDate.getSeconds();
     $('#startDate').val(month + "/" + date + "/" + year);
     $('#rangestart').calendar({
         type: 'date',
@@ -138,6 +156,9 @@
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
                 var year = date.getFullYear();
+                var hh = date.getHours();
+                var mm = date.getMinutes();
+                var ss = date.getSeconds();
                 return (day < 10 ? '0' + day : day) + '/' + (month < 10 ? '0' + month : month) + '/' + year;
             }
         },

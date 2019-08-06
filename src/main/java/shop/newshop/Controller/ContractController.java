@@ -82,6 +82,7 @@ public class ContractController {
 
 		if (countAll == 0) {
 			totalPage = 1;
+			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -99,7 +100,7 @@ public class ContractController {
 			model.put("lastContract", 5);
 		}
 		model.put("nameSearch", nameSearch);
-		
+
 		return "admin/Contract";
 	}
 
@@ -119,6 +120,7 @@ public class ContractController {
 				totalPage = countAll / 5 + 1;
 			}
 		}
+
 		model.put("totalPage", totalPage);
 		model.put("totalContract", countAll);
 		model.put("firstContract", 1);
@@ -128,7 +130,7 @@ public class ContractController {
 			model.put("lastContract", 5);
 		}
 		model.put("nameSearch", null);
-		
+
 		return "admin/Contract";
 	}
 
@@ -158,7 +160,7 @@ public class ContractController {
 		} else {
 			model.put("lastContract", countAll);
 		}
-		
+
 		model.put("nameSearch", name);
 		return "admin/Contract";
 	}
@@ -168,7 +170,7 @@ public class ContractController {
 		List<Employee> employees = new ArrayList<>();
 		employees = employeeService.getAlls();
 		model.addAttribute("employee", employees);
-		
+
 		return "admin/Addcontract";
 	}
 
@@ -187,7 +189,6 @@ public class ContractController {
 				employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("employee", employees);
-				
 				return "admin/Addcontract";
 			}
 			if (contractgetByIdEmployee != null) {
@@ -198,7 +199,7 @@ public class ContractController {
 					employees = employeeService.getAlls();
 					model.addAttribute("idEmployee", idEmployee);
 					model.addAttribute("employee", employees);
-					
+
 					return "admin/Addcontract";
 				}
 			}
@@ -207,7 +208,7 @@ public class ContractController {
 				employees = employeeService.getAlls();
 				model.addAttribute("employee", employees);
 				model.addAttribute("salary", salary);
-				
+
 				return "admin/Addcontract";
 			}
 			if (Strings.isEmpty(expirationday)) {
@@ -215,7 +216,7 @@ public class ContractController {
 				employees = employeeService.getAlls();
 				model.addAttribute("salary", salary);
 				model.addAttribute("employee", employees);
-				
+
 				return "admin/Addcontract";
 			}
 			contract.setExpirationday(sdf.parse(expirationday));
@@ -234,7 +235,7 @@ public class ContractController {
 	public String updateContract(ModelMap model, @PathVariable("id") int id) {
 		Contract contract = contractService.getContractById(id);
 		model.addAttribute("contract", contract);
-		
+
 		return "admin/Editcontract";
 	}
 
@@ -252,7 +253,6 @@ public class ContractController {
 			model.put("contract", contract);
 			contract.setSalary(Float.parseFloat(""));
 			model.put("errorSalary", "Lương không được để trống");
-			
 			return "admin/Editcontract";
 		}
 		// if(contractgetByIdEmployee != null) {
@@ -271,7 +271,7 @@ public class ContractController {
 			contract.setStartday(null);
 			model.put("contract", contract);
 			model.put("errorstartDay", "Ngày bắt đầu không được để trống");
-			
+
 			return "admin/Editcontract";
 		}
 		if (Strings.isEmpty(expirationday)) {
@@ -279,7 +279,6 @@ public class ContractController {
 			contract.setExpirationday(null);
 			model.put("contract", contract);
 			model.put("errorexpirationday", "Ngày kết thúc không được để trống");
-			
 			return "admin/Editcontract";
 		}
 		contract.setId(id);

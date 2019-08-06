@@ -29,6 +29,7 @@ public class DepartmentController {
 
 		if (countAll == 0) {
 			totalPage = 1;
+			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -47,7 +48,7 @@ public class DepartmentController {
 		}
 		model.put("nameSearch", name);
 
-		return "admin/Department";
+		return  "admin/Department";
 	}
 
 	@GetMapping(value = "admin/listDepartment")
@@ -69,7 +70,7 @@ public class DepartmentController {
 		model.put("totalPage", totalPage);
 		model.put("totalDepart", countAll);
 		model.put("firstDepart", 1);
-		if (countAll < 5) {
+		if(countAll<5) {
 			model.put("lastDepart", countAll);
 		} else {
 			model.put("lastDepart", 5);
