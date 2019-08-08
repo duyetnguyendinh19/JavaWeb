@@ -96,10 +96,9 @@ public class AttendanceController {
 	@GetMapping(value = "listAttendance")
 	public String getAttendance(ModelMap model) {
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		model.put("date", sdf.format(date));
+		
 		SimpleDateFormat sdff = new SimpleDateFormat("yyyy/MM/dd");
-		List<Attendance> attendanceList = attendanceService.getLimit(0, 10, null, sdff.format(date));
+		List<Attendance> attendanceList = attendanceService.getLimit(0, 10, null, null);
 
 		model.addAttribute("listAttendance", attendanceList);
 		List<Employee> employeeList = employeeService.getAlls();
@@ -117,7 +116,7 @@ public class AttendanceController {
 			listToTal.add(totalAttendance);
 		}
 		model.addAttribute("listTotal", listToTal);
-		long countAll = attendanceService.countAll(null, sdff.format(date));
+		long countAll = attendanceService.countAll(null, null);
 		long totalPage = 0;
 
 		if (countAll == 0) {
