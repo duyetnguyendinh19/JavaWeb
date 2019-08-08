@@ -39,7 +39,7 @@
 		<div class="col-xs-14 col-sm-12 col-md-11">
 			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h2 class="panel-title">Thêm kỷ luật</h2>
+					<h2 class="panel-title">Thêm khen thưởng</h2>
 				</div>
 				<form action="${pageContext.request.contextPath}/admin/addBonus" method="POST">
 					<div class="col-md-4 mb-6" style="margin-top: 15px;">
