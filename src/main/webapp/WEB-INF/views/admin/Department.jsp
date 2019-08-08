@@ -154,7 +154,7 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-                                    <c:if test="${not empty listDepart}">
+                                    <c:if test="${empty listDepart}">
                                         <tr>
                                             <td colspan="3">Danh sách rỗng</td>
                                         </tr>
