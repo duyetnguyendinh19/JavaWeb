@@ -200,7 +200,7 @@ public class EmployeeController {
 			} else {
 				if (!employee.getName().matches(regexname)) {
 					model.put("error", "Tên nhân viên không được chứa ký tự đặc biệt");
-				} else if (employee.getBirthday().compareTo(new Date()) >= 0) {
+				} else if (employee.getBirthday().compareTo(new Date()) <= 0) {
 					model.put("error", "Ngày sinh phải nhỏ hơn ngày hiện tại");
 				} else if (employee.getPhone().length() != 10) {
 					model.put("error", "Số điện thoại phải có 10 số");
