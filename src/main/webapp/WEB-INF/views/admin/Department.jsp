@@ -196,7 +196,7 @@
                                         <a id="deleteComfirm"
                                            data-hrefbefore="${pageContext.request.contextPath}/admin/deleteDepart/">
                                             <button class="ui black deny button"
-                                                    style="background: green;">Ok
+                                                    style="background: green;">Đồng ý
                                             </button>
                                         </a>
                                         <button class="ui black deny button" onclick="deleteTooltip()">
