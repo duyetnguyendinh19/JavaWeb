@@ -49,6 +49,8 @@ input[type=text] {
 						</div>
 
 						<form:input type="hidden" path="id" />
+						
+						<form:input type="hidden" path="avatar" />
 
 						<div class="col-md-5 mb-3" style="margin-top: 5px">
 							<label for="validationDefault02">Tên nhân viên <font
