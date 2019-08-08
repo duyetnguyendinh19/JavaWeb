@@ -201,8 +201,8 @@ form button:hover {
 
 									</div>
 									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
-										<a style="float: right;"> <label>View</label> <label>1</label>
-											<label>-</label> <label>5</label> <label>of</label> <label>12</label>
+										<a style="float: right;"> <label>View</label> <label>${firstEmp}</label>
+											<label>-</label> <label>${lastEmp}</label> <label>of</label> <label>${totalEmp}</label>
 										</a>
 									</div>
 								</div>
