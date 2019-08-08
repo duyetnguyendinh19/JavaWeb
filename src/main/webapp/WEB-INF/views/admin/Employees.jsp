@@ -181,9 +181,9 @@ form button:hover {
 										<a id="deleteComfirm"
 											data-hrefbefore="${pageContext.request.contextPath}/admin/deleteEmployee/">
 											<button class="ui black deny button"
-												style="background: green;">Ok</button>
+												style="background: green;width:90px;height:40px">Đồng ý</button>
 										</a>
-										<button class="ui black deny button" onclick="deleteTooltip()">Hủy
+										<button class="ui black deny button" style="width:90px;height:40px" onclick="deleteTooltip()">Hủy
 											bỏ</button>
 									</div>
 								</div>
