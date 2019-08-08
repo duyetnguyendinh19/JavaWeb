@@ -7,20 +7,24 @@ import java.util.List;
 
 public interface AttendanceService {
 
-    public List<Attendance> getAll();
+	public List<Attendance> getAll();
 
-    public boolean insert(Attendance attendance);
+	public List<Attendance> getLimit(int num, int row, String name, String date);
 
-    public boolean update(Attendance attendance);
+	public long countAll(String name, String date);
 
-    public boolean delete(int idAttendance);
+	public boolean insert(Attendance attendance);
 
-    public Attendance getBonusById(int idAttendance);
+	public boolean update(Attendance attendance);
 
-    public List<Attendance> searchNameEmployee(String nameEmployee);
+	public boolean delete(int idAttendance);
 
-    public long countAttenByEmployeId(int id, int month);
+	public Attendance getBonusById(int idAttendance);
 
-    public List<Attendance> getAttenDanceByDateAndId(int id, Date date);
+	public List<Attendance> searchNameEmployee(String nameEmployee);
+
+	public long countAttenByEmployeId(int id, int month);
+
+	public List<Attendance> getAttenDanceByDateAndId(int id, Date date);
 
 }
