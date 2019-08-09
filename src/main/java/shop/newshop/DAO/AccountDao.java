@@ -10,6 +10,8 @@ public interface AccountDao {
     public List<Account> getAlls();
     
     public List<Account> getLimit(int num,int row,String name);
+    
+    public Account login(String username, String password);
 
     public boolean insert(Account account);
 
