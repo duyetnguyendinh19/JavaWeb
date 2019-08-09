@@ -162,7 +162,7 @@
 						</span>
 					</a></li>
 
-					<li class="light-red"><a href="">Đăng xuất</a></li>
+					<li class="light-red"><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></li>
 				</ul>
 			</div>
 		</div>

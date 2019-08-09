@@ -9,13 +9,16 @@ import shop.newshop.Interceptor.ServiceInterceptor;
 
 @SuppressWarnings("deprecation")
 @Component
-public class InterceptorAppConfig extends WebMvcConfigurerAdapter{
+public class InterceptorAppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	ServiceInterceptor ServiceInterceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(ServiceInterceptor);
+		registry.addInterceptor(ServiceInterceptor).excludePathPatterns("/").excludePathPatterns("/static/**")
+				.excludePathPatterns("/templates/**").excludePathPatterns("/images/**").excludePathPatterns("/css/**")
+				.excludePathPatterns("/js/**").excludePathPatterns("/font/**").excludePathPatterns("/login");
+
 	}
 }

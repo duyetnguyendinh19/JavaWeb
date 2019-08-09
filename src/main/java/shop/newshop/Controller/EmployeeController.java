@@ -271,6 +271,11 @@ public class EmployeeController {
 		}
 		return "redirect:/admin/listEmployee";
 	}
+	
+	@GetMapping(value = "employee/inforEmployee")
+	public String inforEmployee() {
+		return "employee/inforEmployee";
+	}
 
 	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -332,5 +337,7 @@ public class EmployeeController {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
 
 }
