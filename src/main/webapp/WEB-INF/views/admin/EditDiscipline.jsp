@@ -63,7 +63,7 @@
                     <div class="col-md-4 mb-3" style="margin-top: 15px;">
                         <label>Ngày kỷ luật</label>
                         <div class="ui calendar" id="rangestart">
-                            <input type="text" class="form-control datepicker" id="startDate"
+                            <input type="text" class="form-control datepicker" id="startDate" readonly
                                    name="date" value="<fmt:formatDate pattern="dd-MM-yyyy"
                                                                 value="${discipline.date}"/>"
                                    placeholder="Ngày kỷ luật">
@@ -71,10 +71,10 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
-                        <label>Mô tả kỷ luật</label>
+                        <label style="width: 100%;">Mô tả kỷ luật</label>
                         <textarea rows="6" name="descent" placeholder="Mô tả kỷ luật"
                                   style="width: 100%;border-radius: 5px!important;padding: 10px;float:left;">${discipline.descent}</textarea>
-                        <label style="color: red;margin-top: 5px;"></label>
+                        <label style="color: red;margin-top: 5px;">${errorDescent}</label>
                     </div>
                     <div class="col-md-6 mb-3" style="margin-top: 15px;">
                         <label>Lý do kỷ luật</label>
@@ -83,7 +83,7 @@
                         <label style="color: red;margin-top: 5px;">${errorReason}</label>
                     </div>
                     <br/>
-                    <div style="width: 100%;text-align: center;margin-top: 14%;"><br>
+                    <div style="width: 100%;text-align: center;margin-top: 23%;"><br>
                         <button type="submit" class="btn btn-success" style="float:left;margin-left: 41%;">Lưu</button>
                     </div>
                 </form>

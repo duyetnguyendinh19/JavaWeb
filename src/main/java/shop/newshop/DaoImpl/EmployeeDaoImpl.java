@@ -136,4 +136,22 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return result;
 	}
 
+	@Override
+	public boolean checkEmail(String email) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		try {
+			String Hql = "FROM Employee WHERE email=:email";
+			Query query = session.createQuery(Hql);
+			query.setParameter("email", email);
+			if(query.list()!=null && !query.list().isEmpty()) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return false;
+	}
+
 }

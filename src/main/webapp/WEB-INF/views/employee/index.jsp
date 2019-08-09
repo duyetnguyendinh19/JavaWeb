@@ -74,7 +74,8 @@ input[type=text], input[type=password], input[type=email] {
 						<div class="space-6"></div>
 
 						<div class="position-relative">
-							<div id="login" class="login-box visible widget-box no-border">
+							<div id="login" class="login-box visible widget-box no-border"
+								style="display: ${not empty error ? 'none' : 'block'}">
 								<div class="widget-body">
 									<div class="widget-main">
 										<h4 class="header blue lighter bigger">
@@ -83,7 +84,8 @@ input[type=text], input[type=password], input[type=email] {
 										</h4>
 
 										<div class="space-6"></div>
-										<h6 style="color: red">${error}</h6>
+										<h6 style="color: red">${errorLogin}</h6>
+										<h6 style="color: green">${success}</h6>
 
 										<form action="${pageContext.request.contextPath}/login"
 											method="POST">
@@ -139,7 +141,7 @@ input[type=text], input[type=password], input[type=email] {
 							<!-- /.login-box -->
 
 							<div id="forgot" class="forgot-box widget-box no-border"
-								style="display: none;">
+								style="display: ${not empty error ? 'block' : 'none'};">
 								<div class="widget-body">
 									<div class="widget-main">
 										<h4 class="header red lighter bigger">
@@ -147,20 +149,22 @@ input[type=text], input[type=password], input[type=email] {
 										</h4>
 
 										<div class="space-6"></div>
+										<p style="color: red">${error}</p>
 										<p>Vui lòng nhập email để nhận lại mật khẩu</p>
 
-										<form>
+										<form action="${pageContext.request.contextPath}/updatePass"
+											method="POST">
 											<fieldset>
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="email" class="form-control" placeholder="Email" />
-														<i class="ace-icon fa fa-envelope"
+														name="email" type="email" class="form-control"
+														placeholder="Email" /> <i class="ace-icon fa fa-envelope"
 														style="width: 25px; margin-top: 10px; margin-right: 5px;"></i>
 												</span>
 												</label>
 
 												<div class="clearfix">
-													<button type="button"
+													<button type="submit"
 														class="width-35 pull-right btn btn-sm btn-danger">
 														<i class="ace-icon fa fa-lightbulb-o"></i> <span
 															class="bigger-110">Gửi!</span>
@@ -172,10 +176,11 @@ input[type=text], input[type=password], input[type=email] {
 									<!-- /.widget-main -->
 
 									<div class="toolbar center">
-										<span id="showLogin" class="back-to-login-link"
-											style="cursor: pointer"> Quay lại đăng nhập <i
-											class="ace-icon fa fa-arrow-right"></i>
+										<a href="${pageContext.request.contextPath}/backLogin"> <span
+											class="back-to-login-link" style="cursor: pointer">
+												Quay lại đăng nhập <i class="ace-icon fa fa-arrow-right"></i>
 										</span>
+										</a>
 									</div>
 								</div>
 								<!-- /.widget-body -->

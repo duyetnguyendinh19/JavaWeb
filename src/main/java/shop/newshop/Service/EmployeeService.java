@@ -18,5 +18,7 @@ public interface EmployeeService {
 
 	public Employee getEmployeeById(int idEmployee);
 	
+	public boolean checkEmail(String email);
+	
 	public long countAll(String name);
 }

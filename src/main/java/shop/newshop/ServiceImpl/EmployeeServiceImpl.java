@@ -57,4 +57,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empDao.countAll(name);
 	}
 
+	@Override
+	public boolean checkEmail(String email) {
+		return empDao.checkEmail(email);
+	}
+
 }

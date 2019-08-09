@@ -146,7 +146,11 @@ form button:hover {
 											<input class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
 												type="text" class="datepicker"
 												style="border-radius: 5px !important; height: 35px !important;"
-												id="startDate" name="date" placeholder="Ngày" value=""/>
+												id="startDate" name="date" placeholder="Ngày"
+												   value="<fmt:formatDate pattern="MM/dd/yyyy"
+                                                                value="${date}"
+                                                                />"
+											/>
 										</div>
 										<button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3"
 											type="submit" style="font-family: Tahoma; float: left;">
@@ -286,7 +290,7 @@ form button:hover {
 	var month = toDate.getMonth() + 1;
 	var endMonth = month + 1;
 	var year = toDate.getFullYear();
-	$('#startDate').val(month + "/" + date + "/" + year );
+	// $('#startDate').val(month + "/" + date + "/" + year );
 
 	$('#rangestart').calendar({
 				type : 'date',

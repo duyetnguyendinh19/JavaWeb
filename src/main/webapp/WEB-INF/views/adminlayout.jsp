@@ -157,8 +157,8 @@
 
 					<li class="light-blue"><a data-toggle="dropdown"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-								src="templates/avatars/user.jpg" /> <span class="user-info">
-								<small>Welcome,</small>
+							src="${avatar}" /> <span class="user-info">
+								<small>Chào,</small> ${account.username}
 						</span>
 					</a></li>
 

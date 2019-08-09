@@ -18,7 +18,9 @@ public class InterceptorAppConfig extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(ServiceInterceptor).excludePathPatterns("/").excludePathPatterns("/static/**")
 				.excludePathPatterns("/templates/**").excludePathPatterns("/images/**").excludePathPatterns("/css/**")
-				.excludePathPatterns("/js/**").excludePathPatterns("/font/**").excludePathPatterns("/login");
+				.excludePathPatterns("/js/**").excludePathPatterns("/font/**").excludePathPatterns("/login")
+				.excludePathPatterns("/updatePass").excludePathPatterns("/backLogin");
 
 	}
+
 }

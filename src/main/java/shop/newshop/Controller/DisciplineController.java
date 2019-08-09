@@ -149,6 +149,20 @@ public class DisciplineController {
 				model.addAttribute("errorReason", "Lý do kỷ luật không được để trống");
 				return "admin/AddDiscipline";
 			}
+			if(reason.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorReason", "Lý do kỷ luật không quá 256 kí tự");
+				return "admin/AddDiscipline";
+			}
+			if(descent.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorDescent", "Mô tả kỷ luật không quá 256 kí tự");
+				return "admin/AddDiscipline";
+			}
 			discipline.setDate(sdf.parse(date));
 			discipline.setDescent(descent);
 			discipline.setReason(reason);
@@ -194,6 +208,22 @@ public class DisciplineController {
 				model.addAttribute("discipline", discipline1);
 				model.addAttribute("employee", employees);
 				model.addAttribute("errorReason", "Lý do kỷ luật không được để trống");
+				return "admin/EditDiscipline";
+			}
+			if(reason.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				Discipline discipline1 = disciplineService.getDisciplineById(id);
+				model.addAttribute("discipline", discipline1);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorReason", "Lý do kỷ luật không quá 256 kí tự");
+				return "admin/EditDiscipline";
+			}
+			if(descent.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				Discipline discipline1 = disciplineService.getDisciplineById(id);
+				model.addAttribute("discipline", discipline1);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorDescent", "Mô tả kỷ luật không quá 256 kí tự");
 				return "admin/EditDiscipline";
 			}
 			employee.setId(idEmployee);

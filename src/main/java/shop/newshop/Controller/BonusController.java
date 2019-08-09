@@ -156,6 +156,22 @@ public class BonusController {
 				model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
 				return "admin/AddBonus";
 			}
+			if(reason.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("typeBonus", typeBonus);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorReason", "Lý do khen thưởng không quá 256 kí tự");
+				return "admin/AddBonus";
+			}
+			if(descent.length() >= 256){
+				List<Employee> employees = employeeService.getAlls();
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("typeBonus", typeBonus);
+				model.addAttribute("employee", employees);
+				model.addAttribute("errorDescent", "Mô tả khen thưởng không quá 256 kí tự");
+				return "admin/AddBonus";
+			}
 			bonus.setDate(sdf.parse(date));
 			bonus.setDescent(descent);
 			bonus.setReason(reason);
@@ -207,6 +223,22 @@ public class BonusController {
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("typeBonus", typeBonus);
 				model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
+				return "admin/EditBonus";
+			}
+			if(reason.length() >= 256){
+				bonus = bonusService.getBonusById(id);
+				model.addAttribute("bonus", bonus);
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("typeBonus", typeBonus);
+				model.addAttribute("errorReason", "Lý do khen thưởng không quá 256 kí tự");
+				return "admin/EditBonus";
+			}
+			if(descent.length() >= 256){
+				bonus = bonusService.getBonusById(id);
+				model.addAttribute("bonus", bonus);
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("typeBonus", typeBonus);
+				model.addAttribute("errorDescent", "Mô tả khen thưởng không quá 256 kí tự");
 				return "admin/EditBonus";
 			}
 			bonus.setId(id);

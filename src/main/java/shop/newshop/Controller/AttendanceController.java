@@ -43,14 +43,19 @@ public class AttendanceController {
 
 	@PostMapping(value = "listAttendance")
 	public String getAttendanceSearch(ModelMap model, @RequestParam("name") String name,
-			@RequestParam("date") String dateS) {
+			@RequestParam("date") String dateS) throws ParseException {
 		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		nameSearch = name;
 		dateSearch = dateS;
 		model.put("name", name);
-;
-		model.put("date", dateS);
+		Date date2 = new Date();
+		if(dateS != ""){
+			 date2 = simpleDateFormat.parse(dateS);
+		}else{
+			date2 = null;
+		}
+		model.put("date", date2);
 
 		List<Attendance> attendanceList = attendanceService.getLimit(0, 10, name, dateS);
 		model.addAttribute("listAttendance", attendanceList);
