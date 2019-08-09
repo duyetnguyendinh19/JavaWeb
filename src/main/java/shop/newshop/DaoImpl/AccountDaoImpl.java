@@ -84,7 +84,6 @@ public class AccountDaoImpl implements AccountDao {
 		return account;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account> getLimit(int num, int row, String name) {
@@ -94,16 +93,16 @@ public class AccountDaoImpl implements AccountDao {
 			session.beginTransaction();
 			String sql = "FROM Account Where 1=1";
 			String hqlWhere = " ";
-			if(name!=null && !name.isEmpty()) {
-				hqlWhere += "AND LOWER(username) LIKE '%"+name+"%'";
+			if (name != null && !name.isEmpty()) {
+				hqlWhere += "AND LOWER(username) LIKE '%" + name + "%'";
 			}
-			Query query = session.createQuery(sql+hqlWhere);
+			Query query = session.createQuery(sql + hqlWhere);
 			query.setFirstResult(num);
 			query.setMaxResults(row);
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return list;
@@ -117,17 +116,38 @@ public class AccountDaoImpl implements AccountDao {
 			session.beginTransaction();
 			String hql = "SELECT COUNT(*) FROM Account Where 1=1";
 			String hqlWhere = " ";
-			if(name!=null && !name.isEmpty()) {
-				hqlWhere += " AND LOWER(username) LIKE '%"+name+"%'";
+			if (name != null && !name.isEmpty()) {
+				hqlWhere += " AND LOWER(username) LIKE '%" + name + "%'";
 			}
-			Query query = session.createQuery(hql+hqlWhere);
+			Query query = session.createQuery(hql + hqlWhere);
 			result = (long) query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return result;
+	}
+
+	@Override
+	public Account login(String username, String password) {
+		Account account = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Account WHERE username=:user AND password=:pass";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("user", username);
+			query.setParameter("pass", password);
+			if (query.list() != null && !query.list().isEmpty()) {
+				account = (Account) query.list().get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return account;
 	}
 
 }
