@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'tan','123456',1),(2,'duyet','123456',1),(3,'tri','123456',0),(4,'trieu','123456',0);
+INSERT INTO `account` VALUES (1,'tanbv123','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413',1),(2,'duyetnd123','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413',1),(3,'trilm123','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413',0),(4,'trieundq123','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413',0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'Nhân sự'),(2,'Kinh doanh'),(3,'Kế toán'),(4,'Dịch vụ'),(7,'babaabaa'),(8,'ávav'),(9,'babasbasas'),(10,'bábasba'),(11,'bdbabad'),(12,'baba');
+INSERT INTO `department` VALUES (1,'Nhân sự'),(2,'Kinh doanh'),(3,'Kế toán'),(4,'Dịch vụ');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Cầu Giấy','1999-02-15 00:00:00','Cao đẳng','Bùi Văn Tấn','0391823121',1,NULL,NULL,'tanbvph05961@fpt.edu.vn',1),(2,'Nam Định','2001-05-15 00:00:00','Đại học','Nguyễn Đình Duyệt','0312356711',2,NULL,NULL,'duyet@gmail.com',2),(3,'Hà Nam','1994-10-20 00:00:00','Trung cấp','Lương Minh Trí','0512148152',3,NULL,NULL,'tri@gmail.com',3),(4,'Ninh Bình','1993-12-25 00:00:00','Cao học','Nguyễn Đức Quốc Triệu','0312581232',4,NULL,NULL,'trieu@gmail.com',4);
+INSERT INTO `employee` VALUES (1,'Cầu Giấy','1999-02-15 00:00:00','Nhân Viên','Bùi Văn Tấn','0391823121',1,NULL,NULL,'tanbvph05961@fpt.edu.vn',1),(2,'Nam Định','2001-05-15 00:00:00','Nhân Viên','Nguyễn Đình Duyệt','0312356711',1,NULL,NULL,'duyet@gmail.com',2),(3,'Hà Nam','1994-10-20 00:00:00','Nhân Viên','Lương Minh Trí','0512148152',3,NULL,NULL,'tri@gmail.com',3),(4,'Ninh Bình','1993-12-25 00:00:00','Nhân Viên','Nguyễn Đức Quốc Triệu','0312581232',4,NULL,NULL,'trieu@gmail.com',4);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
