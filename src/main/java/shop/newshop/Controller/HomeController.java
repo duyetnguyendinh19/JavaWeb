@@ -1,6 +1,11 @@
 package shop.newshop.Controller;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,12 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import shop.newshop.DAO.AccountDao;
 import shop.newshop.Entity.Account;
 import shop.newshop.Service.AccountService;
 
@@ -24,13 +25,16 @@ public class HomeController {
 	@Autowired
 	private AccountService accountService;
 
+	private static final String PATH = Paths.get("").toAbsolutePath().toString()
+			+ "\\src\\main\\resources\\static\\images\\";
+
 	@GetMapping(value = "/")
 	public String HomeChomer(HttpSession session) {
-		if(session.getAttribute("account") != null) {
+		if (session.getAttribute("account") != null) {
 			Account account = (Account) session.getAttribute("account");
 			if (account.getRole() == 1) {
 				return "redirect:/admin/listDepartment";
-			}else {
+			} else {
 				return "redirect:/employee/inforEmployee";
 			}
 		}
@@ -39,13 +43,19 @@ public class HomeController {
 
 	@PostMapping(value = "/login")
 	public String login(@RequestParam("username") String user, @RequestParam("password") String pass,
-			HttpSession session,ModelMap modelMap) {
+			HttpSession session, ModelMap modelMap) {
 		Account account = accountService.login(user, pass);
 		if (account != null) {
 			session.setAttribute("account", account);
+
+			if (account.getEmployee().getAvatar() != null && !account.getEmployee().getAvatar().isEmpty()) {
+				File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
+				session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
+			}
+
 			if (account.getRole() == 1) {
 				return "redirect:/admin/listDepartment";
-			}else {
+			} else {
 				return "redirect:/employee/inforEmployee";
 			}
 		}
@@ -53,18 +63,33 @@ public class HomeController {
 		return "employee/index";
 
 	}
-	
+
 	@GetMapping(value = "/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("account");
+		if (session.getAttribute("avatar") != null) {
+			session.removeAttribute("avatar");
+		}
 		return "redirect:/";
 	}
-	
 
-//	@GetMapping(value="index")
-//	public String HomeCustomer(ModelMap map) {
-//		map.addAttribute("title", "Home");
-//		return "employee/index";
-//	}
+	// ConvertToBase64
+	private static String encodeFileToBase64Binary(File file) {
+		String encodedfile = null;
+		try {
+			FileInputStream fileInputStreamReader = new FileInputStream(file);
+			byte[] bytes = new byte[(int) file.length()];
+			fileInputStreamReader.read(bytes);
+			encodedfile = Base64.getEncoder().encodeToString(bytes);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return encodedfile;
+	}
 
 }
