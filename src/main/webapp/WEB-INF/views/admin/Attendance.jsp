@@ -146,8 +146,7 @@ form button:hover {
 											<input class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
 												type="text" class="datepicker"
 												style="border-radius: 5px !important; height: 35px !important;"
-												id="startDate" name="date" placeholder="Ngày"
-												value="${date}">
+												id="startDate" name="date" placeholder="Ngày" value="${date}"/>
 										</div>
 										<button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3"
 											type="submit" style="font-family: Tahoma; float: left;">
@@ -188,7 +187,7 @@ form button:hover {
 										</c:forEach>
 										<c:if test="${not empty searchFail}">
 											<tr>
-												<td colspan="3">Danh sách rỗng</td>
+												<td colspan="5">Danh sách rỗng</td>
 											</tr>
 										</c:if>
 									</tbody>
@@ -251,11 +250,6 @@ form button:hover {
 																maxIntegerDigits="10" value="${listTotal.totalSalary}" /></td>
 													</tr>
 												</c:forEach>
-												<c:if test="${not empty searchFail}">
-													<tr>
-														<td colspan="3">Danh sách rỗng</td>
-													</tr>
-												</c:if>
 											</tbody>
 										</table>
 									</div>
@@ -284,6 +278,7 @@ form button:hover {
 		$('.ui.modal1').modal('show');
 	}
 </script>
+
 <script>
 	var toDate = new Date();
 	var date = toDate.getDate();
@@ -291,13 +286,14 @@ form button:hover {
 	var month = toDate.getMonth() + 1;
 	var endMonth = month + 1;
 	var year = toDate.getFullYear();
-
-	/* $('#startDate').val(month + "/" + date + "/" + year); */
-	// $('#endDate').val(endMonth + "/" + endDate + "/" + year);
-	$('#rangestart').calendar(
-			{
+    console.log(${date})
+	// if(){
+        $('#startDate').val('monment("month + "/" + date + "/" + year","MM/dd/yyyy"));
+    // }else{
+    <%--    $('#startDate').val('moment("${date}", "MM/dd/yyyy")');--%>
+    // }
+	$('#rangestart').calendar({
 				type : 'date',
-				// endCalendar: $('#rangeend'),
 				text : {
 					days : [ 'CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7' ],
 					months : [ 'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4',
