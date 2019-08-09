@@ -6,9 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="update date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/AttendanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/TotalAttendanceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/TotalAttendanceDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Attendance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Attendance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +177,8 @@
       <workItem from="1565141375315" duration="1345000" />
       <workItem from="1565170555797" duration="2193000" />
       <workItem from="1565267146508" duration="1945000" />
-      <workItem from="1565314223135" duration="3805000" />
+      <workItem from="1565314223135" duration="10237000" />
+      <workItem from="1565332333494" duration="5430000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -272,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565088510004</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update date">
+      <created>1565318098000</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1565318098000</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +317,8 @@
     <MESSAGE value="update responesive" />
     <MESSAGE value="load" />
     <MESSAGE value="update code chờ revert part 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="update code chờ revert part 2" />
+    <MESSAGE value="update date" />
+    <option name="LAST_COMMIT_MESSAGE" value="update date" />
   </component>
   <component name="masterDetails">
     <states>

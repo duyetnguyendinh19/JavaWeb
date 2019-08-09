@@ -157,8 +157,8 @@
 
 					<li class="light-blue"><a data-toggle="dropdown"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="templates/avatars/user.jpg" /> <span class="user-info">
-								<small>Welcome,</small> Jason
+								src="templates/avatars/user.jpg" /> <span class="user-info">
+								<small>Welcome,</small>
 						</span>
 					</a></li>
 

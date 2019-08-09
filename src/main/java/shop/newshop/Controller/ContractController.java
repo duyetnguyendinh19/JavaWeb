@@ -191,6 +191,14 @@ public class ContractController {
 				model.addAttribute("employee", employees);
 				return "admin/Addcontract";
 			}
+			if (Strings.isEmpty(startday)) {
+				System.out.println("abcbc");
+				model.put("errorstartday", "Ngày bắt đầu không được để trống");
+				employees = employeeService.getAlls();
+				model.addAttribute("employee", employees);
+				model.addAttribute("salary", salary);
+				return "admin/Addcontract";
+			}
 			if (contractgetByIdEmployee != null) {
 				System.out.println(sdf.parse(startday));
 				System.out.println(contractgetByIdEmployee.getExpirationday());
@@ -199,24 +207,14 @@ public class ContractController {
 					employees = employeeService.getAlls();
 					model.addAttribute("idEmployee", idEmployee);
 					model.addAttribute("employee", employees);
-
 					return "admin/Addcontract";
 				}
-			}
-			if (Strings.isEmpty(startday)) {
-				model.put("errorstartday", "Ngày bắt đầu không được để trống");
-				employees = employeeService.getAlls();
-				model.addAttribute("employee", employees);
-				model.addAttribute("salary", salary);
-
-				return "admin/Addcontract";
 			}
 			if (Strings.isEmpty(expirationday)) {
 				model.put("errorexpirationday", "Ngày kết thúc không được để trống");
 				employees = employeeService.getAlls();
 				model.addAttribute("salary", salary);
 				model.addAttribute("employee", employees);
-
 				return "admin/Addcontract";
 			}
 			contract.setExpirationday(sdf.parse(expirationday));

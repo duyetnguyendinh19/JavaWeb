@@ -60,8 +60,8 @@ input[type=email], input[type=password], input[type=search], input[type=text]
 							<div class="ui calendar" id="rangestart">
 								<input type="text" class="form-control datepicker"
 									id="startDate" value="${startday}" name="startday"
-									placeholder="Ngày bắt đầu"> <label
-									style="color: red; margin-top: 5px;">${errorstartday}</label>
+									placeholder="Ngày bắt đầu">
+								<label style="color: red; margin-top: 5px;">${errorstartday}</label>
 							</div>
 						</div>
 						<div class="col-md-6 mb-3" style="margin-top: 15px;">

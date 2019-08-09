@@ -27,8 +27,8 @@ public class TotalAttendanceDaoImpl implements TotalAttendanceDao {
                     "\tfrom (   \n" +
                     "        select atten.employee_id as id,   \n" +
                     "\t\tcase when DAYOFWEEK(atten.date) = '1' then 2\n" +
-                    "        when atten.starttime < Time('12:00:00') and      \n" +
-                    "\t\tatten.endtime > Time('12:00:00') then 1     \n" +
+                    "        when atten.starttime < Time('08:30:00') and      \n" +
+                    "\t\tatten.endtime > Time('17:00:00') then 1     \n" +
                     "\t\twhen atten.starttime < Time('12:00:00') and      \n" +
                     "\t\tatten.endtime < Time('12:00:00') then 0.5     \n" +
                     "\t\twhen atten.starttime > Time('12:00:00') and     \n" +

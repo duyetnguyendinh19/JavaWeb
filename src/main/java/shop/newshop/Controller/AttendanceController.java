@@ -45,10 +45,11 @@ public class AttendanceController {
 	public String getAttendanceSearch(ModelMap model, @RequestParam("name") String name,
 			@RequestParam("date") String dateS) {
 		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY");
 		nameSearch = name;
 		dateSearch = dateS;
 		model.put("name", name);
-
+;
 		model.put("date", dateS);
 
 		List<Attendance> attendanceList = attendanceService.getLimit(0, 10, name, dateS);
