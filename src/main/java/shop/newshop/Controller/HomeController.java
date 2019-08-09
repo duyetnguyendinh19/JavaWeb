@@ -7,9 +7,14 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +23,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.newshop.Entity.Account;
 import shop.newshop.Service.AccountService;
+import shop.newshop.Service.EmployeeService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
+	private JavaMailSender MailSender;
+
+	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+	private EmployeeService employeeService;
 
 	private static final String PATH = Paths.get("").toAbsolutePath().toString()
 			+ "\\src\\main\\resources\\static\\images\\";
@@ -59,7 +71,7 @@ public class HomeController {
 				return "redirect:/employee/inforEmployee";
 			}
 		}
-		modelMap.put("error", "Sai tài khoản hoặc mật khẩu");
+		modelMap.put("errorLogin", "Sai tài khoản hoặc mật khẩu");
 		return "employee/index";
 
 	}
@@ -70,6 +82,39 @@ public class HomeController {
 		if (session.getAttribute("avatar") != null) {
 			session.removeAttribute("avatar");
 		}
+		return "redirect:/";
+	}
+
+	@PostMapping(value = "/updatePass")
+	public String forgotPass(ModelMap model, @RequestParam("email") String email) throws MessagingException {
+		boolean checkEmail = employeeService.checkEmail(email);
+		if (checkEmail == true) {
+			model.put("success", "Mật khẩu mới đã được gửi đến Email");
+			MimeMessage message = MailSender.createMimeMessage();
+			boolean mutipart = true;
+			MimeMessageHelper helper = new MimeMessageHelper(message, mutipart, "utf-8");
+
+			String htmlMsg = "<h2>Tài khoản đã được tạo</h2> <br/> <table style='width:100% ; border-collapse: collapse;border: 1px solid black;'>"
+					+ " <tr style=' border-collapse: collapse;border: 1px solid black;'>"
+					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>Mật khẩu mới</th></tr>"
+					+ "<tr style=' border-collapse: collapse;border: 1px solid black;'>"
+					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>" + randomAlphaNumeric(10)
+					+ "</th>" + "</tr>" + "</table>";
+
+			message.setContent(htmlMsg, "text/html; charset=UTF-8");
+
+			helper.setTo(email);
+			helper.setSubject("Thông tin mật khẩu mới");
+
+			MailSender.send(message);
+			return "redirect:/";
+		}
+		model.put("error", "Không tìm thấy Email ! Vui lòng kiểm tra lại");
+		return "employee/index";
+	}
+
+	@GetMapping(value = "/backLogin")
+	public String backLogin() {
 		return "redirect:/";
 	}
 
@@ -90,6 +135,17 @@ public class HomeController {
 		}
 
 		return encodedfile;
+	}
+
+	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+	public static String randomAlphaNumeric(int count) {
+		StringBuilder builder = new StringBuilder();
+		while (count-- != 0) {
+			int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+		}
+		return builder.toString();
 	}
 
 }
