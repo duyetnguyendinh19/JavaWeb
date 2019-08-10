@@ -62,4 +62,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empDao.checkEmail(email);
 	}
 
+	@Override
+	public long check(String email, String phone, String username, String card, int id) {
+		return empDao.check(email, phone, username, card, id);
+	}
+
 }

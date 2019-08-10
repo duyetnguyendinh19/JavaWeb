@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Department;
 import shop.newshop.Entity.Employee;
+import shop.newshop.Service.AccountService;
 import shop.newshop.Service.DepartmentService;
 import shop.newshop.Service.EmployeeService;
 
@@ -38,10 +40,14 @@ public class EmployeeController {
 	@Autowired
 	DepartmentService departService;
 
+	@Autowired
+	AccountService accountService;
+
 	private String regexphone = "^0[0-9]+$";
 	private String regexname = "^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
 	private String regexemail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-	private static final String PATH = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\static\\images\\";
+	private static final String PATH = Paths.get("").toAbsolutePath().toString()
+			+ "\\src\\main\\resources\\static\\images\\";
 	private String name;
 	private String oldImg = "";
 	private Account account;
@@ -56,7 +62,7 @@ public class EmployeeController {
 
 		if (countAll == 0) {
 			totalPage = 1;
-			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
+			model.addAttribute("searchFail", "Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -141,7 +147,6 @@ public class EmployeeController {
 	@GetMapping(value = "admin/addEmployee")
 	public String addEmployee(ModelMap model) {
 		Employee employee = new Employee();
-		employee.setBirthday(new Date());
 		model.put("employee", employee);
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
@@ -153,7 +158,7 @@ public class EmployeeController {
 	public String editEmployee(ModelMap model, @PathVariable("id") int idEmployee) {
 		Employee employee = empService.getEmployeeById(idEmployee);
 		model.put("employee", employee);
-		if (employee.getAvatar() != null) {
+		if (employee.getAvatar() != null && !employee.getAvatar().isEmpty()) {
 			File file = new File(PATH + employee.getAvatar());
 			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)));
 			oldImg = ("data:image/jpeg;base64," + encodeFileToBase64Binary(file));
@@ -162,6 +167,11 @@ public class EmployeeController {
 		model.put("username", employee.getAccount().getUsername());
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
+
+		SimpleDateFormat sdfFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+		model.put("birthday", sdfFormat.format(employee.getBirthday()));
+
 		return "admin/EditEmployees";
 	}
 
@@ -172,6 +182,10 @@ public class EmployeeController {
 			File file = new File(PATH + employee.getAvatar());
 			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)));
 		}
+
+		SimpleDateFormat sdfFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+		model.put("birthday", sdfFormat.format(employee.getBirthday()));
 		model.put("employee", employee);
 
 		return "admin/Detailemployees";
@@ -180,12 +194,12 @@ public class EmployeeController {
 	@PostMapping(value = "admin/saveEmployee")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model,
 			@RequestParam("avatar1") MultipartFile file, @RequestParam("idDepartment") String idDepartment,
-			@RequestParam("username") String username) {
+			@RequestParam("username") String username, @RequestParam("birthday") String birthday) {
 		try {
 			int idDepart = Integer.parseInt(idDepartment);
 			if (employee.getName().isEmpty()) {
 				model.put("error", "Không được để trống Tên nhân viên");
-			} else if (employee.getBirthday() == null) {
+			} else if (birthday.isEmpty()) {
 				model.put("error", "Không được để trống Ngày sinh");
 			} else if (employee.getPhone().isEmpty()) {
 				model.put("error", "Không được để trống Số điện thoại");
@@ -198,10 +212,14 @@ public class EmployeeController {
 			} else if (username.isEmpty()) {
 				model.put("error", "Không được để trống tài khoản");
 			} else {
+
+				SimpleDateFormat sdfParse = new SimpleDateFormat("dd/MM/yyyy");
+				employee.setBirthday(sdfParse.parse(birthday));
+
 				if (!employee.getName().matches(regexname)) {
 					model.put("error", "Tên nhân viên không được chứa ký tự đặc biệt");
-				} else if (employee.getBirthday().compareTo(new Date()) <= 0) {
-					model.put("error", "Ngày sinh phải nhỏ hơn ngày hiện tại");
+				} else if (getAge(employee.getBirthday()) < 18) {
+					model.put("error", "Nhân viên phải đủ 18 tuổi");
 				} else if (employee.getPhone().length() != 10) {
 					model.put("error", "Số điện thoại phải có 10 số");
 				} else if (!employee.getPhone().matches(regexphone)) {
@@ -212,6 +230,18 @@ public class EmployeeController {
 					model.put("error", "Chứng minh nhân dân phải có 10 số hoặc 12 số");
 				} else if (username.length() < 6 || username.length() > 24) {
 					model.put("error", "Tài khoản từ 6 đến 24 ký tự");
+				} else if (empService.check(employee.getEmail(), employee.getPhone(), username,
+						employee.getIdentitycard(), employee.getId()) == 1) {
+					model.put("error", "Email đã tồn tại");
+				} else if (empService.check(employee.getEmail(), employee.getPhone(), username,
+						employee.getIdentitycard(), employee.getId()) == 2) {
+					model.put("error", "Số điện thoại đã tồn tại");
+				} else if (empService.check(employee.getEmail(), employee.getPhone(), username,
+						employee.getIdentitycard(), employee.getId()) == 3) {
+					model.put("error", "Chứng minh nhân dân đã tồn tại");
+				} else if (empService.check(employee.getEmail(), employee.getPhone(), username,
+						employee.getIdentitycard(), employee.getId()) == 4) {
+					model.put("error", "Tài khoản đã tồn tại");
 				} else {
 					Department department = departService.getDepartById(idDepart);
 					employee.setDepartment(department);
@@ -229,17 +259,17 @@ public class EmployeeController {
 						Account account = new Account();
 						account.setUsername(username);
 						account.setPassword(encryptThisString("123456"));
-						if(department.getName().toLowerCase().contains("nhân sự")) {
+						if (department.getName().toLowerCase().contains("nhân sự")) {
 							account.setRole(1);
 						}
 						empService.insert(employee, account);
 					} else {
-						if(!file.isEmpty()) {
-							if(oldImg != file.getOriginalFilename()) {
+						if (!file.isEmpty()) {
+							if (oldImg != file.getOriginalFilename()) {
 								byte[] bytes = file.getBytes();
 								String filename = (randomAlphaNumeric(10) + file.getOriginalFilename().substring(
-										file.getOriginalFilename().lastIndexOf("."), file.getOriginalFilename().length()))
-												.toLowerCase();
+										file.getOriginalFilename().lastIndexOf("."),
+										file.getOriginalFilename().length())).toLowerCase();
 								employee.setAvatar(filename);
 								BufferedOutputStream stream = new BufferedOutputStream(
 										new FileOutputStream(PATH + filename));
@@ -258,7 +288,24 @@ public class EmployeeController {
 		}
 		model.put("deparment", departService.getAlls());
 		model.put("username", username);
-		return "admin/Addemployees";
+
+		if (employee.getBirthday() != null) {
+			SimpleDateFormat sdfFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+			model.put("birthday", sdfFormat.format(employee.getBirthday()));
+
+		}
+
+		if (employee.getId() == 0) {
+			return "admin/Addemployees";
+		} else {
+			if (employee.getAvatar() != null && !employee.getAvatar().isEmpty()) {
+				File fileEdit = new File(PATH + employee.getAvatar());
+				model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(fileEdit)));
+				oldImg = ("data:image/jpeg;base64," + encodeFileToBase64Binary(fileEdit));
+			}
+			return "admin/EditEmployees";
+		}
 	}
 
 	@GetMapping(value = "admin/deleteEmployee/{id}")
@@ -271,10 +318,27 @@ public class EmployeeController {
 		}
 		return "redirect:/admin/listEmployee";
 	}
-	
+
 	@GetMapping(value = "employee/inforEmployee")
 	public String inforEmployee() {
 		return "employee/inforEmployee";
+	}
+
+	private int getAge(Date date) {
+		int age = 0;
+
+		Date nowDate = new Date();
+
+		age = nowDate.getYear() - date.getYear();
+
+		if (nowDate.getMonth() < date.getMonth()) {
+			age = age - 1;
+		}
+		if (nowDate.getMonth() == date.getMonth() && nowDate.getDate() < date.getDate()) {
+			age = age - 1;
+		}
+
+		return age;
 	}
 
 	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -337,7 +401,5 @@ public class EmployeeController {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
 
 }

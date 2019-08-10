@@ -120,7 +120,7 @@ form button:hover {
 											<th>Mã Nhân Viên</th>
 											<th>Tên Nhân Viên</th>
 											<th>Chức Vụ</th>
-											<th>Bộ Phận</th>
+											<th>Phòng Ban</th>
 											<th width="180px">Chức năng</th>
 
 										</tr>
@@ -152,8 +152,7 @@ form button:hover {
 													href="${pageContext.request.contextPath}/admin/editEmployee/${item.id}"><button
 															class="btn btn-warning" data-toggle="tooltip"
 															title="Sửa nhân viên">
-															<i class="fa fa-pencil-square-o" aria-hidden="true"
-																title="Sửa" data-toggle="tooltip"></i>
+															<i class="fas fa-user-edit" aria-hidden="true"></i>
 														</button></a>
 													<button class="btn btn-danger" id="delete"
 														onclick="loadModal('${item.name}', '${item.id}')"
@@ -181,9 +180,11 @@ form button:hover {
 										<a id="deleteComfirm"
 											data-hrefbefore="${pageContext.request.contextPath}/admin/deleteEmployee/">
 											<button class="ui black deny button"
-												style="background: green;width:90px;height:40px">Đồng ý</button>
+												style="background: green; width: 90px; height: 40px">Đồng
+												ý</button>
 										</a>
-										<button class="ui black deny button" style="width:90px;height:40px" onclick="deleteTooltip()">Hủy
+										<button class="ui black deny button"
+											style="width: 90px; height: 40px" onclick="deleteTooltip()">Hủy
 											bỏ</button>
 									</div>
 								</div>
@@ -202,7 +203,8 @@ form button:hover {
 									</div>
 									<div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-3">
 										<a style="float: right;"> <label>View</label> <label>${firstEmp}</label>
-											<label>-</label> <label>${lastEmp}</label> <label>of</label> <label>${totalEmp}</label>
+											<label>-</label> <label>${lastEmp}</label> <label>of</label>
+											<label>${totalEmp}</label>
 										</a>
 									</div>
 								</div>
