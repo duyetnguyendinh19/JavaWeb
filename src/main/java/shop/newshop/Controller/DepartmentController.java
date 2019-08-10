@@ -29,7 +29,7 @@ public class DepartmentController {
 
 		if (countAll == 0) {
 			totalPage = 1;
-			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
+			model.addAttribute("searchFail", "Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -48,7 +48,7 @@ public class DepartmentController {
 		}
 		model.put("nameSearch", name);
 
-		return  "admin/Department";
+		return "admin/Department";
 	}
 
 	@GetMapping(value = "admin/listDepartment")
@@ -70,7 +70,7 @@ public class DepartmentController {
 		model.put("totalPage", totalPage);
 		model.put("totalDepart", countAll);
 		model.put("firstDepart", 1);
-		if(countAll<5) {
+		if (countAll < 5) {
 			model.put("lastDepart", countAll);
 		} else {
 			model.put("lastDepart", 5);
@@ -113,12 +113,14 @@ public class DepartmentController {
 	@GetMapping(value = "admin/addDepartment")
 	public String addDepartment(ModelMap model) {
 		model.put("department", new Department());
+		model.put("title", "Thêm phòng ban");
 		return "admin/AddDepartment";
 	}
 
 	@GetMapping(value = "admin/editDepartment/{id}")
 	public String editDepartment(ModelMap model, @PathVariable("id") int idDepart) {
 		model.put("department", departService.getDepartById(idDepart));
+		model.put("title", "Sửa phòng ban");
 		return "admin/AddDepartment";
 	}
 
@@ -131,6 +133,7 @@ public class DepartmentController {
 						departService.update(depart);
 						return "redirect:/admin/listDepartment";
 					} else {
+						model.put("title", "Sửa phòng ban");
 						model.put("error", "Tên phòng ban đã tồn tại");
 					}
 				} else {
@@ -138,6 +141,7 @@ public class DepartmentController {
 						departService.insert(depart);
 						return "redirect:/admin/listDepartment";
 					} else {
+						model.put("title", "Thêm phòng ban");
 						model.put("error", "Tên phòng ban đã tồn tại");
 					}
 				}
