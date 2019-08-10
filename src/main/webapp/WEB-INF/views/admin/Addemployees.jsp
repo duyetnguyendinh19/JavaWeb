@@ -29,16 +29,17 @@ input[type=text] {
 				<div class="panel-heading">
 					<h2 class="panel-title">Thêm Nhân Viên</h2>
 				</div>
-				<br /> <span style="color: red; margin-left: 10px">${error}</span> <br />
+				<br /> <span style="color: red; margin-left: 10px">${error}</span>
+				<br />
 				<form:form modelAttribute="employee"
 					action="${pageContext.request.contextPath}/admin/saveEmployee"
 					method="POST" enctype="multipart/form-data">
 					<input type="text" name="image" id="image" value="" hidden="hidden" />
 					<br />
 					<div class="row">
-						<div class="col-md-3 mb-3" >
+						<div class="col-md-3 mb-3">
 							<div class="wrap-custom-file"
-								style="margin-top: 15px; margin-left: 20px;margin-bottom:20px">
+								style="margin-top: 15px; margin-left: 20px; margin-bottom: 20px">
 								<input type="file" name="avatar1" class="imgUpload" id="avatar1"
 									accept=".gif,.jpg,.png,.jpeg" /> <label for="avatar1"
 									id="avatar1-background" style="width: 190px; height: 160px;"
@@ -58,9 +59,8 @@ input[type=text] {
 							style="margin-bottom: 30px; margin-top: 5px;">
 							<div class="ui calendar" id="rangestart">
 								<label for="validationDefault3">Ngày sinh <font
-									color="red">*</font></label>
-								<form:input path="birthday" class="form-control datepicker"
-									type="text" id="startDate" name="startday"
+									color="red">*</font></label> <input name="birthday"
+									class="form-control datepicker" type="text" id="startDate" value="${birthday}"
 									placeholder="Ngày sinh" maxlength="64" />
 							</div>
 						</div>
@@ -107,13 +107,14 @@ input[type=text] {
 						style="float: left; width: 85%; margin: 0px !important; margin-left: 22px !important; padding-bottom: 25px;">
 						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Địa chỉ <font color="red">*</font></label>
-							<form:input type="text" path="address" class="form-control" maxlength="128" 
-								placeholder="Địa chỉ" />
+							<form:input type="text" path="address" class="form-control"
+								maxlength="128" placeholder="Địa chỉ" />
 						</div>
-						
+
 						<div class="col-md-5 mb-3">
-							<label for="validationDefault3">Tài khoản<font color="red">*</font></label>
-							<input type="text" name="username" class="form-control" maxlength="24" value="${username}"
+							<label for="validationDefault3">Tài khoản<font
+								color="red">*</font></label> <input type="text" name="username"
+								class="form-control" maxlength="24" value="${username}"
 								placeholder="Tài khoản" />
 						</div>
 
@@ -138,103 +139,107 @@ input[type=text] {
 </div>
 
 <script>
-    $('.ui.dropdown').dropdown();
+	$('.ui.dropdown').dropdown();
 </script>
 <script type="text/javascript">
-    let that = this;
-    $('input[type="file"].imgUpload').each(function () {
-        let $file = $(this),
-            $label = $file.next('label'),
-            $labelText = $label.find('span'),
-            labelDefault = $labelText.text();
-        $file.on('change', function (event) {
-            let fileName = $file.val().split('\\').pop(),
-                tmppath = URL.createObjectURL(event.target.files[0]);
-            if (fileName) {
-                $label
-                    .addClass('file-ok')
-                    .css('background-image', 'url(' + tmppath + ')');
-                $labelText.removeClass('red');
-                $labelText.text(fileName);
-                that.dataValueClone.avatar1 = fileName;
-            } else {
-                $label.removeClass('file-ok');
-                $labelText.text(labelDefault);
-            }
-        });
-    });
+	let that = this;
+	$('input[type="file"].imgUpload')
+			.each(
+					function() {
+						let $file = $(this), $label = $file.next('label'), $labelText = $label
+								.find('span'), labelDefault = $labelText.text();
+						$file
+								.on(
+										'change',
+										function(event) {
+											let fileName = $file.val().split(
+													'\\').pop(), tmppath = URL
+													.createObjectURL(event.target.files[0]);
+											if (fileName) {
+												$label.addClass('file-ok').css(
+														'background-image',
+														'url(' + tmppath + ')');
+												$labelText.removeClass('red');
+												$labelText.text(fileName);
+												that.dataValueClone.avatar1 = fileName;
+											} else {
+												$label.removeClass('file-ok');
+												$labelText.text(labelDefault);
+											}
+										});
+					});
 </script>
 
 <script>
-    var toDate = new Date();
-    var date = toDate.getDate();
-    var endDate = date;
-    var month = toDate.getMonth() + 1;
-    var endMonth = month + 1;
-    var year = toDate.getFullYear();
-    /* 	$('#startDate').val(month + "/" + date + "/" + year);
-     */
-    $('#endDate').val(endMonth + "/" + endDate + "/" + year);
-    $('#rangestart').calendar(
-        {
-            type: 'date',
-            endCalendar: $('#rangeend'),
-            text: {
-                days: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-                months: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4',
-                    'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
-                    'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
-            },
-            formatter: {
-                date: function (date, setting) {
-                    if (!date)
-                        return '';
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return (day < 10 ? '0' + day : day) + '/'
-                        + (month < 10 ? '0' + month : month) + '/'
-                        + year;
-                }
-            },
-            today: true,
-        });
-    $('#rangeend').calendar(
-        {
-            type: 'date',
-            startCalendar: $('#rangestart'),
-            text: {
-                days: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-                months: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4',
-                    'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
-                    'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
-            },
-            formatter: {
-                date: function (date, setting) {
-                    if (!date)
-                        return '';
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return (day < 10 ? '0' + day : day) + '/'
-                        + (month < 10 ? '0' + month : month) + '/'
-                        + year;
-                }
-            },
-            today: true,
-            popupOptions: {
-                position: 'bottom right',
-                lastResort: 'bottom right',
-                prefer: 'opposite',
-                hideOnScroll: false
-            }
-        });
+	var toDate = new Date();
+	var date = toDate.getDate();
+	var endDate = date;
+	var month = toDate.getMonth() + 1;
+	var endMonth = month + 1;
+	var year = toDate.getFullYear();
+	/* 	$('#startDate').val(month + "/" + date + "/" + year);
+	 */
+	$('#endDate').val(endMonth + "/" + endDate + "/" + year);
+	$('#rangestart').calendar(
+			{
+				type : 'date',
+				endCalendar : $('#rangeend'),
+				text : {
+					days : [ 'CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7' ],
+					months : [ 'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4',
+							'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
+							'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12' ],
+				},
+				formatter : {
+					date : function(date, setting) {
+						if (!date)
+							return '';
+						var day = date.getDate();
+						var month = date.getMonth() + 1;
+						var year = date.getFullYear();
+						return (day < 10 ? '0' + day : day) + '/'
+								+ (month < 10 ? '0' + month : month) + '/'
+								+ year;
+					}
+				},
+				today : true,
+			});
+	$('#rangeend').calendar(
+			{
+				type : 'date',
+				startCalendar : $('#rangestart'),
+				text : {
+					days : [ 'CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7' ],
+					months : [ 'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4',
+							'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
+							'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12' ]
+				},
+				formatter : {
+					date : function(date, setting) {
+						if (!date)
+							return '';
+						var day = date.getDate();
+						var month = date.getMonth() + 1;
+						var year = date.getFullYear();
+						return (day < 10 ? '0' + day : day) + '/'
+								+ (month < 10 ? '0' + month : month) + '/'
+								+ year;
+					}
+				},
+				today : true,
+				popupOptions : {
+					position : 'bottom right',
+					lastResort : 'bottom right',
+					prefer : 'opposite',
+					hideOnScroll : false
+				}
+			});
 </script>
 <script>
-    function formatNumberString(numberStr) {
-        if (typeof numberStr === 'number') {
-            numberStr = numberStr.toString();
-        }
-        return numberStr.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
-    }
+	function formatNumberString(numberStr) {
+		if (typeof numberStr === 'number') {
+			numberStr = numberStr.toString();
+		}
+		return numberStr.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
+	}
 </script>
