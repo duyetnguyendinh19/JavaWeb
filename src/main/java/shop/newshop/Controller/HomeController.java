@@ -43,8 +43,10 @@ public class HomeController {
 	private static final String PATH = Paths.get("").toAbsolutePath().toString()
 			+ "\\src\\main\\resources\\static\\images\\";
 
+	boolean status = false;
+
 	@GetMapping(value = "/")
-	public String HomeChomer(HttpSession session) {
+	public String HomeChomer(HttpSession session, ModelMap model) {
 		if (session.getAttribute("account") != null) {
 			Account account = (Account) session.getAttribute("account");
 			if (account.getRole() == 1) {
@@ -53,6 +55,13 @@ public class HomeController {
 				return "redirect:/employee/inforEmployee";
 			}
 		}
+
+		if (status == false) {
+			model.put("success", "");
+		} else {
+			model.put("success", "Mật khẩu mới đã được gửi đến Email");
+		}
+
 		return "employee/index";
 	}
 
@@ -85,6 +94,7 @@ public class HomeController {
 		if (session.getAttribute("avatar") != null) {
 			session.removeAttribute("avatar");
 		}
+		status = false;
 		return "redirect:/";
 	}
 
@@ -92,7 +102,6 @@ public class HomeController {
 	public String forgotPass(ModelMap model, @RequestParam("email") String email) throws MessagingException {
 		boolean checkEmail = employeeService.checkEmail(email);
 		if (checkEmail == true) {
-			model.put("success", "Mật khẩu mới đã được gửi đến Email");
 
 			String newPass = randomAlphaNumeric(10);
 
@@ -113,13 +122,13 @@ public class HomeController {
 			helper.setSubject("Thông tin mật khẩu mới");
 
 			Account account = accountService.getAccountByEmail(email);
-			
-			account.setPassword(encryptThisString(newPass));
-			
-			accountService.update(account);
-			
-			MailSender.send(message);
 
+			account.setPassword(encryptThisString(newPass));
+
+			accountService.update(account);
+
+			MailSender.send(message);
+			status = true;
 			return "redirect:/";
 		}
 		model.put("error", "Không tìm thấy Email ! Vui lòng kiểm tra lại");
@@ -128,6 +137,7 @@ public class HomeController {
 
 	@GetMapping(value = "/backLogin")
 	public String backLogin() {
+		status = false;
 		return "redirect:/";
 	}
 
@@ -160,7 +170,7 @@ public class HomeController {
 		}
 		return builder.toString();
 	}
-	
+
 	public static String encryptThisString(String input) {
 		try {
 			// getInstance() method is called with algorithm SHA-512
