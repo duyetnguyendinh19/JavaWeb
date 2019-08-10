@@ -20,5 +20,7 @@ public interface EmployeeService {
 	
 	public boolean checkEmail(String email);
 	
+	public long check(String email,String phone, String username, String card, int id);
+	
 	public long countAll(String name);
 }
