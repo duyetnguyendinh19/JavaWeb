@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import javax.mail.MessagingException;
@@ -90,23 +93,33 @@ public class HomeController {
 		boolean checkEmail = employeeService.checkEmail(email);
 		if (checkEmail == true) {
 			model.put("success", "Mật khẩu mới đã được gửi đến Email");
+
+			String newPass = randomAlphaNumeric(10);
+
 			MimeMessage message = MailSender.createMimeMessage();
 			boolean mutipart = true;
 			MimeMessageHelper helper = new MimeMessageHelper(message, mutipart, "utf-8");
 
-			String htmlMsg = "<h2>Tài khoản đã được tạo</h2> <br/> <table style='width:100% ; border-collapse: collapse;border: 1px solid black;'>"
+			String htmlMsg = "<h2>Mật khẩu mới của bạn</h2> <br/> <table style='width:100% ; border-collapse: collapse;border: 1px solid black;'>"
 					+ " <tr style=' border-collapse: collapse;border: 1px solid black;'>"
 					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>Mật khẩu mới</th></tr>"
 					+ "<tr style=' border-collapse: collapse;border: 1px solid black;'>"
-					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>" + randomAlphaNumeric(10)
-					+ "</th>" + "</tr>" + "</table>";
+					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>" + newPass + "</th>" + "</tr>"
+					+ "</table>";
 
 			message.setContent(htmlMsg, "text/html; charset=UTF-8");
 
 			helper.setTo(email);
 			helper.setSubject("Thông tin mật khẩu mới");
 
+			Account account = accountService.getAccountByEmail(email);
+			
+			account.setPassword(encryptThisString(newPass));
+			
+			accountService.update(account);
+			
 			MailSender.send(message);
+
 			return "redirect:/";
 		}
 		model.put("error", "Không tìm thấy Email ! Vui lòng kiểm tra lại");
@@ -146,6 +159,37 @@ public class HomeController {
 			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
 		}
 		return builder.toString();
+	}
+	
+	public static String encryptThisString(String input) {
+		try {
+			// getInstance() method is called with algorithm SHA-512
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+
+			// digest() method is called
+			// to calculate message digest of the input string
+			// returned as array of byte
+			byte[] messageDigest = md.digest(input.getBytes());
+
+			// Convert byte array into signum representation
+			BigInteger no = new BigInteger(1, messageDigest);
+
+			// Convert message digest into hex value
+			String hashtext = no.toString(16);
+
+			// Add preceding 0s to make it 32 bit
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+
+			// return the HashText
+			return hashtext;
+		}
+
+		// For specifying wrong message digest algorithms
+		catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
