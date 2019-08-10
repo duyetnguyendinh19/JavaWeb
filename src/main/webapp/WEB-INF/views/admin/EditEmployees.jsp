@@ -81,7 +81,7 @@ input[type=text] {
 								name="idDepartment" class="ui dropdown">
 								<c:forEach var="item" items="${deparment}">
 									<option value="${item.id}"
-										${emplyee.department.id == item.id ? 'selected=""' : ''}>${item.name}</option>
+										${employee.department.id == item.id ? 'selected=""' : ''}>${item.name}</option>
 								</c:forEach>
 							</select>
 						</div>
