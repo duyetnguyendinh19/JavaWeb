@@ -276,7 +276,14 @@ public class EmployeeController {
 								stream.write(bytes);
 							}
 						}
+
+						if (!department.getName().toLowerCase().contains("nhân sự")) {
+							account.setRole(0);
+							accountService.update(account);
+						}
+
 						employee.setAccount(account);
+
 						empService.update(employee);
 					}
 					return "redirect:/admin/listEmployee";
