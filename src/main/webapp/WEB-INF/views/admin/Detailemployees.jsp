@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -56,22 +57,21 @@ input[type=text] {
 							style="margin-bottom: 30px; margin-top: 5px;">
 							<div class="ui calendar" id="rangestart">
 								<label for="validationDefault3">Ngày sinh <font
-									color="red">*</font></label> <input
-									class="form-control
-									type="
-									text" value="${employee.birthday}" placeholder="Ngày sinh"
+									color="red">*</font></label> <input class="form-control" type="text"
+									value="${birthday}	" placeholder="Ngày sinh"
 									readonly="readonly" />
+
 							</div>
 						</div>
 						<div class="col-md-5 mb-3">
 							<label for="validationDefault3">Chức vụ</label> <br /> <input
-								class="form-control type=" text" value="${employee.level}"
+								class="form-control" type="text" value="${employee.level}"
 								readonly="readonly">
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="validationDefault3">Phòng ban</label> <br /> <input
-								class="form-control type="
-								text" value="${employee.department.name}" readonly="readonly">
+								class="form-control" type="text"
+								value="${employee.department.name}" readonly="readonly">
 						</div>
 					</div>
 					<div class="row"
@@ -105,8 +105,8 @@ input[type=text] {
 						</div>
 
 						<div class="col-md-5 mb-3">
-							<label for="validationDefault3">Tài khoản <font color="red">*</font></label>
-							<input type="text" class="form-control" 
+							<label for="validationDefault3">Tài khoản <font
+								color="red">*</font></label> <input type="text" class="form-control"
 								value="${employee.account.username}" readonly="readonly" />
 						</div>
 
