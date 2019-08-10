@@ -43,4 +43,14 @@ public class SalaryServiceImpl implements SalaryService {
     public List<Salary> searchByName(String name) {
         return salaryDao.searchByName(name);
     }
+
+	@Override
+	public List<Salary> getLimit(int num, int row, String name, String month) {
+		return salaryDao.getLimit(num, row, name, month);
+	}
+
+	@Override
+	public long countAll(String name, String month) {
+		return salaryDao.countAll(name, month);
+	}
 }
