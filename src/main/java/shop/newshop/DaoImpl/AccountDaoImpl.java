@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import shop.newshop.DAO.AccountDao;
 import shop.newshop.Entity.Account;
+import shop.newshop.Entity.Employee;
 import shop.newshop.util.HibernateUtils;
 
 import java.util.List;
@@ -141,6 +142,27 @@ public class AccountDaoImpl implements AccountDao {
 			query.setParameter("pass", password);
 			if (query.list() != null && !query.list().isEmpty()) {
 				account = (Account) query.list().get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return account;
+	}
+
+	@Override
+	public Account getAccountByEmail(String email) {
+		Account account = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Employee WHERE email=:email";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("email", email);
+			if (query.list() != null && !query.list().isEmpty()) {
+				Employee employee = (Employee) query.list().get(0);
+				account = employee.getAccount();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,6 +7,10 @@ import java.util.List;
 public interface SalaryDao {
 
     public List<Salary> getAlls();
+    
+    public List<Salary> getLimit(int num,int row,String name,int month,int year);
+    
+    public long countAll(String name, int month,int year);
 
     public boolean insert(Salary salary);
 

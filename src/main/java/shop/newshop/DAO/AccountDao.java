@@ -21,6 +21,8 @@ public interface AccountDao {
 
     public Account getAccountById(int idAccount);
     
+    public Account getAccountByEmail(String email);
+    
     public long countAll(String name);
 
 }

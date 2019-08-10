@@ -19,6 +19,8 @@ public interface AccountService {
 	public boolean delete(int idAccount);
 
 	public Account getAccountById(int idAccount);
+	
+	public Account getAccountByEmail(String email);
 
 	public long countAll(String name);
 

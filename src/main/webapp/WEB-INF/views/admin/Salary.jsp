@@ -63,13 +63,13 @@
         height: 40px;
     }
 
-    @media (min-width: 1200px) {
+    @media ( min-width: 1200px) {
         .col-lg-3 {
             margin-left: 5px;
         }
     }
 
-    @media (max-width: 500px) {
+    @media ( max-width: 500px) {
         .col-xs-4, .col-xs-6 {
             margin-top: 8px !important;
         }
@@ -102,54 +102,94 @@
                             <div class="panel-heading">
                                 <h2 class="panel-title">Thống kê lương</h2>
                             </div>
-                            <form action="${pageContext.request.contextPath}/admin/listSalary" method="POST"
-                                  style="float: left;padding: 16px;width: 82%;">
+                            <form
+                                    action="${pageContext.request.contextPath}/admin/listSalary"
+                                    method="POST" style="float: left; padding: 16px; width: 90%;">
                                 <div class="row">
-                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-5">
-                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-4"
-                                               style="margin-top: 8px;padding-left: 0px!important">Tên nhân
-                                            viên:</label>
-                                        <input type="text" name="tennv"
-                                               class="col-12 col-sm-10 col-xs-12  col-md-7 col-lg-8 tennv"
-                                               placeholder="Tên nhân viên..."
-                                               style="border-radius: 5px!important;" value="${nameSearch}"/>
+                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-4">
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-5"
+                                               style="margin-top: 8px; padding-left: 0px !important">Tên
+                                            nhân viên:</label> <input type="text" name="nameEmployee"
+                                                                      class="col-12 col-sm-10 col-xs-12  col-md-7 col-lg-7 tennv"
+                                                                      placeholder="Tên nhân viên..."
+                                                                      style="border-radius: 5px !important;"
+                                                                      value="${nameSearch}"/>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-7">
-                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-2"
-                                               style="margin-top: 8px;float:left;padding-left: 0px">Tháng:</label>
-                                        <select class="ui dropdown col-12 col-sm-2 col-xs-12  col-md-4 col-lg-6"
+                                    <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-8">
+                                        <label class="col-12 col-sm-2 col-xs-12  col-md-4 col-lg-1"
+                                               style="margin-top: 8px; float: left; padding-left: 0px;">Tháng:</label>
+                                        <select
+                                                class="ui dropdown col-12 col-sm-2 col-xs-12  col-md-3 col-lg-2"
                                                 name="month" id="month"
-                                                style="height: 35px;border-radius: 5px!important;">
-                                            <option value="1">Tháng 1</option>
-                                            <option value="2">Tháng 2</option>
-                                            <option value="3">Tháng 3</option>
-                                            <option value="4">Tháng 4</option>
-                                            <option value="5">Tháng 5</option>
-                                            <option value="6">Tháng 6</option>
-                                            <option value="7">Tháng 7</option>
-                                            <option value="8">Tháng 8</option>
-                                            <option value="9">Tháng 9</option>
-                                            <option value="10">Tháng 10</option>
-                                            <option value="11">Tháng 11</option>
-                                            <option value="12">Tháng 12</option>
+                                                style="height: 35px; border-radius: 5px !important;">
+                                            <option value="0" ${month == 0 ? 'selected' : ''}
+                                            ${empty month ? 'selected' : '' }>Tất cả tháng
+                                            </option>
+                                            <option value="1" ${month == 1 ? 'selected' : ''}
+                                            ${empty month ? 'selected' : '' }>Tháng 1
+                                            </option>
+                                            <option value="2" ${month == 2 ? 'selected' : ''}>Tháng
+                                                2
+                                            </option>
+                                            <option value="3" ${month == 3 ? 'selected' : ''}>Tháng
+                                                3
+                                            </option>
+                                            <option value="4" ${month == 4 ? 'selected' : ''}>Tháng
+                                                4
+                                            </option>
+                                            <option value="5" ${month == 5 ? 'selected' : ''}>Tháng
+                                                5
+                                            </option>
+                                            <option value="6" ${month == 6 ? 'selected' : ''}>Tháng
+                                                6
+                                            </option>
+                                            <option value="7" ${month == 7 ? 'selected' : ''}>Tháng
+                                                7
+                                            </option>
+                                            <option value="8" ${month == 8 ? 'selected' : ''}>Tháng
+                                                8
+                                            </option>
+                                            <option value="9" ${month == 9 ? 'selected' : ''}>Tháng
+                                                9
+                                            </option>
+                                            <option value="10" ${month == 10 ? 'selected' : ''}>Tháng
+                                                10
+                                            </option>
+                                            <option value="11" ${month == 11 ? 'selected' : ''}>Tháng
+                                                11
+                                            </option>
+                                            <option value="12" ${month == 12 ? 'selected' : ''}>Tháng
+                                                12
+                                            </option>
                                         </select>
-                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-3" type="submit"
-                                                style="font-family: Tahoma;float:left;">
+                                        <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-4">
+                                            <label class="col-12 col-sm-2 col-xs-12 col-md-4 col-lg-3"
+                                                   style="margin-top: 8px; padding-left: 0px !important">Năm:</label>
+                                            <input type="text" name="year" id="year"
+                                                   class="col-12 col-sm-10 col-xs-12 col-md-7 col-lg-8 tennv"
+                                                                          placeholder="Năm..."
+                                                                          style="border-radius: 5px !important;"
+                                                                          value="${year}"/>
+                                        </div>
+                                        <button class="col-12 col-sm-2 col-xs-4  col-md-4 col-lg-2"
+                                                type="submit" style="font-family: Tahoma; float: left;">
                                             Tìm kiếm
                                         </button>
                                     </div>
                                 </div>
                             </form>
                             <a href="${pageContext.request.contextPath}/admin/writeExcel">
-                                <button class="btn btn-success col-12 col-sm-12 col-xs-12 col-md-4 col-lg-1"
-                                        style="float:right;margin-top: 12px;margin-right: 15px;padding-left: 5px;border-radius: 5px;height: 40px!important;">
+                                <button
+                                        class="btn btn-success col-12 col-sm-12 col-xs-12 col-md-4 col-lg-1"
+                                        style="float: right; margin-top: 12px; margin-right: 15px; padding-left: 5px; border-radius: 5px; height: 40px !important;">
                                     Xuất excel
                                 </button>
                             </a>
                             <div class="panel-body">
                                 <table class="table table-bordered table-hover">
                                     <thead>
-                                    <tr style="text-align: center;border-bottom: 2px solid #dddddd;">
+                                    <tr
+                                            style="text-align: center; border-bottom: 2px solid #dddddd;">
                                         <th>Mã nhân viên</th>
                                         <th>Tên nhân viên</th>
                                         <th>Tháng</th>
@@ -161,7 +201,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${listSalary}" var="listSalary" varStatus="loop">
+                                    <c:forEach items="${listSalary}" var="listSalary"
+                                               varStatus="loop">
                                         <tr style="text-align: center;">
                                             <td>${listSalary.idEmployee}</td>
                                             <td>${listSalary.nameEmployee}</td>
@@ -169,41 +210,37 @@
                                             <td>Năm ${listSalary.year}</td>
                                             <td>${listSalary.count}</td>
                                             <td>${listSalary.dayoff}</td>
-                                            <td><fmt:formatNumber type="number" maxIntegerDigits="10"
+                                            <td><fmt:formatNumber type="number"
+                                                                  maxIntegerDigits="10"
                                                                   value="${listSalary.total}"/></td>
                                             <td><fmt:formatDate pattern="dd-MM-yyyy"
-                                                                value="${listSalary.createDate}" /></td>
+                                                                value="${listSalary.createDate}"/></td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${not empty searchFail}">
                                         <tr>
-                                            <td colspan="3">Danh sách rỗng</td>
+                                            <td colspan="8">Danh sách rỗng</td>
                                         </tr>
                                     </c:if>
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <div class="col-6 col-sm-6 col-xs-8 col-md-6 col-lg-10 page">
-                                        <a>
-                                            <button><<</button>
-                                            <button><</button>
-                                            <input type="text"
-                                                   style="width: 30px;border-radius: 3px!important;margin-left: 3px;">
-                                            of <input type="text"
-                                                      style="width: 30px;border-radius: 3px!important;margin-left:2px;margin-right: 3px;"
-                                                      readonly="true">
-                                            <button>></button>
-                                            <button>>></button>
-                                        </a>
+                                    <div class="col-6 col-sm-6 col-xs-9 col-md-6 col-lg-8 page">
+                                        <button onclick="firstpage()"><<</button>
+                                        <button onclick="previous()"><</button>
+                                        <input type="number" id="page" value="1"
+                                               style="width: 40px; border-radius: 3px !important; margin-left: 3px;">
+                                        of <input type="text" id="totalPage" value="${totalPage}"
+                                                  style="width: 30px; border-radius: 3px !important; margin-left: 2px; margin-right: 3px;"
+                                                  readonly="readonly">
+                                        <button onclick="next()">></button>
+                                        <button onclick="lastpage()">>></button>
+
                                     </div>
-                                    <div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-2">
-                                        <a style=float:right;">
-                                            <label>View</label>
-                                            <label>1</label>
-                                            <label>-</label>
-                                            <label>5</label>
-                                            <label>of</label>
-                                            <label>12</label>
+                                    <div class="col-6 col-sm-6 col-xs-4 col-md-6 col-lg-4">
+                                        <a style="float: right;"> <label>View</label> <label>${firstSalary}</label>
+                                            <label>-</label> <label>${lastSalary}</label> <label>of</label>
+                                            <label>${totalSalary}</label>
                                         </a>
                                     </div>
                                 </div>
@@ -216,9 +253,36 @@
     </div>
 </div>
 <script>
+    function formatNumberString(numberStr) {
+        if (typeof numberStr === 'number') {
+            numberStr = numberStr.toString();
+        }
+        return numberStr.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
+    }
+</script>
+<script>
+    var that = this;
+    var isFormatNumber = true;
+    if (isFormatNumber !== false) {
+        $('#year').on('keyup', function () {
+            var formattedVal = formatNumberString($('#year').val().replace(/,/g, ''));
+            $('#salary').val(formattedVal);
+        });
+    }
+    $('#year').on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+        if (/^\d*$/.test(this.value.replace(/,/g, ''))) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        }
+    });
+</script>
+<script>
     $('.ui.dropdown').dropdown();
     var date = new Date();
-    $('#month').val(date.getMonth() + 1).trigger('change');
 </script>
 <script>
     $("#name_errors").hide().fadeIn(0).delay(2000).fadeOut(500);
