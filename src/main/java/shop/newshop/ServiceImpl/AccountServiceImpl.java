@@ -64,6 +64,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountDao.login(username, encryptThisString(password));
 	}
 	
+	@Override
+	public Account getAccountByEmail(String email) {
+		return accountDao.getAccountByEmail(email);
+	}
+	
 	public static String encryptThisString(String input) {
 		try {
 			// getInstance() method is called with algorithm SHA-512
