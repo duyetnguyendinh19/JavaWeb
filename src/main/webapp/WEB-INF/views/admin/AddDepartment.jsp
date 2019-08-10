@@ -23,7 +23,7 @@ input[type=text] {
 		<div class="col-xs-14 col-sm-12 col-md-11 col-lg-0">
 			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h2 class="panel-title">Thêm Phòng Ban</h2>
+					<h2 class="panel-title">${title}</h2>
 				</div>
 
 				<div class="panel-body">
