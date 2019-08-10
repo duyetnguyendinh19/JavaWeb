@@ -29,7 +29,8 @@ input[type=text] {
 				<div class="panel-heading">
 					<h2 class="panel-title">Sửa Nhân Viên</h2>
 				</div>
-				<br /> <span style="color: red; margin-left: 10px">${error}</span> <br />
+				<br /> <span style="color: red; margin-left: 10px">${error}</span>
+				<br />
 				<form:form modelAttribute="employee"
 					action="${pageContext.request.contextPath}/admin/saveEmployee"
 					method="POST" enctype="multipart/form-data">
@@ -49,7 +50,7 @@ input[type=text] {
 						</div>
 
 						<form:input type="hidden" path="id" />
-						
+
 						<form:input type="hidden" path="avatar" />
 
 						<div class="col-md-5 mb-3" style="margin-top: 5px">
@@ -63,10 +64,9 @@ input[type=text] {
 							style="margin-bottom: 30px; margin-top: 5px;">
 							<div class="ui calendar" id="rangestart">
 								<label for="validationDefault3">Ngày sinh <font
-									color="red">*</font></label>
-								<form:input path="birthday" class="form-control datepicker"
-									type="text" id="startDate" name="startday"
-									placeholder="Ngày sinh" />
+									color="red">*</font></label> <input name="birthday"
+									class="form-control datepicker" type="text" id="startDate"
+									value="${birthday}" placeholder="Ngày sinh" />
 							</div>
 						</div>
 						<div class="col-md-5 mb-3">
