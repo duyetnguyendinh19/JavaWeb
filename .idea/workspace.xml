@@ -6,17 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/AttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/BonusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/BonusController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/DisciplineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/TotalAttendanceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/TotalAttendanceDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/AddBonus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/AddBonus.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/AddDiscipline.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/AddDiscipline.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Attendance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Attendance.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/EditBonus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/EditBonus.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/EditDiscipline.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/EditDiscipline.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/SalaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/SalaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Entity/Salary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Salary.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Salary.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +178,7 @@
       <workItem from="1565332333494" duration="5430000" />
       <workItem from="1565352488272" duration="5661000" />
       <workItem from="1565401139828" duration="2765000" />
-      <workItem from="1565404344662" duration="566000" />
+      <workItem from="1565404344662" duration="4060000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -298,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565352634747</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp">
+      <created>1565404962116</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1565404962116</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +333,8 @@
     <MESSAGE value="update code chờ revert part 2" />
     <MESSAGE value="update date" />
     <MESSAGE value="update datepick" />
-    <option name="LAST_COMMIT_MESSAGE" value="update datepick" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp" />
   </component>
   <component name="masterDetails">
     <states>

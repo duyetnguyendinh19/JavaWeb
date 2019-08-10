@@ -153,9 +153,11 @@
                                         <th>Mã nhân viên</th>
                                         <th>Tên nhân viên</th>
                                         <th>Tháng</th>
+                                        <th>Năm</th>
                                         <th>Số công</th>
                                         <th>Ngày nghỉ</th>
                                         <th>Tổng lương</th>
+                                        <th>Ngày tạo</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -164,10 +166,13 @@
                                             <td>${listSalary.idEmployee}</td>
                                             <td>${listSalary.nameEmployee}</td>
                                             <td>Tháng ${listSalary.month}</td>
+                                            <td>Năm ${listSalary.year}</td>
                                             <td>${listSalary.count}</td>
                                             <td>${listSalary.dayoff}</td>
                                             <td><fmt:formatNumber type="number" maxIntegerDigits="10"
                                                                   value="${listSalary.total}"/></td>
+                                            <td><fmt:formatDate pattern="dd-MM-yyyy"
+                                                                value="${listSalary.createDate}" /></td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${not empty searchFail}">

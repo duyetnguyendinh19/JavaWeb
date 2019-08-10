@@ -67,6 +67,8 @@ public class SalaryController {
                 salary.setCount(Double.parseDouble(String.valueOf(x[4])));
                 salary.setDayoff(Double.parseDouble(String.valueOf(x[5])));
                 salary.setTotal(Double.parseDouble((String.valueOf(x[6]))));
+                salary.setYear(date.getYear() + 1900);
+                salary.setCreateDate(date);
                 salaryService.insert(salary);
             }
         } catch (Exception ex) {
@@ -106,15 +108,23 @@ public class SalaryController {
             cell.setCellStyle(style);
 
             cell = row.createCell(3, CellType.STRING);
-            cell.setCellValue("Số công");
+            cell.setCellValue("Năm");
             cell.setCellStyle(style);
 
             cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue("Số ngày nghỉ");
+            cell.setCellValue("Số công");
             cell.setCellStyle(style);
 
             cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue("Số ngày nghỉ");
+            cell.setCellStyle(style);
+
+            cell = row.createCell(6, CellType.STRING);
             cell.setCellValue("Lương");
+            cell.setCellStyle(style);
+
+            cell = row.createCell(7, CellType.STRING);
+            cell.setCellValue("Ngày tạo");
             cell.setCellStyle(style);
 
 //            cell = row.createCell(6, CellType.STRING);
@@ -135,14 +145,20 @@ public class SalaryController {
                 cell = row.createCell(2, CellType.STRING);
                 cell.setCellValue(salary.getMonth());
 
-                cell = row.createCell(3, CellType.STRING);
-                cell.setCellValue(salary.getCount());
-
                 cell = row.createCell(4, CellType.STRING);
-                cell.setCellValue(salary.getDayoff());
+                cell.setCellValue(salary.getYear());
 
                 cell = row.createCell(5, CellType.STRING);
+                cell.setCellValue(salary.getCount());
+
+                cell = row.createCell(6, CellType.STRING);
+                cell.setCellValue(salary.getDayoff());
+
+                cell = row.createCell(7, CellType.STRING);
                 cell.setCellValue(salary.getTotal());
+
+                cell = row.createCell(8, CellType.STRING);
+                cell.setCellValue(salary.getCreateDate());
 
 //            String formula = "0.1*C" + (rownum + 1) + "*D" + (rownum + 1);
 //            cell = row.createCell(5, CellType.FORMULA);

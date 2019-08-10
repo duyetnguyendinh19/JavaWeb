@@ -1,6 +1,7 @@
 package shop.newshop.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "salary")
@@ -13,6 +14,9 @@ public class Salary {
 
     @Column(name = "month")
     private int month;
+
+    @Column(name = "year")
+    private int year;
 
     @Column(name = "nameEmployee")
     private String nameEmployee;
@@ -29,18 +33,37 @@ public class Salary {
     @Column(name = "idEmployee")
     private int idEmployee;
 
+    @Column(name = "createDate")
+    private Date createDate;
+
     public Salary() {
     }
 
-    public Salary(int month, String nameEmployee, double count, double total, double dayoff, int idEmployee) {
+    public Salary(int month, int year, String nameEmployee, double count, double total, double dayoff, int idEmployee,Date createDate) {
         this.month = month;
+        this.year = year;
         this.nameEmployee = nameEmployee;
         this.count = count;
         this.total = total;
         this.dayoff = dayoff;
         this.idEmployee = idEmployee;
+        this.createDate = createDate;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public int getYear() {
+        return year;
+    }
+    public void setYear(int year) {
+        this.year = year;
+    }
     public int getIdEmployee() {
         return idEmployee;
     }
