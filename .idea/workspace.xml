@@ -6,16 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qlnv.sql" beforeDir="false" afterPath="$PROJECT_DIR$/qlnv.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/SalaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/SalaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/SalaryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DAO/SalaryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/SalaryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/DaoImpl/SalaryDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/SalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Service/SalaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/SalaryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/ServiceImpl/SalaryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Addcontract.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Salary.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Salary.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shop/newshop/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shop/newshop/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +179,7 @@
       <workItem from="1565352488272" duration="5661000" />
       <workItem from="1565401139828" duration="2765000" />
       <workItem from="1565404344662" duration="6867000" />
-      <workItem from="1565418592660" duration="3371000" />
+      <workItem from="1565418592660" duration="7963000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -312,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565411566758</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp">
+      <created>1565422053402</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1565422053402</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +350,8 @@
     <MESSAGE value="update datepick" />
     <MESSAGE value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp" />
     <MESSAGE value="fix salary" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix salary" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp" />
   </component>
   <component name="masterDetails">
     <states>

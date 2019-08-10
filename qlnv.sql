@@ -82,13 +82,13 @@ CREATE TABLE `bonus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descent` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `reason` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `reason` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` date NOT NULL,
   `idEmployee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_bonus_employee_idx` (`idEmployee`),
   CONSTRAINT `fk_bonus_employee` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `bonus` (
 
 LOCK TABLES `bonus` WRITE;
 /*!40000 ALTER TABLE `bonus` DISABLE KEYS */;
-INSERT INTO `bonus` VALUES (1,'Du lịch','Làm tốt','abc','2019-05-15',1),(7,'Tăng lương','Hay lắm abc','đẹp lắm a123','2019-08-01',2),(9,'Thăng chức','gdf','qưertyuiop','2019-08-15',1),(10,'Du lịch','babab','bababa','2019-08-23',4);
+INSERT INTO `bonus` VALUES (1,'Du lịch','Làm tốt','abc','2019-05-15',1),(7,'Tăng lương','Hay lắm abc','đẹp lắm a123','2019-08-01',2),(9,'Thăng chức','gdf','qưertyuiop','2019-08-15',1),(10,'Du lịch','babab','bababa','2019-08-23',4),(12,'Du lịch','ABBaba','babaaabaab','2019-08-31',1);
 /*!40000 ALTER TABLE `bonus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `contract` (
   PRIMARY KEY (`id`),
   KEY `FK_41uo76i8br4y4d3q8sr2ejrao` (`idEmployee`),
   CONSTRAINT `FK_41uo76i8br4y4d3q8sr2ejrao` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `contract` (
 
 LOCK TABLES `contract` WRITE;
 /*!40000 ALTER TABLE `contract` DISABLE KEYS */;
-INSERT INTO `contract` VALUES (3,'2019-07-31 00:00:00',85000000,'2019-07-24 00:00:00',3),(4,'2019-07-30 00:00:00',19000000,'2019-07-23 00:00:00',4),(25,'2019-11-26 00:00:00',50000000,'2019-11-20 00:00:00',2),(28,'2019-11-30 00:00:00',85000000,'2019-11-13 00:00:00',1),(29,'2019-09-30 00:00:00',9500000,'2019-09-18 00:00:00',4),(30,'2019-12-24 00:00:00',10000000,'2019-11-15 00:00:00',3);
+INSERT INTO `contract` VALUES (3,'2019-07-31 00:00:00',85000000,'2019-07-24 00:00:00',3),(4,'2019-07-30 00:00:00',19000000,'2019-07-23 00:00:00',4),(25,'2019-11-26 00:00:00',50000000,'2019-11-20 00:00:00',2),(28,'2019-11-30 00:00:00',85000000,'2019-11-13 00:00:00',1),(29,'2019-09-30 00:00:00',10000000,'2019-09-18 00:00:00',4),(30,'2019-12-24 00:00:00',10000000,'2019-11-15 00:00:00',3),(31,'2019-11-27 00:00:00',10000000,'2019-11-07 00:00:00',4);
 /*!40000 ALTER TABLE `contract` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ DROP TABLE IF EXISTS `department`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -195,13 +195,13 @@ CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `birthday` datetime NOT NULL,
-  `level` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `level` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `idDepartment` int(11) NOT NULL,
   `avatar` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `identitycard` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_o58xv1eg6nwb5du5xua34c1sr` (`idDepartment`) /*!80000 INVISIBLE */,
@@ -261,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-10 14:26:15
+-- Dump completed on 2019-08-10 16:32:55
