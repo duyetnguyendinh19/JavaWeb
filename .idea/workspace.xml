@@ -6,11 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp">
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ChangePassword.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shop/newshop/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shop/newshop/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +180,8 @@
       <workItem from="1565352488272" duration="5661000" />
       <workItem from="1565401139828" duration="2765000" />
       <workItem from="1565404344662" duration="6867000" />
-      <workItem from="1565418592660" duration="7963000" />
+      <workItem from="1565418592660" duration="10252000" />
+      <workItem from="1565489387743" duration="11839000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -314,7 +316,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565422053402</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="update database fix utf8">
+      <created>1565429695675</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1565429695675</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update fix salary">
+      <created>1565493753094</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1565493753094</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +367,9 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/webapp/WEB-INF/views/adminlayout.jsp" />
     <MESSAGE value="fix salary" />
     <MESSAGE value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/duyetnguyendinh19/JavaWeb into abc123&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/shop/newshop/Controller/SalaryController.java&#10;#&#9;src/main/webapp/WEB-INF/views/admin/Salary.jsp" />
+    <MESSAGE value="update database fix utf8" />
+    <MESSAGE value="update fix salary" />
+    <option name="LAST_COMMIT_MESSAGE" value="update fix salary" />
   </component>
   <component name="masterDetails">
     <states>

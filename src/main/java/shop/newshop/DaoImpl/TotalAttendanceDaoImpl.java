@@ -40,8 +40,8 @@ public class TotalAttendanceDaoImpl implements TotalAttendanceDao {
                     "\t\tgroup by day_work.id   \n" +
                     "\t\t\t) tb join  `qlnv`.`employee` au on tb.id = au.id\n" +
                     "             join (\n" +
-                    "\t\t\t\tselect max(salary) salary,idEmployee idEmployee from `qlnv`.`contract`\n" +
-                    "\t\t\t\t\tgroup by `qlnv`.`contract`.`idEmployee` \n" +
+                    "\t\t\t\tselect max(salary) salary,idEmployee idEmployee from contract ct\n" +
+                    "\t\t\t\t\tgroup by ct.idEmployee \n" +
                     "             ) maxSalary on au.id = maxSalary.idEmployee\n";
             session.beginTransaction();
             SQLQuery query = session.createSQLQuery(sql);

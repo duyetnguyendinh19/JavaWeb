@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -31,175 +32,227 @@ import shop.newshop.Service.EmployeeService;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private JavaMailSender MailSender;
+    @Autowired
+    private JavaMailSender MailSender;
 
-	@Autowired
-	private AccountService accountService;
+    @Autowired
+    private AccountService accountService;
 
-	@Autowired
-	private EmployeeService employeeService;
+    @Autowired
+    private EmployeeService employeeService;
 
-	private static final String PATH = Paths.get("").toAbsolutePath().toString()
-			+ "\\src\\main\\resources\\static\\images\\";
+    private static final String PATH = Paths.get("").toAbsolutePath().toString()
+            + "\\src\\main\\resources\\static\\images\\";
 
-	boolean status = false;
+    boolean status = false;
 
-	@GetMapping(value = "/")
-	public String HomeChomer(HttpSession session, ModelMap model) {
-		if (session.getAttribute("account") != null) {
-			Account account = (Account) session.getAttribute("account");
-			if (account.getRole() == 1) {
-				return "redirect:/admin/listDepartment";
-			} else {
-				return "redirect:/employee/inforEmployee";
-			}
+    @GetMapping(value = "/")
+    public String HomeChomer(HttpSession session, ModelMap model) {
+        if (session.getAttribute("account") != null) {
+            Account account = (Account) session.getAttribute("account");
+            if (account.getRole() == 1) {
+                return "redirect:/admin/listDepartment";
+            } else {
+                return "redirect:/employee/inforEmployee";
+            }
+        }
+
+        if (status == false) {
+            model.put("success", "");
+        } else {
+            model.put("success", "Mật khẩu mới đã được gửi đến Email");
+        }
+
+        return "employee/index";
+    }
+
+    @GetMapping("/admin/changePassword")
+    public String reset() {
+        return "admin/ChangePassword";
+    }
+
+    @PostMapping("/admin/resetPassword")
+    public String resetPass(ModelMap model, HttpSession session, @RequestParam("oldPass") String oldPass,
+                            @RequestParam("newPass") String newPass, @RequestParam("confirmPass") String confirmPass) {
+        Account account = accountService.getAccountById((Integer) session.getAttribute("idAccount"));
+        if (Strings.isEmpty(oldPass)) {
+            model.addAttribute("errorOldPass", "Mật khẩu cũ không được để trống");
+            return "admin/ChangePassword";
+        } else if (Strings.isEmpty(newPass)) {
+            model.addAttribute("errorNewPass", "Mật khẩu mới không được để trống");
+            model.addAttribute("oldPass", oldPass);
+            return "admin/ChangePassword";
+        } else if (Strings.isEmpty(confirmPass)) {
+            model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không được để trống");
+            model.addAttribute("newPass", newPass);
+            model.addAttribute("oldPass", oldPass);
+            return "admin/ChangePassword";
+        } else {
+            if (!encryptThisString(oldPass).equals(account.getPassword())) {
+                model.addAttribute("errorOldPass", "Nhập sai mật khẩu cũ");
+                model.addAttribute("newPass", newPass);
+                model.addAttribute("confirmPass", confirmPass);
+                return "admin/ChangePassword";
+            }else if(newPass.length() > 128){
+				model.addAttribute("errorNewPass", "Mật khẩu mới không quá 128 kí tự");
+				model.addAttribute("oldPass", oldPass);
+				return "admin/ChangePassword";
+			} else if (encryptThisString(oldPass).equals(encryptThisString(newPass))) {
+                model.addAttribute("errorNewPass", "Mật khẩu mới trùng với mật khẩu cũ");
+                model.addAttribute("oldPass", oldPass);
+                return "admin/ChangePassword";
+            } else if (!confirmPass.equals(newPass)) {
+                model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không trùng mật khẩu mới");
+                model.addAttribute("oldPass", oldPass);
+                return "admin/ChangePassword";
+            } else {
+                account.setId(account.getId());
+                account.setPassword(encryptThisString(newPass));
+                accountService.update(account);
+                model.addAttribute("success","Đổi mật khẩu thành công");
+            }
+        }
+        return "admin/ChangePassword";
+    }
+
+    @PostMapping(value = "/login")
+    public String login(@RequestParam("username") String user, @RequestParam("password") String pass,
+                        HttpSession session, ModelMap modelMap) {
+        Account account = accountService.login(user, pass);
+        if (account != null) {
+            session.setAttribute("account", account);
+            session.setAttribute("idAccount", account.getId());
+            if (account.getEmployee().getAvatar() != null && !account.getEmployee().getAvatar().isEmpty()) {
+                File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
+                session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
+            }
+
+            if (account.getRole() == 1) {
+                return "redirect:/admin/listDepartment";
+            } else {
+                return "redirect:/employee/inforEmployee";
+            }
+        }
+        modelMap.put("errorLogin", "Sai tài khoản hoặc mật khẩu");
+        return "employee/index";
+
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("account");
+        if (session.getAttribute("avatar") != null) {
+            session.removeAttribute("avatar");
+        }
+        if(session.getAttribute("idAccount") != null){
+        	session.removeAttribute("idAccount");
 		}
+        status = false;
+        return "redirect:/";
+    }
 
-		if (status == false) {
-			model.put("success", "");
-		} else {
-			model.put("success", "Mật khẩu mới đã được gửi đến Email");
-		}
+    @PostMapping(value = "/updatePass")
+    public String forgotPass(ModelMap model, @RequestParam("email") String email) throws MessagingException {
+        boolean checkEmail = employeeService.checkEmail(email);
+        if (checkEmail == true) {
 
-		return "employee/index";
-	}
+            String newPass = randomAlphaNumeric(10);
 
-	@PostMapping(value = "/login")
-	public String login(@RequestParam("username") String user, @RequestParam("password") String pass,
-			HttpSession session, ModelMap modelMap) {
-		Account account = accountService.login(user, pass);
-		if (account != null) {
-			session.setAttribute("account", account);
+            MimeMessage message = MailSender.createMimeMessage();
+            boolean mutipart = true;
+            MimeMessageHelper helper = new MimeMessageHelper(message, mutipart, "utf-8");
 
-			if (account.getEmployee().getAvatar() != null && !account.getEmployee().getAvatar().isEmpty()) {
-				File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
-				session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
-			}
+            String htmlMsg = "<h2>Mật khẩu mới của bạn</h2> <br/> <table style='width:100% ; border-collapse: collapse;border: 1px solid black;'>"
+                    + " <tr style=' border-collapse: collapse;border: 1px solid black;'>"
+                    + "<th style=' border-collapse: collapse;border: 1px solid black;'>Mật khẩu mới</th></tr>"
+                    + "<tr style=' border-collapse: collapse;border: 1px solid black;'>"
+                    + "<th style=' border-collapse: collapse;border: 1px solid black;'>" + newPass + "</th>" + "</tr>"
+                    + "</table>";
 
-			if (account.getRole() == 1) {
-				return "redirect:/admin/listDepartment";
-			} else {
-				return "redirect:/employee/inforEmployee";
-			}
-		}
-		modelMap.put("errorLogin", "Sai tài khoản hoặc mật khẩu");
-		return "employee/index";
+            message.setContent(htmlMsg, "text/html; charset=UTF-8");
 
-	}
+            helper.setTo(email);
+            helper.setSubject("Thông tin mật khẩu mới");
 
-	@GetMapping(value = "/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("account");
-		if (session.getAttribute("avatar") != null) {
-			session.removeAttribute("avatar");
-		}
-		status = false;
-		return "redirect:/";
-	}
+            Account account = accountService.getAccountByEmail(email);
 
-	@PostMapping(value = "/updatePass")
-	public String forgotPass(ModelMap model, @RequestParam("email") String email) throws MessagingException {
-		boolean checkEmail = employeeService.checkEmail(email);
-		if (checkEmail == true) {
+            account.setPassword(encryptThisString(newPass));
 
-			String newPass = randomAlphaNumeric(10);
+            accountService.update(account);
 
-			MimeMessage message = MailSender.createMimeMessage();
-			boolean mutipart = true;
-			MimeMessageHelper helper = new MimeMessageHelper(message, mutipart, "utf-8");
+            MailSender.send(message);
+            status = true;
+            return "redirect:/";
+        }
+        model.put("error", "Không tìm thấy Email ! Vui lòng kiểm tra lại");
+        return "employee/index";
+    }
 
-			String htmlMsg = "<h2>Mật khẩu mới của bạn</h2> <br/> <table style='width:100% ; border-collapse: collapse;border: 1px solid black;'>"
-					+ " <tr style=' border-collapse: collapse;border: 1px solid black;'>"
-					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>Mật khẩu mới</th></tr>"
-					+ "<tr style=' border-collapse: collapse;border: 1px solid black;'>"
-					+ "<th style=' border-collapse: collapse;border: 1px solid black;'>" + newPass + "</th>" + "</tr>"
-					+ "</table>";
+    @GetMapping(value = "/backLogin")
+    public String backLogin() {
+        status = false;
+        return "redirect:/";
+    }
 
-			message.setContent(htmlMsg, "text/html; charset=UTF-8");
+    // ConvertToBase64
+    private static String encodeFileToBase64Binary(File file) {
+        String encodedfile = null;
+        try {
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int) file.length()];
+            fileInputStreamReader.read(bytes);
+            encodedfile = Base64.getEncoder().encodeToString(bytes);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-			helper.setTo(email);
-			helper.setSubject("Thông tin mật khẩu mới");
+        return encodedfile;
+    }
 
-			Account account = accountService.getAccountByEmail(email);
+    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-			account.setPassword(encryptThisString(newPass));
+    public static String randomAlphaNumeric(int count) {
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
+    }
 
-			accountService.update(account);
+    public static String encryptThisString(String input) {
+        try {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
 
-			MailSender.send(message);
-			status = true;
-			return "redirect:/";
-		}
-		model.put("error", "Không tìm thấy Email ! Vui lòng kiểm tra lại");
-		return "employee/index";
-	}
+            // digest() method is called
+            // to calculate message digest of the input string
+            // returned as array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
 
-	@GetMapping(value = "/backLogin")
-	public String backLogin() {
-		status = false;
-		return "redirect:/";
-	}
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
 
-	// ConvertToBase64
-	private static String encodeFileToBase64Binary(File file) {
-		String encodedfile = null;
-		try {
-			FileInputStream fileInputStreamReader = new FileInputStream(file);
-			byte[] bytes = new byte[(int) file.length()];
-			fileInputStreamReader.read(bytes);
-			encodedfile = Base64.getEncoder().encodeToString(bytes);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
 
-		return encodedfile;
-	}
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
 
-	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            // return the HashText
+            return hashtext;
+        }
 
-	public static String randomAlphaNumeric(int count) {
-		StringBuilder builder = new StringBuilder();
-		while (count-- != 0) {
-			int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
-			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-		}
-		return builder.toString();
-	}
-
-	public static String encryptThisString(String input) {
-		try {
-			// getInstance() method is called with algorithm SHA-512
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-
-			// digest() method is called
-			// to calculate message digest of the input string
-			// returned as array of byte
-			byte[] messageDigest = md.digest(input.getBytes());
-
-			// Convert byte array into signum representation
-			BigInteger no = new BigInteger(1, messageDigest);
-
-			// Convert message digest into hex value
-			String hashtext = no.toString(16);
-
-			// Add preceding 0s to make it 32 bit
-			while (hashtext.length() < 32) {
-				hashtext = "0" + hashtext;
-			}
-
-			// return the HashText
-			return hashtext;
-		}
-
-		// For specifying wrong message digest algorithms
-		catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

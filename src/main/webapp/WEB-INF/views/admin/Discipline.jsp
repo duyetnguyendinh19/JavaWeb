@@ -123,12 +123,12 @@ form button:hover {
 									<thead>
 										<tr
 											style="text-align: center; border-bottom: 2px solid #dddddd;">
-											<th>Mã NV</th>
-											<th>Tên NV</th>
-											<th>Loạt kỷ luật</th>
-											<th>Mô tả</th>
-											<th>Lý do</th>
-											<th>Ngày kỷ luật</th>
+											<th style="width: 7%">Mã NV</th>
+											<th style="width: 18%">Tên NV</th>
+											<th style="width: 14%">Loạt kỷ luật</th>
+											<th style="width: 15%">Mô tả</th>
+											<th style="width: 20%">Lý do</th>
+											<th style="width: 14%">Ngày kỷ luật</th>
 											<th class="fas fa-cogs" style="margin-top: 12px;"></th>
 										</tr>
 									</thead>
