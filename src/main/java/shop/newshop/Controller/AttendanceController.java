@@ -101,6 +101,11 @@ public class AttendanceController {
 
 	@GetMapping(value = "listAttendance")
 	public String getAttendance(ModelMap model) {
+		
+		if(employeeService.getAlls() == null || employeeService.getAlls().isEmpty()) {
+			return "redirect:/admin/listEmployee";
+		}
+		
 		Date date = new Date();
 		
 		SimpleDateFormat sdff = new SimpleDateFormat("yyyy/MM/dd");
