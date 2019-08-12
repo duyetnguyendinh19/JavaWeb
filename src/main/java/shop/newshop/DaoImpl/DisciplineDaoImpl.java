@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.DisciplineDao;
 import shop.newshop.Entity.Discipline;
+import shop.newshop.Entity.Employee;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
@@ -129,6 +130,25 @@ public class DisciplineDaoImpl implements DisciplineDao {
 			session.close();
 		}
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Discipline> getDisciplinesByEmployee(Employee employee) {
+		List<Discipline> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Discipline Where employee = :employee";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("employee", employee);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 }
