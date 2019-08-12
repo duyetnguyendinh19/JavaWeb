@@ -77,7 +77,7 @@ public class HomeController {
 					File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
 					session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
 				}
-			}
+			} 
 
 			if (account.getRole() == 1) {
 				return "redirect:/admin/listDepartment";
