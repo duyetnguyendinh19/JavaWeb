@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -327,7 +329,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping(value = "employee/inforEmployee")
-	public String inforEmployee() {
+	public String inforEmployee(ModelMap model, HttpSession session) {
 		return "employee/inforEmployee";
 	}
 
