@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.ContractDao;
 import shop.newshop.Entity.Contract;
+import shop.newshop.Entity.Employee;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
@@ -31,18 +32,20 @@ public class ContractDaoImpl implements ContractDao {
 		}
 		return list;
 	}
+
 	@Override
 	public Contract getContractByEmployeeId(int id) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("FROM Contract c WHERE c.employee.id = :id order by id desc").setMaxResults(1);
+			Query query = session.createQuery("FROM Contract c WHERE c.employee.id = :id order by id desc")
+					.setMaxResults(1);
 			query.setInteger("id", id);
 			Contract contract = (Contract) query.uniqueResult();
 			transaction.commit();
 			return contract;
-		}catch (Exception e){
+		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
@@ -63,7 +66,7 @@ public class ContractDaoImpl implements ContractDao {
 			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			//            session.close();
+			// session.close();
 		}
 		return false;
 	}
@@ -78,7 +81,7 @@ public class ContractDaoImpl implements ContractDao {
 			return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
-		} 
+		}
 		return false;
 	}
 
@@ -106,6 +109,7 @@ public class ContractDaoImpl implements ContractDao {
 		session.close();
 		return bonus;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Contract> getLimit(int num, int row, String name) {
@@ -115,20 +119,21 @@ public class ContractDaoImpl implements ContractDao {
 			session.beginTransaction();
 			String sql = "FROM Contract Where 1=1";
 			String hqlWhere = " ";
-			if(name!=null && !name.isEmpty()) {
-				hqlWhere += "AND LOWER(employee.name) LIKE '%"+name+"%'";
+			if (name != null && !name.isEmpty()) {
+				hqlWhere += "AND LOWER(employee.name) LIKE '%" + name + "%'";
 			}
-			Query query = session.createQuery(sql+hqlWhere);
+			Query query = session.createQuery(sql + hqlWhere);
 			query.setFirstResult(num);
 			query.setMaxResults(row);
 			list = query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return list;
 	}
+
 	@Override
 	public long countAll(String name) {
 		long result = 0;
@@ -137,16 +142,35 @@ public class ContractDaoImpl implements ContractDao {
 			session.beginTransaction();
 			String hql = "SELECT COUNT(*) FROM Contract Where 1=1";
 			String hqlWhere = " ";
-			if(name!=null && !name.isEmpty()) {
-				hqlWhere += " AND LOWER(employee.name) LIKE '%"+name+"%'";
+			if (name != null && !name.isEmpty()) {
+				hqlWhere += " AND LOWER(employee.name) LIKE '%" + name + "%'";
 			}
-			Query query = session.createQuery(hql+hqlWhere);
+			Query query = session.createQuery(hql + hqlWhere);
 			result = (long) query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Contract> getContractByEmployee(Employee employee) {
+		List<Contract> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Contract Where employee = :employee";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("employee", employee);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 }
