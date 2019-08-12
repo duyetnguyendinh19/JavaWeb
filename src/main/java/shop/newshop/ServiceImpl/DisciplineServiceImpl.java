@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import shop.newshop.DAO.DisciplineDao;
 import shop.newshop.Entity.Discipline;
+import shop.newshop.Entity.Employee;
 import shop.newshop.Service.DisciplineService;
 
 @Service
@@ -60,6 +61,11 @@ public class DisciplineServiceImpl implements DisciplineService {
 		} else {
 			return disDao.countAll(name);
 		}
+	}
+
+	@Override
+	public List<Discipline> getDisciplinesByEmployee(Employee employee) {
+		return disDao.getDisciplinesByEmployee(employee);
 	}
 
 }
