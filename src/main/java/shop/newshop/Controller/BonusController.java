@@ -35,7 +35,7 @@ public class BonusController {
 
 		if (countAll == 0) {
 			totalPage = 1;
-			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
+			model.addAttribute("searchFail", "Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -59,6 +59,11 @@ public class BonusController {
 
 	@GetMapping(value = "admin/listBonus")
 	public String bonusList(ModelMap model) {
+
+		if (employeeService.getAlls() == null || employeeService.getAlls().isEmpty()) {
+			return "redirect:/admin/listEmployee";
+		}
+
 		model.put("error", "");
 		model.put("bonusList", bonusService.getLimit(0, 5, null));
 		long countAll = bonusService.countAll(null);
@@ -77,9 +82,9 @@ public class BonusController {
 		model.put("totalPage", totalPage);
 		model.put("totalBonus", countAll);
 		model.put("firstBonus", 1);
-		if(countAll<5) {
+		if (countAll < 5) {
 			model.put("lastBonus", countAll);
-		}else {
+		} else {
 			model.put("lastBonus", 5);
 		}
 		model.put("nameSearch", null);
@@ -107,10 +112,10 @@ public class BonusController {
 
 		model.put("totalPage", totalPage);
 		model.put("totalBonus", countAll);
-		model.put("firstBonus", (page-1)*5+1);
-		if(page<totalPage) {
-			model.put("lastBonus", (page-1)*5+5);
-		}else {
+		model.put("firstBonus", (page - 1) * 5 + 1);
+		if (page < totalPage) {
+			model.put("lastBonus", (page - 1) * 5 + 5);
+		} else {
 			model.put("lastBonus", countAll);
 		}
 
@@ -126,21 +131,22 @@ public class BonusController {
 	}
 
 	@PostMapping(value = "admin/addBonus")
-	public String insertContract(RedirectAttributes redirectAttributes, ModelMap model, @RequestParam("typeBonus") String typeBonus,
-			@RequestParam("date") String date, @RequestParam("descent") String descent,@RequestParam("reason") String reason,
+	public String insertContract(RedirectAttributes redirectAttributes, ModelMap model,
+			@RequestParam("typeBonus") String typeBonus, @RequestParam("date") String date,
+			@RequestParam("descent") String descent, @RequestParam("reason") String reason,
 			@RequestParam("employeeId") int idEmployee) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Employee employee = new Employee();
 			Bonus bonus = new Bonus();
-			if(Strings.isEmpty(typeBonus)){
+			if (Strings.isEmpty(typeBonus)) {
 				List<Employee> employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("employee", employees);
 				model.addAttribute("errorType", "Vui lòng chọn kiểu khen thưởng");
 				return "admin/AddBonus";
 			}
-			if(Strings.isEmpty(date)){
+			if (Strings.isEmpty(date)) {
 				List<Employee> employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("typeBonus", typeBonus);
@@ -148,7 +154,7 @@ public class BonusController {
 				model.addAttribute("errorDate", "Ngày khen thưởng không được để trống");
 				return "admin/AddBonus";
 			}
-			if(Strings.isEmpty(reason)){
+			if (Strings.isEmpty(reason)) {
 				List<Employee> employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("typeBonus", typeBonus);
@@ -156,7 +162,7 @@ public class BonusController {
 				model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
 				return "admin/AddBonus";
 			}
-			if(reason.length() >= 256){
+			if (reason.length() >= 256) {
 				List<Employee> employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("typeBonus", typeBonus);
@@ -164,7 +170,7 @@ public class BonusController {
 				model.addAttribute("errorReason", "Lý do khen thưởng không quá 256 kí tự");
 				return "admin/AddBonus";
 			}
-			if(descent.length() >= 256){
+			if (descent.length() >= 256) {
 				List<Employee> employees = employeeService.getAlls();
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("typeBonus", typeBonus);
@@ -193,21 +199,22 @@ public class BonusController {
 	}
 
 	@PostMapping(value = "admin/updateBonus")
-	public String postUpdateContract(RedirectAttributes redirectAttributes, ModelMap model, @RequestParam("typeBonus") String typeBonus,
-			@RequestParam("date") String date, @RequestParam("descent") String descent,@RequestParam("reason") String reason,
+	public String postUpdateContract(RedirectAttributes redirectAttributes, ModelMap model,
+			@RequestParam("typeBonus") String typeBonus, @RequestParam("date") String date,
+			@RequestParam("descent") String descent, @RequestParam("reason") String reason,
 			@RequestParam("employee") int idEmployee, @RequestParam("id") int id) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Employee employee = new Employee();
 			Bonus bonus = new Bonus();
-			if(Strings.isEmpty(typeBonus)){
+			if (Strings.isEmpty(typeBonus)) {
 				bonus = bonusService.getBonusById(id);
 				model.addAttribute("bonus", bonus);
 				model.addAttribute("idEmployee", idEmployee);
 				model.addAttribute("errorType", "Vui lòng chọn kiểu khen thưởng");
 				return "admin/EditBonus";
 			}
-			if(Strings.isEmpty(date)){
+			if (Strings.isEmpty(date)) {
 				bonus = bonusService.getBonusById(id);
 				bonus.setDate(null);
 				model.addAttribute("bonus", bonus);
@@ -216,7 +223,7 @@ public class BonusController {
 				model.addAttribute("errorDate", "Ngày khen thưởng không được để trống");
 				return "admin/EditBonus";
 			}
-			if(Strings.isEmpty(reason)){
+			if (Strings.isEmpty(reason)) {
 				bonus = bonusService.getBonusById(id);
 				bonus.setReason(null);
 				model.addAttribute("bonus", bonus);
@@ -225,7 +232,7 @@ public class BonusController {
 				model.addAttribute("errorReason", "Lý do khen thưởng không được để trống");
 				return "admin/EditBonus";
 			}
-			if(reason.length() >= 256){
+			if (reason.length() >= 256) {
 				bonus = bonusService.getBonusById(id);
 				model.addAttribute("bonus", bonus);
 				model.addAttribute("idEmployee", idEmployee);
@@ -233,7 +240,7 @@ public class BonusController {
 				model.addAttribute("errorReason", "Lý do khen thưởng không quá 256 kí tự");
 				return "admin/EditBonus";
 			}
-			if(descent.length() >= 256){
+			if (descent.length() >= 256) {
 				bonus = bonusService.getBonusById(id);
 				model.addAttribute("bonus", bonus);
 				model.addAttribute("idEmployee", idEmployee);
@@ -249,7 +256,7 @@ public class BonusController {
 			bonus.setEmployee(employee);
 			bonus.setType(typeBonus);
 			bonusService.update(bonus);
-		}catch (ParseException pe){
+		} catch (ParseException pe) {
 			pe.printStackTrace();
 		}
 		return "redirect:/admin/listBonus";
