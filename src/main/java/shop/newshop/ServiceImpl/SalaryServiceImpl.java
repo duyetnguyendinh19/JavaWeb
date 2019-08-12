@@ -53,4 +53,9 @@ public class SalaryServiceImpl implements SalaryService {
 	public long countAll(String name, int month,int year) {
 		return salaryDao.countAll(name, month,year);
 	}
+
+	@Override
+	public List<Salary> getSalaryByEmployee(int idEmployee) {
+		return salaryDao.getSalaryByEmployee(idEmployee);
+	}
 }
