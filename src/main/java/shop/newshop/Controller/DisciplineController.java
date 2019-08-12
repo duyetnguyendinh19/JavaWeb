@@ -60,6 +60,11 @@ public class DisciplineController {
 
 	@GetMapping(value = "admin/listDiscipline")
 	public String disciplineList(ModelMap model) {
+		
+		if(employeeService.getAlls() == null || employeeService.getAlls().isEmpty()) {
+			return "redirect:/admin/listEmployee";
+		}
+		
 		model.put("error", "");
 		model.put("disciplineList", disciplineService.getLimit(0, 5, null));
 		long countAll = disciplineService.countAll(null);
