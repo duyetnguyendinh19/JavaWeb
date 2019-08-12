@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.newshop.DAO.AttendanceDao;
 import shop.newshop.Entity.Attendance;
+import shop.newshop.Entity.Employee;
 import shop.newshop.Service.AttendanceService;
 
 import java.text.ParseException;
@@ -90,6 +91,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 			e.printStackTrace();
 		}
 		return attendanceDao.countAll(name, dateFormat);
+	}
+
+	@Override
+	public List<Attendance> getAttendanceByEmployee(Employee employee) {
+		return attendanceDao.getAttendanceByEmployee(employee);
 	}
 
 }
