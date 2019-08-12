@@ -3,6 +3,7 @@ package shop.newshop.Service;
 import java.util.List;
 
 import shop.newshop.Entity.Contract;
+import shop.newshop.Entity.Employee;
 
 public interface  ContractService {
 
@@ -17,6 +18,8 @@ public interface  ContractService {
 	public boolean update(Contract ct);
 
 	public boolean delete(int idContract);
+	
+	public List<Contract> getContractByEmployee(Employee employee);
 
 	public Contract getContractById(int idContract);
 
