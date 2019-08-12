@@ -3,5 +3,6 @@ encoding//src/main/java=UTF-8
 encoding//src/main/java/shop/newshop/util/HibernateUtils.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/Addemployees.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/employee/inforEmployee.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8
