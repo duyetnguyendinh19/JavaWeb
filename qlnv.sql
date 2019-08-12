@@ -204,7 +204,7 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`),
   KEY `FK_o58xv1eg6nwb5du5xua34c1sr` (`idDepartment`) /*!80000 INVISIBLE */,
   KEY `fk_employee_account_idx` (`account_id`),
-  CONSTRAINT `fk_employee_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
+  CONSTRAINT `fk_employee_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_employee_department` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
