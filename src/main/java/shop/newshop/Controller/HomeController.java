@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.newshop.Entity.Account;
+import shop.newshop.Entity.Employee;
 import shop.newshop.Service.AccountService;
 import shop.newshop.Service.EmployeeService;
 
@@ -145,7 +146,17 @@ public class HomeController {
 	}
 
 	@GetMapping("/admin/changePassword")
-	public String reset() {
+	public String reset(HttpSession session) {
+		Account account = (Account) session.getAttribute("account");
+		if (account.getEmployee() != null) {
+			Employee employee = employeeService.getEmployeeById(account.getEmployee().getId());
+			if (employee == null) {
+				return "redirect:/logout";
+			}
+		} else {
+			return "redirect:/logout";
+		}
+
 		return "admin/ChangePassword";
 	}
 
