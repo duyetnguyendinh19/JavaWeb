@@ -10,6 +10,8 @@ public interface SalaryService {
     
     public List<Salary> getLimit(int num,int row,String name,int month, int year);
     
+    public List<Salary> getSalaryByEmployee(int idEmployee);
+    
 	public long countAll(String name, int month, int year);
 
     public boolean insert(Salary salary);
