@@ -1,6 +1,5 @@
 package shop.newshop.DAO;
 
-import shop.newshop.Entity.TotalAttendance;
 
 import java.util.List;
 
