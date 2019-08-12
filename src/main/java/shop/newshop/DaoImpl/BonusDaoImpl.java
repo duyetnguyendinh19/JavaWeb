@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import shop.newshop.DAO.BonusDao;
 import shop.newshop.Entity.Bonus;
+import shop.newshop.Entity.Employee;
 import shop.newshop.util.HibernateUtils;
 
 @Repository
@@ -128,6 +129,25 @@ public class BonusDaoImpl implements BonusDao{
 			session.close();
 		}
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Bonus> getBonusByEmployee(Employee employee) {
+		List<Bonus> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Bonus Where employee = :employee";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("employee", employee);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 }
