@@ -21,6 +21,7 @@ public class ContractController {
 
 	@Autowired
 	private EmployeeService employeeService;
+
 	//
 	// private static final String URL_IMG_PATH = "D:/image_qlnv";
 	// private static final String PATH = "/avatar/";
@@ -106,6 +107,11 @@ public class ContractController {
 
 	@GetMapping(value = "admin/listContract")
 	public String listContract(ModelMap model) {
+		
+		if(employeeService.getAlls() == null || employeeService.getAlls().isEmpty()) {
+			return "redirect:/admin/listEmployee";
+		}
+		
 		model.put("error", "");
 		model.put("listContract", contractService.getLimit(0, 5, null));
 		long countAll = contractService.countAll(null);
