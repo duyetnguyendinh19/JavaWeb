@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import shop.newshop.DAO.ContractDao;
 import shop.newshop.Entity.Contract;
+import shop.newshop.Entity.Employee;
 import shop.newshop.Service.ContractService;
 
 @Service
@@ -58,6 +59,10 @@ public class ContractServiceImpl implements ContractService{
 		}
 		
 		return contractDao.countAll(name);
+	}
+	@Override
+	public List<Contract> getContractByEmployee(Employee employee) {
+		return contractDao.getContractByEmployee(employee);
 	}
 
 }
