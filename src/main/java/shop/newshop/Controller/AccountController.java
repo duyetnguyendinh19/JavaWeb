@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
+
+import shop.newshop.Entity.Account;
 import shop.newshop.Service.AccountService;
 
 @Controller
@@ -20,6 +22,11 @@ public class AccountController {
 
 	@PostMapping(value = "admin/listAccount")
 	public String listAccountSearch(ModelMap model, @RequestParam("nameAccount") String nameSearch) {
+		for (Account ac : accountService.getAlls()) {
+			if (ac.getEmployee() == null) {
+				accountService.delete(ac.getId());
+			}
+		}
 		name = nameSearch;
 		model.put("error", "");
 		model.put("listAccount", accountService.getLimit(0, 5, nameSearch));
@@ -28,7 +35,7 @@ public class AccountController {
 
 		if (countAll == 0) {
 			totalPage = 1;
-			model.addAttribute("searchFail","Không tìm thấy dữ liệu");
+			model.addAttribute("searchFail", "Không tìm thấy dữ liệu");
 		} else {
 			if (countAll % 5 == 0) {
 				totalPage = countAll / 5;
@@ -47,14 +54,21 @@ public class AccountController {
 		}
 		model.put("nameSearch", nameSearch);
 
-
 		return "admin/user";
 	}
 
 	@GetMapping(value = "admin/listAccount")
 	public String listAccount(ModelMap model) {
 		model.put("error", "");
+
+		for (Account ac : accountService.getAlls()) {
+			if (ac.getEmployee() == null) {
+				accountService.delete(ac.getId());
+			}
+		}
+
 		model.put("listAccount", accountService.getLimit(0, 5, null));
+
 		long countAll = accountService.countAll(null);
 		long totalPage = 0;
 
