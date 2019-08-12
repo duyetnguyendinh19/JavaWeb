@@ -122,13 +122,13 @@ form button:hover {
 									<thead>
 										<tr
 											style="text-align: center; border-bottom: 2px solid #dddddd;">
-											<th>Mã NV</th>
-											<th>Tên NV</th>
-											<th>Loạt khen thưởng</th>
-											<th>Mô tả khen thưởng</th>
-											<th>Lý do khen thưởng</th>
-											<th>Ngày khen thưởng</th>
-											<th class="fas fa-cogs" style="margin-top: 12px;"></th>
+											<th style="width: 7%;">Mã NV</th>
+											<th style="width: 18%;">Tên NV</th>
+											<th style="width: 14%;">Loại khen thưởng</th>
+											<th style="width: 15%;">Mô tả khen thưởng</th>
+											<th style="width: 20%;">Lý do khen thưởng</th>
+											<th style="width: 14%;">Ngày khen thưởng</th>
+											<th class="fas fa-cogs" style="margin-top: 12px;" ></th>
 										</tr>
 									</thead>
 									<tbody>
