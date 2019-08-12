@@ -67,7 +67,6 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (30,'2019-08-03','13:20:29','23:59:57',1,8),(33,'2019-08-04','13:34:59','23:59:04',1,8),(34,'2019-08-05','13:42:57','21:04:10',1,8),(35,'2019-08-03','13:44:12','14:37:38',2,8),(36,'2019-08-04','13:45:22','18:35:31',2,8),(37,'2019-08-05','13:47:00','18:47:37',2,8),(38,'2019-08-03','13:47:51','13:47:51',3,8),(39,'2019-08-03','13:47:56','15:25:05',4,8),(40,'2019-08-05','13:48:01','19:35:25',3,8),(41,'2019-08-11','13:49:34','13:49:34',1,8),(43,'2019-08-06','07:45:35','17:30:35',1,8),(44,'2019-08-06','10:27:06','18:01:36',3,8);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +96,6 @@ CREATE TABLE `bonus` (
 
 LOCK TABLES `bonus` WRITE;
 /*!40000 ALTER TABLE `bonus` DISABLE KEYS */;
-INSERT INTO `bonus` VALUES (1,'Du lịch','Làm tốt','abc','2019-05-15',1),(7,'Tăng lương','Hay lắm abc','đẹp lắm a123','2019-08-01',2),(9,'Thăng chức','gdf','qưertyuiop','2019-08-15',1),(10,'Du lịch','babab','bababa','2019-08-23',4),(12,'Du lịch','ABBaba','babaaabaab','2019-08-31',1);
 /*!40000 ALTER TABLE `bonus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +124,7 @@ CREATE TABLE `contract` (
 
 LOCK TABLES `contract` WRITE;
 /*!40000 ALTER TABLE `contract` DISABLE KEYS */;
-INSERT INTO `contract` VALUES (3,'2019-07-31 00:00:00',85000000,'2019-07-24 00:00:00',3),(4,'2019-07-30 00:00:00',19000000,'2019-07-23 00:00:00',4),(25,'2019-11-26 00:00:00',50000000,'2019-11-20 00:00:00',2),(28,'2019-11-30 00:00:00',85000000,'2019-11-13 00:00:00',1),(29,'2019-09-30 00:00:00',10000000,'2019-09-18 00:00:00',4),(30,'2019-12-24 00:00:00',10000000,'2019-11-15 00:00:00',3),(31,'2019-11-27 00:00:00',10000000,'2019-11-07 00:00:00',4);
+
 /*!40000 ALTER TABLE `contract` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +178,7 @@ CREATE TABLE `discipline` (
 
 LOCK TABLES `discipline` WRITE;
 /*!40000 ALTER TABLE `discipline` DISABLE KEYS */;
-INSERT INTO `discipline` VALUES (1,'Đuổi việc','Nghịch ngu','Cho chừa xyz','2019-07-27',1),(7,'Đình chỉ','Nghịch ngợm','Chơi game trong giờ','2019-07-31',2),(9,'Đình chỉ','ababa','babbaaba','2019-08-03',4);
+
 /*!40000 ALTER TABLE `discipline` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +246,6 @@ CREATE TABLE `salary` (
 
 LOCK TABLES `salary` WRITE;
 /*!40000 ALTER TABLE `salary` DISABLE KEYS */;
-INSERT INTO `salary` VALUES (31,8,2019,'Bùi Văn Tấn',6,19615385,20,1,'2019-08-10 11:31:52'),(32,8,2018,'Nguyễn Đình Duyệt',2.5,4807692,23.5,2,'2019-08-10 11:31:52'),(33,8,2019,'Lương Minh Trí',0.5,1634615,25.5,3,'2019-08-10 11:31:52'),(34,8,2019,'Nguyễn Đức Quốc Triệu',0,0,26,4,'2019-08-10 11:31:52');
 /*!40000 ALTER TABLE `salary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
