@@ -3,12 +3,15 @@ package shop.newshop.DAO;
 import java.util.List;
 
 import shop.newshop.Entity.Discipline;
+import shop.newshop.Entity.Employee;
 
 public interface DisciplineDao {
 	
 	public List<Discipline> getAlls();
 	
 	public List<Discipline> getLimit(int num,int row,String name);
+	
+	public List<Discipline> getDisciplinesByEmployee(Employee employee);
 	
 	public long countAll(String name);
 
