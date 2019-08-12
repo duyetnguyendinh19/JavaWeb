@@ -108,6 +108,11 @@ public class EmployeeController {
 
 	@GetMapping(value = "admin/listEmployee")
 	public String listEmployee(ModelMap model) {
+		
+		if(departService.getAlls() == null || departService.getAlls().isEmpty()) {
+			return "redirect:/admin/listDepartment";
+		}
+		
 		model.put("error", "");
 		model.put("listEmployee", empService.getLimit(0, 5, null));
 		long countAll = empService.countAll(null);
