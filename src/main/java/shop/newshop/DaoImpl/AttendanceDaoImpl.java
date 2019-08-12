@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import shop.newshop.DAO.AttendanceDao;
 import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Attendance;
+import shop.newshop.Entity.Employee;
 import shop.newshop.util.HibernateUtils;
 
 import java.text.SimpleDateFormat;
@@ -186,6 +187,25 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		}
 
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Attendance> getAttendanceByEmployee(Employee employee) {
+		List<Attendance> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Attendance Where employee = :employee";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("employee", employee);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 }
