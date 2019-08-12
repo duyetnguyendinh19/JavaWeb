@@ -72,9 +72,11 @@ public class HomeController {
 		if (account != null) {
 			session.setAttribute("account", account);
 
-			if (account.getEmployee().getAvatar() != null && !account.getEmployee().getAvatar().isEmpty()) {
-				File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
-				session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
+			if (account.getEmployee() != null) {
+				if (account.getEmployee().getAvatar() != null && !account.getEmployee().getAvatar().isEmpty()) {
+					File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
+					session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
+				}
 			}
 
 			if (account.getRole() == 1) {
