@@ -16,6 +16,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,8 +31,13 @@ import shop.newshop.Entity.Account;
 import shop.newshop.Entity.Department;
 import shop.newshop.Entity.Employee;
 import shop.newshop.Service.AccountService;
+import shop.newshop.Service.AttendanceService;
+import shop.newshop.Service.BonusService;
+import shop.newshop.Service.ContractService;
 import shop.newshop.Service.DepartmentService;
+import shop.newshop.Service.DisciplineService;
 import shop.newshop.Service.EmployeeService;
+import shop.newshop.Service.SalaryService;
 
 @Controller
 public class EmployeeController {
@@ -43,8 +49,23 @@ public class EmployeeController {
 	DepartmentService departService;
 
 	@Autowired
+	ContractService contractService;
+
+	@Autowired
 	AccountService accountService;
 
+	@Autowired
+	BonusService bonusService;
+	
+	@Autowired
+	DisciplineService disciplineService;
+	
+	@Autowired
+	AttendanceService attendanceService;
+	
+	@Autowired
+	SalaryService salaryService;
+	
 	private String regexphone = "^0[0-9]+$";
 	private String regexname = "^[a-zA-Z0-9_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$";
 	private String regexemail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
@@ -330,7 +351,77 @@ public class EmployeeController {
 
 	@GetMapping(value = "employee/inforEmployee")
 	public String inforEmployee(ModelMap model, HttpSession session) {
+		Employee employee = empService
+				.getEmployeeById(((Account) session.getAttribute("account")).getEmployee().getId());
+		if (employee.getAvatar() != null) {
+			File file = new File(PATH + employee.getAvatar());
+			model.put("urlimage", ("data:image/jpeg;base64," + encodeFileToBase64Binary(file)));
+		}
+
+		SimpleDateFormat sdfFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+		model.put("birthday", sdfFormat.format(employee.getBirthday()));
+		model.put("employee", employee);
+
+		if (employee != null) {
+			model.put("listContract", contractService.getContractByEmployee(employee));
+			model.put("bonusList", bonusService.getBonusByEmployee(employee));
+			model.put("disciplineList", disciplineService.getDisciplinesByEmployee(employee));
+			model.put("listAttendance", attendanceService.getAttendanceByEmployee(employee));
+			model.put("listSalary", salaryService.getSalaryByEmployee(employee.getId()));
+		}
+
 		return "employee/inforEmployee";
+	}
+	
+	@GetMapping("employee/changePassword")
+	public String reset() {
+		return "employee/ChangePassword";
+	}
+
+	@PostMapping("employee/resetPassword")
+	public String resetPass(ModelMap model, HttpSession session, @RequestParam("oldPass") String oldPass,
+			@RequestParam("newPass") String newPass, @RequestParam("confirmPass") String confirmPass) {
+
+		Account account = accountService.getAccountById(((Account) session.getAttribute("account")).getId());
+		if (Strings.isEmpty(oldPass)) {
+			model.addAttribute("errorOldPass", "Mật khẩu cũ không được để trống");
+			return "employee/ChangePassword";
+		} else if (Strings.isEmpty(newPass)) {
+			model.addAttribute("errorNewPass", "Mật khẩu mới không được để trống");
+			model.addAttribute("oldPass", oldPass);
+			return "employee/ChangePassword";
+		} else if (Strings.isEmpty(confirmPass)) {
+			model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không được để trống");
+			model.addAttribute("newPass", newPass);
+			model.addAttribute("oldPass", oldPass);
+			return "employee/ChangePassword";
+		} else {
+			if (!encryptThisString(oldPass).equals(account.getPassword())) {
+				model.addAttribute("errorOldPass", "Nhập sai mật khẩu cũ");
+				model.addAttribute("newPass", newPass);
+				model.addAttribute("confirmPass", confirmPass);
+				return "employee/ChangePassword";
+			} else if (newPass.length() > 32) {
+				model.addAttribute("errorNewPass", "Mật khẩu mới không quá 32 kí tự");
+				model.addAttribute("oldPass", oldPass);
+				return "employee/ChangePassword";
+			} else if (encryptThisString(oldPass).equals(encryptThisString(newPass))) {
+				model.addAttribute("errorNewPass", "Mật khẩu mới trùng với mật khẩu cũ");
+				model.addAttribute("oldPass", oldPass);
+				return "employee/ChangePassword";
+			} else if (!confirmPass.equals(newPass)) {
+				model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không trùng mật khẩu mới");
+				model.addAttribute("oldPass", oldPass);
+				return "employee/ChangePassword";
+			} else {
+				account.setId(account.getId());
+				account.setPassword(encryptThisString(newPass));
+				accountService.update(account);
+				model.addAttribute("success", "Đổi mật khẩu thành công");
+			}
+		}
+		return "employee/ChangePassword";
 	}
 
 	private int getAge(Date date) {
