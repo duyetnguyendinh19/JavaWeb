@@ -44,9 +44,7 @@
     <![endif]-->
 </head>
 <style>
-.main-container:before {
-	width: 85%;
-}
+
 
 #showRegister:hover {
 	text-decoration: underline;
@@ -58,7 +56,7 @@ input[type=text], input[type=password], input[type=email] {
 }
 </style>
 <body class="login-layout">
-	<div class="main-container" style="width: 100%; margin-top: 12%;">
+	<div class="main-container" style="width: 100%; padding-top: 12%;">
 		<div class="main-content">
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">
