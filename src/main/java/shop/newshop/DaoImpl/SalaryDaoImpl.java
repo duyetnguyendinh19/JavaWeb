@@ -159,4 +159,22 @@ public class SalaryDaoImpl implements SalaryDao {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Salary> getSalaryByEmployee(int idEmployee) {
+		List<Salary> list = null;
+		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+		try {
+			String sql = "FROM Salary Where idEmployee = :idEmployee";
+			session.beginTransaction();
+			Query query = session.createQuery(sql);
+			query.setParameter("idEmployee", idEmployee);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 }
