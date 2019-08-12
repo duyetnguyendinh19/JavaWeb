@@ -88,12 +88,12 @@ public class AccountDaoImpl implements AccountDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account> getLimit(int num, int row, String name) {
-		deleteNull();
+//		deleteNull();
 		List<Account> list = null;
 		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			String sql = "FROM Account Where 1=1";
+			String sql = "FROM Account Where 1=1 ";
 			String hqlWhere = " ";
 			if (name != null && !name.isEmpty()) {
 				hqlWhere += "AND LOWER(username) LIKE '%" + name + "%'";
@@ -173,23 +173,4 @@ public class AccountDaoImpl implements AccountDao {
 		return account;
 	}
 	
-	private boolean deleteNull() {
-		Session session = HibernateUtils.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
-			List<Account> list = session.createQuery("From Account ac Join ac.employee e Where e is null").list();
-			for(Account ac : list) {
-				session.delete(ac);
-				session.getTransaction().commit();
-			}
-			return true;
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return false;
-	}
-
 }
