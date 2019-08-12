@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -77,7 +78,7 @@ public class HomeController {
 					File fileAvatar = new File(PATH + account.getEmployee().getAvatar());
 					session.setAttribute("avatar", "data:image/jpeg;base64," + encodeFileToBase64Binary(fileAvatar));
 				}
-			} 
+			}
 
 			if (account.getRole() == 1) {
 				return "redirect:/admin/listDepartment";
@@ -141,6 +142,56 @@ public class HomeController {
 	public String backLogin() {
 		status = false;
 		return "redirect:/";
+	}
+
+	@GetMapping("/admin/changePassword")
+	public String reset() {
+		return "admin/ChangePassword";
+	}
+
+	@PostMapping("/admin/resetPassword")
+	public String resetPass(ModelMap model, HttpSession session, @RequestParam("oldPass") String oldPass,
+			@RequestParam("newPass") String newPass, @RequestParam("confirmPass") String confirmPass) {
+
+		Account account = accountService.getAccountById(((Account) session.getAttribute("account")).getId());
+		if (Strings.isEmpty(oldPass)) {
+			model.addAttribute("errorOldPass", "Mật khẩu cũ không được để trống");
+			return "admin/ChangePassword";
+		} else if (Strings.isEmpty(newPass)) {
+			model.addAttribute("errorNewPass", "Mật khẩu mới không được để trống");
+			model.addAttribute("oldPass", oldPass);
+			return "admin/ChangePassword";
+		} else if (Strings.isEmpty(confirmPass)) {
+			model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không được để trống");
+			model.addAttribute("newPass", newPass);
+			model.addAttribute("oldPass", oldPass);
+			return "admin/ChangePassword";
+		} else {
+			if (!encryptThisString(oldPass).equals(account.getPassword())) {
+				model.addAttribute("errorOldPass", "Nhập sai mật khẩu cũ");
+				model.addAttribute("newPass", newPass);
+				model.addAttribute("confirmPass", confirmPass);
+				return "admin/ChangePassword";
+			} else if (newPass.length() > 32) {
+				model.addAttribute("errorNewPass", "Mật khẩu mới không quá 32 kí tự");
+				model.addAttribute("oldPass", oldPass);
+				return "admin/ChangePassword";
+			} else if (encryptThisString(oldPass).equals(encryptThisString(newPass))) {
+				model.addAttribute("errorNewPass", "Mật khẩu mới trùng với mật khẩu cũ");
+				model.addAttribute("oldPass", oldPass);
+				return "admin/ChangePassword";
+			} else if (!confirmPass.equals(newPass)) {
+				model.addAttribute("errorComfirmPass", "Nhập lại mật khẩu không trùng mật khẩu mới");
+				model.addAttribute("oldPass", oldPass);
+				return "admin/ChangePassword";
+			} else {
+				account.setId(account.getId());
+				account.setPassword(encryptThisString(newPass));
+				accountService.update(account);
+				model.addAttribute("success", "Đổi mật khẩu thành công");
+			}
+		}
+		return "admin/ChangePassword";
 	}
 
 	// ConvertToBase64
