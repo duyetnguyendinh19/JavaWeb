@@ -178,6 +178,7 @@ public class EmployeeController {
 		model.put("employee", employee);
 		model.put("error", "");
 		model.put("deparment", departService.getAlls());
+		model.put("birthday", "");
 		model.put("username", null);
 		return "admin/Addemployees";
 	}
@@ -222,7 +223,7 @@ public class EmployeeController {
 	@PostMapping(value = "admin/saveEmployee")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee, ModelMap model,
 			@RequestParam("avatar1") MultipartFile file, @RequestParam("idDepartment") String idDepartment,
-			@RequestParam("username") String username, @RequestParam("birthday") String birthday) {
+			@RequestParam("username") String username, @RequestParam("birthdaytext") String birthday) {
 		try {
 			int idDepart = Integer.parseInt(idDepartment);
 			if (employee.getName().isEmpty()) {
