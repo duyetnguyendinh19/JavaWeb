@@ -59,7 +59,7 @@ input[type=text] {
 							style="margin-bottom: 30px; margin-top: 5px;">
 							<div class="ui calendar" id="rangestart">
 								<label for="validationDefault3">Ngày sinh <font
-									color="red">*</font></label> <input name="birthday"
+									color="red">*</font></label> <input name="birthdaytext"
 									class="form-control datepicker" type="text" id="startDate" value="${birthday}"
 									placeholder="Ngày sinh" maxlength="64" />
 							</div>
