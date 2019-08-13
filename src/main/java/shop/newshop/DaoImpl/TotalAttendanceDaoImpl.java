@@ -30,8 +30,8 @@ public class TotalAttendanceDaoImpl implements TotalAttendanceDao {
                     "        when tk.starttime < Time('8:30:00') and      \n" +
                     "\t\ttk.endtime > Time('17:00:00') then 1     \n" +
                     "\t\twhen tk.starttime < Time('8:30:00') and      \n" +
-                    "\t\ttk.endtime < Time('12:00:00') then 0.5     \n" +
-                    "\t\twhen tk.starttime > Time('12:00:00') and     \n" +
+                    "\t\ttk.endtime > Time('12:00:00') then 0.5     \n" +
+                    "\t\twhen tk.starttime > Time('13:00:00') and     \n" +
                     "\t\ttk.endtime > Time('17:00:00') then 0.5     \n" +
                     "\t\telse 0 end as count_in_day\n" +
                     "\t   from `qlnv`.`attendance` tk   \n" +

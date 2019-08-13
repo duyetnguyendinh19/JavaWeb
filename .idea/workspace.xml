@@ -6,12 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ChangePassword.jsp" afterDir="false" />
+    <list default="true" id="33d0db39-8eda-4a1f-a295-67ab4e369e76" name="Default Changelist" comment="update fix salary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shop/newshop/Controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/Bonus.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/adminlayout.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,7 +177,9 @@
       <workItem from="1565401139828" duration="2765000" />
       <workItem from="1565404344662" duration="6867000" />
       <workItem from="1565418592660" duration="10252000" />
-      <workItem from="1565489387743" duration="11839000" />
+      <workItem from="1565489387743" duration="12156000" />
+      <workItem from="1565575872973" duration="1714000" />
+      <workItem from="1565595318955" duration="1198000" />
     </task>
     <task id="LOCAL-00001" summary="update discipline bonus">
       <created>1564202555526</created>
@@ -330,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565493753094</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="update fix salary">
+      <created>1565519274247</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1565519274247</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
