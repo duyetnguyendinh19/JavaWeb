@@ -197,6 +197,13 @@ public class ContractController {
 				model.addAttribute("employee", employees);
 				return "admin/Addcontract";
 			}
+			if (Integer.parseInt(salary.replaceAll(",","")) < 1000000) {
+				model.put("errorSalary", "Lương tối thiểu 1 triệu");
+				employees = employeeService.getAlls();
+				model.addAttribute("idEmployee", idEmployee);
+				model.addAttribute("employee", employees);
+				return "admin/Addcontract";
+			}
 			if (Strings.isEmpty(startday)) {
 				System.out.println("abcbc");
 				model.put("errorstartday", "Ngày bắt đầu không được để trống");
@@ -257,6 +264,12 @@ public class ContractController {
 			model.put("contract", contract);
 			contract.setSalary(Float.parseFloat(""));
 			model.put("errorSalary", "Lương không được để trống");
+			return "admin/Editcontract";
+		}
+		if (Integer.parseInt(salary.replaceAll(",","")) < 1000000) {
+			contract = contractService.getContractById(id);
+			model.put("contract", contract);
+			model.put("errorSalary", "Lương tối thiểu 1 triệu");
 			return "admin/Editcontract";
 		}
 		// if(contractgetByIdEmployee != null) {
