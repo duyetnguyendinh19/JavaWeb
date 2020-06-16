@@ -2,8 +2,11 @@ package shop.newshop.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import shop.newshop.Entity.Department;
 
+@Component
 public interface DepartmentService {
 	
 	public List<Department> getAlls();
